@@ -6,14 +6,17 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/24 15:28:51 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/24 16:35:13 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
 int main(){
-    double   f = map((t_m) {-1, 0, 10, 0, 100});
-    printf("new val = %f", f);
+    t_tex t;
+    memset(&t, 0, sizeof(t));
+    get_textures(0, &t);
+
+    printf("%s", t.NO);
     return (0);
 }

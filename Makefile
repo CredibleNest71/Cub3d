@@ -6,14 +6,18 @@
 #    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/06/24 15:13:50 by mresch           ###   ########.fr        #
+#    Updated: 2024/06/24 17:06:01 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
-NAME		=	cube
-SRC			=	main.c Extras/quickmath.c
+NAME		=	cub3d
+SRC			=	main.c\
+				Extras/quickmath.c\
+				Parsing/parsing.c 
+#				Movement/movement.c\
+
 OBJ			=	$(SRC:.c=.o)
 BONUS		=	
 BONUS_OBJ	=	$(BONUS:.c=.o)
