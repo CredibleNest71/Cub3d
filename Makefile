@@ -6,19 +6,20 @@
 #    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/06/24 13:02:24 by mresch           ###   ########.fr        #
+#    Updated: 2024/06/24 15:13:50 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
 NAME		=	cube
-SRC			=	main.c
+SRC			=	main.c Extras/quickmath.c
 OBJ			=	$(SRC:.c=.o)
 BONUS		=	
 BONUS_OBJ	=	$(BONUS:.c=.o)
 LIBFT		=	libft
 GNL			=	GNL
+
 
 all:		$(NAME)
 
