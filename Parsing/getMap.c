@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 15:13:33 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:55:47 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void		set_proportions(char *line, int	*height, int *width)
 
 	w = 0;
 	i = 0;
+	*height += 1;
 	while (line[i])
 	{
 		w++;
@@ -81,7 +82,7 @@ char	**make_array(char *line, int height, int width)
 	return (map);
 }
 
-char	**make_map(char *line)
+char	**make_map(char *line, t_game *g)
 {
 	int		width;
 	int		height;
@@ -91,17 +92,18 @@ char	**make_map(char *line)
 	set_proportions(line, &height, &width);
 	// if (!width || !height)
 	// 	return (perror("Error::make_array\n"), NULL);
+	g->map_height = height;
+	g->map_width = width;
 	map = make_array(line, height, width);
 	return (map);
 }
-char	**getMap(int fd)
+char	**getMap(int fd, t_game *g)
 {
 	char	*oneline;
 	char	**map;
 	
 	oneline = read_map(fd);
-	printf("%s", oneline);
-	map = make_map(oneline);
+	map = make_map(oneline, g);
 	return (map);
 }
 

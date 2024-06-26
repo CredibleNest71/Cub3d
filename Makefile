@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
+#    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/06/26 14:51:06 by mesenyur         ###   ########.fr        #
+#    Updated: 2024/06/26 15:39:04 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,11 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 NAME		=	cub3d
 SRC			=	main.c\
 				Extras/quickmath.c\
+				Extras/extras.c\
 				Parsing/parsing.c\
-				Parsing/getMap.c 
-#				Movement/movement.c\
+				Parsing/getMap.c\
+				Parsing/validateMap.c\
+#				Movement/movement.c 
 
 OBJ			=	$(SRC:.c=.o)
 BONUS		=	

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extras.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:05:08 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 13:33:20 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/26 15:38:52 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ typedef struct s_m
 }   t_m;
 
 double	map(t_m in);
+int	is_char(char c, char *chars);
 
 #endif

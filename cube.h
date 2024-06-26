@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 15:29:42 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:18:44 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,16 @@ typedef struct s_game
 	t_tex		*tex;
 	t_player	*player;
 	t_minilibx	*mlx;
+	char		**map;
+	int			map_height;
+	int			map_width;
 }	t_game;
 
 void    free_and_null(void **ptr);
 int 	ft_error(t_game *game, char *s);
+
+//MAP
+int 	validate_map(char **map, t_game *g);
+char	**getMap(int fd, t_game *g);
 
 #endif
