@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
+#    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/06/26 14:05:58 by mresch           ###   ########.fr        #
+#    Updated: 2024/06/26 14:51:06 by mesenyur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ BONUS		=
 BONUS_OBJ	=	$(BONUS:.c=.o)
 LIBFT		=	libft
 GNL			=	GNL
+LIBS		= -lXext -lX11 -lmlx
+INCLUDES	= -I .
 
 
 all:		$(NAME)
@@ -31,7 +33,10 @@ all:		$(NAME)
 $(NAME):	$(OBJ)
 				cd $(LIBFT) && make 
 				cd $(GNL) && make
-				$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT)/ -lft -L$(GNL)/ -lgnl -o $(NAME)
+				$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT)/ -lft -L$(GNL)/ -lgnl $(LIBS) -o $(NAME) 
+
+%.o		: %.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 clean:
 				rm -f $(OBJ) $(BONUS_OBJ)
