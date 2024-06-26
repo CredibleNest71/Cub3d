@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:50:21 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:20:24 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 # include "Parsing/parsing.h"
 
 # define PI	3.1415926536
+# define SCREEN_WIDTH 1920
+# define SCREEN_HEIGHT 1080
 
 enum e_MapSymbols
 {
@@ -46,6 +48,8 @@ enum	e_bindings
 	S	=	115,
 	D	=	100,
 	W	=	119,
+	LEFT =	65361,
+	RIGHT =	65363,
 };
 
 
@@ -56,31 +60,39 @@ typedef struct s_player
 	double	rad;	//DIRECTION OF VIEW IN RADI	ANS [0 - 2PI]
 }	t_player;
 
-//contains PATH to matching texture
-typedef struct s_textures
-{
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	// char	*F;
-	// char	*C;
-}	t_tex;
-
-typedef struct s_mlx
+typedef struct s_minilibx
 {
 	void	*mlx;
-	void	*window;	
-}	t_mlx;
+	void	*window;
+	void	*img;
+	int		screen_width;
+	int		screen_height;
+}	t_minilibx;
 
 typedef struct s_game
 {
 	t_tex		*tex;
 	t_player	*player;
-	t_mlx		*mlx;
+	t_minilibx	*minilibx;
 }	t_game;
 
+//cleaning
 void    free_and_null(void **ptr);
 int 	ft_error(t_game *game, char *s);
+void    clean_everything(t_game *game, int ret);
+
+//initialize
+void    init_game(t_game *game);
+int		handle_keyboard(int button, t_game *game);
+
+//movement
+void	move_forward(t_player *p);
+void	move_backwards(t_player *p);
+void	move_left(t_player *p);
+void	move_right(t_player *p);
+void	turn_left(t_player *p);
+void	turn_right(t_player *p);
+
+
 
 #endif

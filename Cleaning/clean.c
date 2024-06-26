@@ -6,29 +6,28 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/06/26 14:04:14 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:22:02 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+#include <mlx.h>
 
-void    clean_everything(t_game *game)
+void    clean_everything(t_game *game, int ret)
 {
-    if (game && game->tex)
-        // free_textures();
-        free_and_null((void **)&game->tex);
-    if (game && game->player)
-        // free_player();
-        free_and_null((void **)&game->player);
-    if (game)
-        // free_game();
-        free_and_null((void **)&game);
+    if (!game)
+        return ;
+    if (game->minilibx->window)
+        mlx_destroy_window(game->minilibx->mlx, game->minilibx->window);
+    if (game->minilibx->mlx)
+        free_and_null((void **)&game->minilibx->mlx); 
+    exit(ret);
 }
 
 int ft_error(t_game *game, char *s)
 {
     ft_putendl_fd("Error", STDERR_FILENO);
-    clean_everything(game);
+    clean_everything(game, 1);
     if (s)
 		ft_putendl_fd(s, STDERR_FILENO);
 	exit(1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:21:00 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:03:38 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:39:40 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ typedef struct s_textures
 
 int    get_textures(int fd, t_tex *tex);
 char	**getMap(int fd);
+bool    name_check(char **av);
+
 
 #endif

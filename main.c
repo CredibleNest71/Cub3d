@@ -3,17 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:12:01 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 16:22:22 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+#include <mlx.h>
 
-int main(){
+// int main(){
+//     t_tex t;
+//     char **map;
+//     memset(&t, 0, sizeof(t));
+
+//     int fd = open("testfile.txt", O_RDONLY);
+//     get_textures(fd, &t);
+//     map = getMap(fd);
+//     return (0);
+// }
+
+int main(int ac, char **av){
     t_tex t;
+    t_game game;
+    if (ac != 2)
+		return (ft_putendl_fd("Need 2 arguments", STDERR_FILENO), 1);
+    name_check(av);
+    init_game(&game);
     char **map;
     memset(&t, 0, sizeof(t));
 
