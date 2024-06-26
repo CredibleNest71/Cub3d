@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:03:46 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:32:50 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,17 @@ typedef struct s_textures
 	// char	*C;
 }	t_tex;
 
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*window;	
+}	t_mlx;
+
 typedef struct s_game
 {
 	t_tex		*tex;
 	t_player	*player;
+	t_mlx		*mlx;
 }	t_game;
 
 void    free_and_null(void **ptr);
