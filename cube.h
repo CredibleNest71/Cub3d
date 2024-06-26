@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:32:50 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:50:21 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <math.h>
 # include "mlx.h"
 # include <stdbool.h>
+# include <fcntl.h>
 
 # include "Extras/extras.h"
 # include "GNL/get_next_line.h"
 # include "libft/libft.h"
 # include "Movement/movement.h"
+# include "Parsing/parsing.h"
 
 # define PI	3.1415926536
 
