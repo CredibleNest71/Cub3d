@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/24 16:00:04 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:03:46 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdio.h>
 # include <math.h>
+# include "mlx.h"
+# include <stdbool.h>
 
 # include "Extras/extras.h"
 # include "GNL/get_next_line.h"
@@ -22,6 +24,28 @@
 # include "Movement/movement.h"
 
 # define PI	3.1415926536
+
+enum e_MapSymbols
+{
+	EMPTY =		'0',
+	WALL =		'1',
+	PL_WEST =	'W',
+	PL_EAST =	'E',
+	PL_NORTH =	'N',
+	PL_SOUTH =	'S',
+	// ENEMY =		'X',
+	// DOOR = 		'D',
+};
+
+enum	e_bindings
+{
+	ESC =	65307,
+	A	=	97,
+	S	=	115,
+	D	=	100,
+	W	=	119,
+};
+
 
 typedef struct s_player
 {
@@ -40,5 +64,14 @@ typedef struct s_textures
 	// char	*F;
 	// char	*C;
 }	t_tex;
+
+typedef struct s_game
+{
+	t_tex		*tex;
+	t_player	*player;
+}	t_game;
+
+void    free_and_null(void **ptr);
+int 	ft_error(t_game *game, char *s);
 
 #endif

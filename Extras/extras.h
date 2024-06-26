@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   extras.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:05:08 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/24 15:28:17 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 13:33:20 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef QUICKMATH_H
 # define QUICKMATH_H
-# include "../cube.h"
 
 typedef struct s_m
 {

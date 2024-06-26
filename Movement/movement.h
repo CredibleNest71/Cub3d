@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   movement.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:57 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/24 15:26:17 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:05:43 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOVEMENT_H
 # define MOVEMENT_H
-# include "../cube.h"
 # define SPEED 1
 # define SPIN 0.05
 
