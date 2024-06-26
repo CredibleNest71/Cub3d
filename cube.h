@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 15:25:16 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:29:42 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,17 @@ typedef struct s_player
 // 	char	*C;
 // }	t_tex;
 
+typedef struct s_minilibx
+{
+	void	*mlx;
+	void	*window;
+}	t_minilibx;
+
 typedef struct s_game
 {
 	t_tex		*tex;
 	t_player	*player;
-	t_mlx		*mlx;
+	t_minilibx	*mlx;
 }	t_game;
 
 void    free_and_null(void **ptr);
