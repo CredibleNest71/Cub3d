@@ -6,12 +6,13 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:21:00 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:03:38 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:12:54 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
+# include "../cube.h"
 
 //contains PATH to matching texture
 typedef struct s_textures
@@ -26,5 +27,7 @@ typedef struct s_textures
 
 int    get_textures(int fd, t_tex *tex);
 char	**getMap(int fd);
+void	print_map(char **map);
+void	print_tex(t_tex *tex);
 
 #endif

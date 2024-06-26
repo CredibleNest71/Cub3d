@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:33:44 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:38:35 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ typedef struct s_player
 }	t_player;
 
 //contains PATH to matching texture
-typedef struct s_textures
-{
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	// char	*F;
-	// char	*C;
-}	t_tex;
+// typedef struct s_textures
+// {
+// 	char	*NO;
+// 	char	*SO;
+// 	char	*WE;
+// 	char	*EA;
+// 	char	*F;
+// 	char	*C;
+// }	t_tex;
 
 typedef struct s_game
 {

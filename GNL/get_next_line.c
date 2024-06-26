@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 16:15:31 by ischmutz          #+#    #+#             */
-/*   Updated: 2024/06/26 13:19:47 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/26 14:39:25 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,6 @@ char	*get_next_line(int fd)
 	}
 	else
 		liberator(&rawstr);
-	size_t	finnlen = ft_strlen(cookeds);
-	if (cookeds[finnlen - 1] == '\n')
-		cookeds[finnlen - 1] = 0;
 	return (cookeds);
 }
 //static variables remember their value, therefore u need to set them to NULL

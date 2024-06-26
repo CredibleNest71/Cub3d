@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:12:41 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:13:33 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ char	*read_map(int fd)
 		line = ft_strjoin(line, next);
 		free(next);
 		next = get_next_line(fd);
+		if (ft_strlen(next) < 2)
+			break ;
 	}
+	free(next);
 	return (line);
 }
 
@@ -68,10 +71,10 @@ char	**make_array(char *line, int height, int width)
 		map[i] = (char *) ft_calloc(1, width + 1);
 		if (!map[i])
 			return (NULL);
-		while (line[j] != '\n')
+		while (line[j] && line[j] != '\n' && k < width)
 			map[i][k++] = line[j++];
 		while (k < width)
-			map[i][k] = ' ';
+			map[i][k++] = ' ';
 		j++;
 		i++;
 	}
@@ -85,7 +88,7 @@ char	**make_map(char *line)
 	char	**map;
 	width = 0;
 	height = 0;
-	set_proportions(line, &width, &height);
+	set_proportions(line, &height, &width);
 	// if (!width || !height)
 	// 	return (perror("Error::make_array\n"), NULL);
 	map = make_array(line, height, width);
@@ -99,10 +102,15 @@ char	**getMap(int fd)
 	oneline = read_map(fd);
 	printf("%s", oneline);
 	map = make_map(oneline);
+	return (map);
+}
+
+void	print_map(char **map)
+{
+	printf("\n==========================\n");
     for (int i = 0; map[i]; i++)
     {
-	    printf("%s\n", map[i]);
+	    printf("|%s|\n", map[i]);
 	}
-	
-	return (map);
+	printf("==========================\n");
 }
