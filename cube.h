@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/24 16:55:24 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 14:01:57 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <math.h>
+# include <fcntl.h>
 
 # include "Extras/extras.h"
 # include "GNL/get_next_line.h"

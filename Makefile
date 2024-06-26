@@ -6,7 +6,7 @@
 #    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/06/24 17:06:01 by mresch           ###   ########.fr        #
+#    Updated: 2024/06/26 14:05:58 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 NAME		=	cub3d
 SRC			=	main.c\
 				Extras/quickmath.c\
-				Parsing/parsing.c 
+				Parsing/parsing.c\
+				Parsing/getMap.c 
 #				Movement/movement.c\
 
 OBJ			=	$(SRC:.c=.o)
