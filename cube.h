@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 08:09:02 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:25:49 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ void	move_left(t_player *p);
 void	move_right(t_player *p);
 void	turn_left(t_player *p);
 void	turn_right(t_player *p);
+
+// paint in black
+int	draw_player(t_game *game, double size);
 
 
 
