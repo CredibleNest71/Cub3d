@@ -6,12 +6,11 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 07:36:49 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:03:57 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
-#include <mlx.h>
 
 // int main(){
 //     t_tex t;
@@ -36,5 +35,10 @@ int main(int ac, char **av){
     int fd = open("testfile.txt", O_RDONLY);
     get_textures(fd, &game.tex);
     map = getMap(fd);
+
+    print_map(map);
+    print_tex(&t);
+
+    
     return (0);
 }

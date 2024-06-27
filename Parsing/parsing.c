@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 14:04:59 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:21:21 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ static	int	add_to_textures(t_tex *tex, char *line)
 	*curr = path;
 	return (1);
 }
-
+// 0 = ALL GOOD
+// ANYTHING ELSE = ERROR
 int    get_textures(int fd, t_tex *tex)
 {
     char    *line;
@@ -95,4 +96,14 @@ int    get_textures(int fd, t_tex *tex)
 			return (write(2, "An Error occurred\n", 18));
     }
 	return 0;
+}
+
+void	print_tex(t_tex *tex)
+{
+	printf("NO:	%s", tex->NO);
+	printf("SO:	%s", tex->SO);
+	printf("WE:	%s", tex->WE);
+	printf("EA:	%s", tex->EA);
+	printf("F:	%s", tex->F);
+	printf("C:	%s", tex->C);
 }
