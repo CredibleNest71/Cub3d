@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 16:55:47 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 13:53:43 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ char	*read_map(int fd)
 
 	line = NULL;
 	next = get_next_line(fd);
+	while (next && next[0] == '\n')
+	{
+		free(next);
+		next = get_next_line(fd);
+	}
 	while (next)
 	{
 		line = ft_strjoin(line, next);
@@ -44,8 +49,8 @@ void		set_proportions(char *line, int	*height, int *width)
 		w++;
 		if (line[i] == '\n')
 		{
-			if (w > *width)
-				*width = w;
+			if (w - 1> *width)
+				*width = w - 1;
 			*height += 1;
 			w = 0;
 		}
@@ -66,7 +71,7 @@ char	**make_array(char *line, int height, int width)
 	map = ft_calloc(height + 1, sizeof(char *));
 	if (!map)
 		return (NULL);
-	while (i < height)
+	while (i < height - 1)
 	{
 		k = 0;
 		map[i] = (char *) ft_calloc(1, width + 1);
@@ -99,10 +104,17 @@ char	**make_map(char *line, t_game *g)
 }
 char	**getMap(int fd, t_game *g)
 {
+	char	*temp;
 	char	*oneline;
 	char	**map;
 	
 	oneline = read_map(fd);
+	if (oneline[ft_strlen(oneline) - 1] != '\n')
+	{
+		temp = ft_strjoin(oneline, "\n");
+		free(oneline);
+		oneline = temp;
+	}
 	map = make_map(oneline, g);
 	return (map);
 }

@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 16:17:36 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 12:56:46 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int main(){
         printf("ERRONIOUS MAP\n");
     print_map(map);
     print_tex(&t);
-
     
     return (0);
 }

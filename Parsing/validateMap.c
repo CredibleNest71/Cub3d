@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 16:46:36 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 13:58:50 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_vert(const char *checkme)
 	i = 0;
 	while (checkme[i])
 	{
-		if (checkme[i] != '1')
+		if (!is_char(checkme[i], "1 "))
 			return (1);
 		i++;
 	}
@@ -64,10 +64,10 @@ int	check_walls(char **map, t_game *g)
 		if (!checkme)
 			return (1);
 		if (checkme[0] != '1' || checkme[ft_strlen(checkme) - 1] != '1')
-			return (1);
+			return (free(checkme), 1);
 		if (!i || i == g->map_height)
 			if (check_vert(checkme))
-				return (1);
+				return (free(checkme), 1);
 		free(checkme);
 		i++;
 	}
@@ -78,14 +78,14 @@ int	check_walls(char **map, t_game *g)
 int	check_surrounding(char **map, int x, int y, t_game *g)
 {
 	if ((x && !is_char(map[y][x - 1], " 1")) || 
-		( x < g->map_width && !is_char(map[y][x + 1], " 1")) ||
+		( x < g->map_width - 1 && !is_char(map[y][x + 1], " 1")) ||
 		(y && !is_char(map[y - 1][x], " 1")) ||
-		(y < g->map_width && !is_char(map[y + 1][x], " 1")) ||
+		(y < g->map_height - 2 && !is_char(map[y + 1][x], " 1")) ||
 		(y && x && !is_char(map[y - 1][x - 1], " 1"))||
-		( y < g->map_height && x && !is_char(map[y + 1][x - 1], " 1"))||
-		(y && x < g->map_width && !is_char(map[y - 1][x + 1], " 1"))||
-		(x < g->map_width && y < g->map_height && !is_char(map[y + 1][x + 1], " 1")))
-		return (1);
+		( y < g->map_height - 2 && x && !is_char(map[y + 1][x - 1], " 1"))||
+		(y && x < g->map_width - 1&& !is_char(map[y - 1][x + 1], " 1"))||
+		(x < g->map_width - 1 && y < g->map_height - 2 && !is_char(map[y + 1][x + 1], " 1")))
+		return (printf("X:%d\nY:%d\n", x, y), 1);
 	return (0);
 }
 
@@ -94,10 +94,10 @@ int	check_spaces(char **map, t_game *g)
 	int	x;
 	int	y;
 
-	x = 0;
 	y = 0;
 	while (map[y])
 	{
+		x = 0;
 		while (map[y][x])
 		{
 			if (map[y][x] == ' ')
