@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/06/27 07:59:35 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:13:59 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    init_game(t_game *game)
     game->minilibx.window = mlx_new_window(game->minilibx.mlx, game->minilibx.screen_width, game->minilibx.screen_height, "Cub3D");
     if (!game->minilibx.window)
         ft_error(game, "Window creation failed");
-    // player movement initialization
+    // player movement initialization for now
     game->player.px = (double)game->minilibx.screen_width / 2;
     game->player.py = (double)game->minilibx.screen_height / 2;
 
@@ -56,8 +56,7 @@ void    init_game(t_game *game)
     
     
     mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
-    mlx_key_hook(game->minilibx.window, handle_keyboard, &game);
     mlx_loop_hook(game->minilibx.mlx, throw_pixels, game);
     // mlx_mouse_hook(game->minilibx.window, handle_no_event, &game);    
-    mlx_loop(game->minilibx.mlx);
+    // mlx_loop(game->minilibx.mlx);
 }

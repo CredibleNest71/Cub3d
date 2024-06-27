@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 08:06:40 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/27 08:09:02 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # include "Parsing/parsing.h"
 
 # define PI	3.1415926536
-# define SCREEN_WIDTH 1920
-# define SCREEN_HEIGHT 1080
 
 enum e_MapSymbols
 {
