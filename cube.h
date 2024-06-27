@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 17:20:24 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/27 07:33:07 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,9 @@ typedef struct s_minilibx
 
 typedef struct s_game
 {
-	t_tex		*tex;
-	t_player	*player;
-	t_minilibx	*minilibx;
+	t_tex		tex;
+	t_player	player;
+	t_minilibx	minilibx;
 }	t_game;
 
 //cleaning

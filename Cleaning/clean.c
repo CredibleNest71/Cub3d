@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/06/26 17:22:02 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/06/27 07:39:51 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void    clean_everything(t_game *game, int ret)
 {
     if (!game)
         return ;
-    if (game->minilibx->window)
-        mlx_destroy_window(game->minilibx->mlx, game->minilibx->window);
-    if (game->minilibx->mlx)
-        free_and_null((void **)&game->minilibx->mlx); 
+    if (game->minilibx.window)
+        mlx_destroy_window(game->minilibx.mlx, game->minilibx.window);
+    if (game->minilibx.mlx)
+        free_and_null((void **)&game->minilibx.mlx); 
     exit(ret);
 }
 
