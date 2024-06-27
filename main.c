@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 14:03:22 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 14:55:58 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ int main(int ac, char **av){
     char **map;
     memset(&game.tex, 0, sizeof(game.tex));
 
-    int fd = open("testfile.txt", O_RDONLY);
+    int fd = open("testfile.cub", O_RDONLY);
     get_textures(fd, &game.tex);
     map = getMap(fd, &g);
     if (validate_map(map, &g))
         printf("ERRONIOUS MAP\n");
     print_map(map);
+    delete_map(map);
     print_tex(&game.tex);
+    delete_tex(&game.tex);
     mlx_loop(game.minilibx.mlx);
     return (0);
 }

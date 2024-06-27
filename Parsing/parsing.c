@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 15:21:21 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 15:01:37 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static	int	add_to_textures(t_tex *tex, char *line)
 	char	*path;
 	int		color;
 	
+	if (!line)
+		return (0);
 	curr = identify(tex, line, &color);
 	if (!curr)
 		return (free(line), 0);
@@ -71,8 +73,7 @@ static	int	add_to_textures(t_tex *tex, char *line)
 	if (!found)
 		return (free(line), 0);
 	path = ft_strdup(found);
-	if (!path)
-		return (free(line), 0);
+	free(line);
 	*curr = path;
 	return (1);
 }
@@ -106,4 +107,32 @@ void	print_tex(t_tex *tex)
 	printf("EA:	%s", tex->EA);
 	printf("F:	%s", tex->F);
 	printf("C:	%s", tex->C);
+}
+
+void	delete_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i++]);
+	}
+	free(map);
+}
+
+void	delete_tex(t_tex *tex)
+{
+	if (tex->C)
+		free(tex->C);
+	if (tex->F)
+		free(tex->F);
+	if (tex->NO)
+		free(tex->NO);
+	if (tex->SO)
+		free(tex->SO);
+	if (tex->EA)
+		free(tex->EA);
+	if (tex->WE)
+		free(tex->WE);
 }

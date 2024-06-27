@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 16:21:00 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 14:03:42 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 14:55:07 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int    get_textures(int fd, t_tex *tex);
 void	print_map(char **map);
 void	print_tex(t_tex *tex);
 bool    name_check(char **av);
-
+void	delete_map(char **map);
+void	delete_tex(t_tex *tex);
 
 #endif

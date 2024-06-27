@@ -6,11 +6,27 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 13:53:43 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 14:52:36 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+
+char	*append_and_replace(char *first, char *second)
+{
+	char	*ret;
+
+	if (!second)
+		return (first);
+	if (!first)
+		return (second);
+	ret = ft_strjoin(first, second);
+	free(first);
+	free(second);
+	first = NULL;
+	second = NULL;
+	return (ret);
+}
 
 char	*read_map(int fd)
 {
@@ -26,13 +42,13 @@ char	*read_map(int fd)
 	}
 	while (next)
 	{
-		line = ft_strjoin(line, next);
-		free(next);
+		line = append_and_replace(line, next);
 		next = get_next_line(fd);
 		if (ft_strlen(next) < 2)
 			break ;
 	}
-	free(next);
+	if (next)
+		free(next);
 	return (line);
 }
 
@@ -116,6 +132,7 @@ char	**getMap(int fd, t_game *g)
 		oneline = temp;
 	}
 	map = make_map(oneline, g);
+	free(oneline);
 	return (map);
 }
 
