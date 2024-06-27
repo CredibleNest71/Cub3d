@@ -6,25 +6,29 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 12:56:46 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/27 14:03:22 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
 
-int main(){
-    t_tex t;
+int main(int ac, char **av){
+    t_game game;
+    if (ac != 2)
+		return (ft_putendl_fd("Need 2 arguments", STDERR_FILENO), 1);
+    name_check(av);
+    init_game(&game);
     t_game g;
     char **map;
-    memset(&t, 0, sizeof(t));
+    memset(&game.tex, 0, sizeof(game.tex));
 
     int fd = open("testfile.txt", O_RDONLY);
-    get_textures(fd, &t);
+    get_textures(fd, &game.tex);
     map = getMap(fd, &g);
     if (validate_map(map, &g))
         printf("ERRONIOUS MAP\n");
     print_map(map);
-    print_tex(&t);
-    
+    print_tex(&game.tex);
+    mlx_loop(game.minilibx.mlx);
     return (0);
 }

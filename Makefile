@@ -6,7 +6,7 @@
 #    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/06/26 15:39:04 by mresch           ###   ########.fr        #
+#    Updated: 2024/06/27 14:03:36 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,16 +17,18 @@ SRC			=	main.c\
 				Extras/quickmath.c\
 				Extras/extras.c\
 				Parsing/parsing.c\
-				Parsing/getMap.c\
-				Parsing/validateMap.c\
-#				Movement/movement.c 
+				Parsing/getMap.c \
+				Initialize/init.c \
+				Cleaning/clean.c \
+				Parsing/input_check.c \
+				Movement/movement.c
 
 OBJ			=	$(SRC:.c=.o)
 BONUS		=	
 BONUS_OBJ	=	$(BONUS:.c=.o)
 LIBFT		=	libft
 GNL			=	GNL
-LIBS		= -lXext -lX11 -lmlx
+LIBS		= -lXext -lX11 -lmlx -lm
 INCLUDES	= -I .
 
 
