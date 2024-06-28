@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   validateMap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 13:58:50 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/28 11:42:30 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "../cube.h"
 
 int check_player(char **map)
 {
