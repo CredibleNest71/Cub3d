@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 14:02:48 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/28 18:29:29 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "Parsing/parsing.h"
 
 # define PI	3.1415926536
+# define SPAWN "NSOW"
 
 enum e_MapSymbols
 {
@@ -89,6 +90,7 @@ void    clean_everything(t_game *game, int ret);
 //initialize
 void    init_game(t_game *game);
 int		handle_keyboard(int button, t_game *game);
+void	init_player(t_game *game);
 
 //movement
 void	move_forward(t_player *p);
@@ -100,6 +102,8 @@ void	turn_right(t_player *p);
 
 // paint in black
 int	draw_player(t_game *game, double size);
+
+
 
 
 
