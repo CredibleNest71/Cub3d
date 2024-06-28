@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 14:02:48 by mresch           ###   ########.fr       */
+/*   Updated: 2024/06/28 17:33:19 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,16 @@ typedef struct s_game
 	int			map_width;
 }	t_game;
 
+typedef struct s_ray
+{
+	int		map_x;
+	int		map_y;
+	double	stepX;
+	double	stepY;
+	double	angle;
+	double	dist;
+}	t_ray;
+
 //cleaning
 void    free_and_null(void **ptr);
 int 	ft_error(t_game *game, char *s);
@@ -101,6 +111,7 @@ void	turn_right(t_player *p);
 // paint in black
 int	draw_player(t_game *game, double size);
 
-
+//raycasting
+t_ray	*vision(t_game *g);
 
 #endif

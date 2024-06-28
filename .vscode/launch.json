@@ -10,7 +10,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "./cub3d",
-            "args": [],
+            "args": ["testfile.cub"],
             "cwd": "${workspaceFolder}"
         }
     ]
