@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 11:42:30 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:39:45 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ int validate_map(char **map, t_game *g)
 		return (1);
 	if (check_spaces(map, g))
 		return (1);
+    // get_player_location(g);
 	return (0);
 }

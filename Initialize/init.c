@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/06/28 18:28:57 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:42:18 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,21 @@ int	draw_player(t_game *game, double size)
     return (0);
 }
 
-void	get_player_location(t_game *game, double *x, double *y)
+void	get_player_location(t_game *game)
 {
 	int		column;
 	int		row;
 
 	column = 0;
-	printf("%d\n", game->map_width);
-	printf("%d\n", game->map_height);
 	while (column < game->map_width)
 	{
 		row = 0;
-		while (row < game->map_height)
+		while (row < game->map_height - 1)
 		{
-			if ((game->map[row][column] == 'N' || game->map[row][column] == 'E'
-			|| game->map[row][column] == 'W' || game->map[row][column] == 'S'))
+			if (game->map[row][column] != '0' && game->map[row][column] == '1')
 			{
-				*x = row;
-				*y = column;
+				game->player.py = row;
+				game->player.px = column;
 				printf("x is: %lf y is: %lf\n", game->player.px, game->player.py);
 				return ;
 			}
@@ -101,15 +98,12 @@ void	get_player_location(t_game *game, double *x, double *y)
 		}
 		column++;
 	}
-	*x = -1;
-	*y = -1;
+	game->player.not_found = 1;
 }
 
 void	init_player(t_game *game)
 {
-	get_player_location(game, &game->player.px, &game->player.py);
-	game->player.px = (double)game->minilibx.screen_width / 2;
-	game->player.py = (double)game->minilibx.screen_height / 2;
+	get_player_location(game);
 	draw_player(game, 5);
 }
 

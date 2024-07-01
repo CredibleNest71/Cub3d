@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getMap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/27 14:52:36 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/01 12:23:24 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char	**make_map(char *line, t_game *g)
 	set_proportions(line, &height, &width);
 	// if (!width || !height)
 	// 	return (perror("Error::make_array\n"), NULL);
-	g->map_height = height;
+	g->map_height = height - 1; // we get 1 too many
 	g->map_width = width;
 	map = make_array(line, height, width);
 	return (map);
