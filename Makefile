@@ -6,7 +6,7 @@
 #    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/06/27 14:05:00 by mresch           ###   ########.fr        #
+#    Updated: 2024/06/28 17:22:01 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
 NAME		=	cub3d
 SRC			=	main.c\
+				CastingRays/rc.c\
 				Extras/quickmath.c\
 				Extras/extras.c\
 				Parsing/parsing.c\

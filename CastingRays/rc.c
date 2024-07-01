@@ -6,8 +6,136 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 14:38:42 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/01 11:32:13 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+
+t_ray	*make_rays(t_game *g)
+{
+	t_ray	*ret;
+
+	ret = ft_calloc(g->minilibx.screen_width + 1, sizeof(t_ray));
+	if (!ret)
+		return (NULL);
+	return (ret);
+}
+
+
+double	distance(double px, double py, double x, double y)
+{
+	double	dist;
+
+	dist = px - x + py - y;
+	dist = fabs(dist);
+	return (sqrt(dist));
+}
+
+double	check_y(t_game *g, t_ray *ray)
+{
+	double	y;
+	double	x;
+	double	d;
+	int		dir;
+
+	dir = 1;
+	if (sin(ray->angle) < 0)
+		dir = -1;
+	if (sin(ray->angle) < 0)
+		y = floor(g->player.py);
+	else
+		y = ceil(g->player.py);
+	while (1)
+	{
+		d = (y - g->player.py) * sin(ray->angle);
+		x = g->player.px + (cos(ray->angle) * d);
+		if (y < 0 || x < 0)
+			return (0);
+		if (y > g->map_height || x > g->map_width)
+			return (0);
+		if (g->map[(int) y][(int) x] == '1')
+			break ;
+		y += dir;
+	}
+	return (distance(g->player.px, g->player.py, x, y));
+}
+
+double	check_x(t_game *g, t_ray *ray)
+{
+	double	y;
+	double	x;
+	double	d;
+	int		dir;
+
+	dir = 1;
+	if (cos(ray->angle) < 0)
+		dir = -1;
+	if (cos(ray->angle) < 0)
+		x = floor(g->player.px);
+	else
+		x = ceil(g->player.px);
+	while (1)
+	{
+		d = (x - g->player.px) * cos(ray->angle);
+		y = g->player.px + (cos(ray->angle) * d);
+		if (y < 0 || x < 0)
+			return (0);
+		if (y > g->map_height - 2 || x > g->map_width - 2)
+			return (0);
+		if (g->map[(int) y][(int) x] == '1')
+			break ;
+		x += dir;
+	}
+	return (distance(g->player.px, g->player.py, x, y));
+}
+
+double	cast_ray(t_game *g, t_ray *ray)
+{
+	double	distx;
+	double	disty;
+	double	dist;
+
+	distx = check_x(g, ray);
+	disty = check_y(g, ray);
+	dist = distx < disty ? distx : disty;
+	ray->dist = dist;
+	printf("Angle: %f°	distance: %f\n", degr(ray->angle), dist);
+	return (dist);
+}
+
+void	clean_angle(double *a)
+{
+	while (*a < 0)
+		*a += 2 * PI;
+	while (*a > 2 * PI)
+		*a -= 2 * PI;
+}
+
+t_ray	*vision(t_game *g)
+{
+	double	ang_a;
+	double	ang_b;
+	double	inc;
+	t_ray	*rays;
+	int		count;
+
+	rays = make_rays(g);
+	if (!rays)
+		return (NULL);
+	// ang_a = g->player.rad - (PI / 6);
+	// ang_b = g->player.rad + (PI / 6);
+	ang_a = 0;
+	ang_b = 2 * PI;
+	inc = (ang_b - ang_a) / 100;
+	clean_angle(&ang_a);
+	clean_angle(&ang_b);
+	count = 0;
+	while (ang_a < ang_b)
+	{
+		rays[count].angle = ang_a;
+		cast_ray(g, &rays[count++]);
+		ang_a += inc;
+	}
+	return (rays);
+}
