@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/06/27 07:39:51 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/01 12:28:32 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void    clean_everything(t_game *game, int ret)
 int ft_error(t_game *game, char *s)
 {
     ft_putendl_fd("Error", STDERR_FILENO);
-    clean_everything(game, 1);
     if (s)
 		ft_putendl_fd(s, STDERR_FILENO);
+    clean_everything(game, 1);
 	exit(1);
 }
 
