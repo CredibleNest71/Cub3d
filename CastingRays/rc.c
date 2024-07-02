@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 16:31:07 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:38:13 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ double	check_x(t_game *g, t_ray *ray)
 	while (1)
 	{
 		d = (x - g->player.px) * cos(ray->angle);
-		y = g->player.px + (sin(ray->angle) * d);
+		y = g->player.py + (sin(ray->angle) * d);
 		if (y < 0 || x < 0)
 			break ;
 		if (y > g->map_height - 2 || x > g->map_width - 2)
@@ -101,6 +101,7 @@ double	cast_ray(t_game *g, t_ray *ray)
 	if (distx < disty)
 		ray->axis = 1;
 	ray->dist = dist;
+	printf("%d", ray->axis);
 	return (dist);
 }
 
