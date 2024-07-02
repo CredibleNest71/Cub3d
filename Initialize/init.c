@@ -6,12 +6,32 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/02 14:45:41 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:26:52 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 #include <mlx.h>
+
+int		main_display_loop(t_game *g)
+{
+	t_ray	*rays;
+	t_info	*info;
+	void	*oldimg;
+
+	rays = vision(g);
+	info = display(g, rays);
+	oldimg = g->minilibx.img;
+	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0, 0);
+	if (oldimg)
+		mlx_destroy_image(g->minilibx.mlx, oldimg);
+	char str[60];
+	sprintf(str, "ANGLE: %f\nX:%f\nY:%fDIST:%f", g->player.rad, g->player.px, g->player.py, rays[(int)g->map_width / 2].dist);
+	mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
+	free(info);
+	free(rays);
+	return (0);
+}
 
 void	move_and_draw(t_game *game, int dir)
 {
@@ -91,7 +111,7 @@ void	init_player(t_game *game)
 
 void	init_game(t_game *game)
 {
-	*game = (t_game){0};	
+	*game = (t_game){0};
 }
 
 void	init_rest(t_game *game)
@@ -107,5 +127,6 @@ void	init_rest(t_game *game)
 		ft_error(game, "Window creation failed");
 	init_player(game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
-	mlx_loop_hook(game->minilibx.mlx, draw_player, game);
+	// mlx_loop_hook(game->minilibx.mlx, draw_player, game);
+	mlx_loop_hook(game->minilibx.mlx, main_display_loop, game);
 }

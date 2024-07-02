@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:55 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 17:00:37 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:18:21 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ void	move_right(t_player *p)
 
 void	turn_left(t_player *p)
 {
-	p->rad -= SPIN;
+	p->rad =  (p->rad - SPIN);
+	clean_angle(&p->rad);
 }
 
 void	turn_right(t_player *p)
 {
 	p->rad += SPIN;
+	clean_angle(&p->rad);
 }

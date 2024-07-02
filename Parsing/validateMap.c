@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 14:46:45 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:22:10 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@ void	playerinit(int x, int y, char c, t_game *g)
 {
 	int			i;
 	char		dirs[5] = {'E', 'N', 'W', 'S', 0};
-	t_player	p;
-	
+
 	i = 0;
-	p = g->player;
-	p.px = x;
-	p.py = y;
+	g->player.px = x;
+	g->player.py = y;
 	while (dirs[i])
 	{
-		if (c == dirs[i++])
+		if (c == dirs[i])
 			break ;
+		i++;
 	}
-	p.rad = i * (PI / 2);
+	g->player.rad = i * (PI / 2);
 }
-
 
 int check_player(char **map, t_game *game)
 {

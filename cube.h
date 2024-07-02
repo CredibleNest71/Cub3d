@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 14:45:02 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:30:12 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,8 @@ typedef struct s_game
 
 typedef struct s_ray
 {
-	int		map_x;
-	int		map_y;
 	int		num;
-	double	stepX;
-	double	stepY;
+	int		axis; //1 = X, 0 = Y
 	double	angle;
 	double	dist;
 }	t_ray;
@@ -101,7 +98,7 @@ typedef struct imginfo
 
 //display
 void 	colorize(char *buffer, int color, int endian);
-void	display(t_game *g, t_ray *rays);
+t_info	*display(t_game *g, t_ray *rays);
 
 //cleaning
 void    free_and_null(void **ptr);
@@ -130,6 +127,7 @@ int	draw_player(t_game *game, double size);
 
 //raycasting
 t_ray	*vision(t_game *g);
+void	clean_angle(double *a);
 
 
 void	init_rest(t_game *game);
