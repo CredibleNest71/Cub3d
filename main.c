@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 18:43:54 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/02 14:02:20 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,9 @@ int main(int ac, char **av){
     if (validate_map(game.map, &game))
         printf("ERRONIOUS MAP\n");
     print_map(game.map);
-	game.player.rad = (PI / 4) * 3;
-	game.player.px = 1.2;
-	game.player.py = 1.2;
-    raytest	(vision(&game));
-    delete_map(game.map);
     print_tex(&game.tex);
-    delete_tex(&game.tex);
+    vision(&game);
+    display(&game, vision(&game));
     mlx_loop(game.minilibx.mlx);
     return (0);
 }

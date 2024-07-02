@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 18:39:55 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/02 14:19:57 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ double	distance(double px, double py, double x, double y)
 {
 	double	dist;
 
-	dist = px - x + py - y;
-	dist = fabs(dist);
+	dist = pow(px - x, 2) + pow(py - y, 2);
+	//dist = fabs(dist);
 	return (sqrt(dist));
 }
 
@@ -52,7 +52,7 @@ double	check_y(t_game *g, t_ray *ray)
 		x = g->player.px + (cos(ray->angle) * d);
 		if (y < 0 || x < 0)
 			return (0);
-		if (y > g->map_height || x > g->map_width)
+		if (y > g->map_height - 1|| x > g->map_width - 1)
 			return (0);
 		if (g->map[(int) y][(int) x] == '1')
 			break ;
@@ -80,9 +80,9 @@ double	check_x(t_game *g, t_ray *ray)
 		d = (x - g->player.px) * cos(ray->angle);
 		y = g->player.px + (cos(ray->angle) * d);
 		if (y < 0 || x < 0)
-			return (0);
+			break ;
 		if (y > g->map_height - 2 || x > g->map_width - 2)
-			return (0);
+			break ;
 		if (g->map[(int) y][(int) x] == '1')
 			break ;
 		x += dir;
@@ -123,17 +123,18 @@ t_ray	*vision(t_game *g)
 	rays = make_rays(g);
 	if (!rays)
 		return (NULL);
-	// ang_a = g->player.rad - (PI / 6);
-	// ang_b = g->player.rad + (PI / 6);
-	ang_a = 0;
-	ang_b = 2 * PI;
-	inc = (ang_b - ang_a) / 100;
+	ang_a = g->player.rad - (PI / 6);
+	ang_b = g->player.rad + (PI / 6);
+	// ang_a = 0;
+	// ang_b = 2 * PI;
+	inc = (ang_b - ang_a) / g->minilibx.screen_width;
 	clean_angle(&ang_a);
 	clean_angle(&ang_b);
 	count = 0;
-	while (ang_a < ang_b)
+	while (count < g->minilibx.screen_width)
 	{
 		rays[count].angle = ang_a;
+		rays[count].num = count;
 		cast_ray(g, &rays[count++]);
 		ang_a += inc;
 	}

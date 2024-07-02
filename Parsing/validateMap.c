@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validateMap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 11:42:30 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:13:04 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-int check_player(char **map)
+int check_player(char **map, t_game *g)
 {
     int x;
     int y;
@@ -26,7 +26,11 @@ int check_player(char **map)
 		while (map[y][x])
 		{
 			if (is_char(map[y][x], "NEWS"))
+			{
+				g->player.px = x;
+				g->player.py = y;
 				found++;
+			}
 			else if (!is_char(map[y][x], "01NEWS "))
 				return (1);
 			x++;
@@ -114,7 +118,7 @@ int	check_spaces(char **map, t_game *g)
 //0 = CORRECT
 int validate_map(char **map, t_game *g)
 {
-    if (check_player(map))
+    if (check_player(map, g))
 		return (1);
 	if (check_walls(map, g))
 		return (1);

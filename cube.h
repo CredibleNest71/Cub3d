@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 17:33:19 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/02 13:51:57 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,26 @@ typedef struct s_ray
 {
 	int		map_x;
 	int		map_y;
+	int		num;
 	double	stepX;
 	double	stepY;
 	double	angle;
 	double	dist;
 }	t_ray;
+
+typedef struct imginfo
+{
+	int		bits_per_pixel;
+	int		line_bytes;
+	int		endian;
+	void	*image;
+	char	*buf;
+}	t_info;
+
+
+//display
+void 	colorize(char *buffer, int color, int endian);
+void	display(t_game *g, t_ray *rays);
 
 //cleaning
 void    free_and_null(void **ptr);
