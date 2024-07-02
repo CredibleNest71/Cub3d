@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/01 12:42:18 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:42:19 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,40 +76,26 @@ int	draw_player(t_game *game, double size)
     return (0);
 }
 
-void	get_player_location(t_game *game)
+bool	valid_chars(char c)
 {
-	int		column;
-	int		row;
-
-	column = 0;
-	while (column < game->map_width)
-	{
-		row = 0;
-		while (row < game->map_height - 1)
-		{
-			if (game->map[row][column] != '0' && game->map[row][column] == '1')
-			{
-				game->player.py = row;
-				game->player.px = column;
-				printf("x is: %lf y is: %lf\n", game->player.px, game->player.py);
-				return ;
-			}
-			row++;
-		}
-		column++;
-	}
-	game->player.not_found = 1;
+	if (c != 1 && c != 0 && c != ' ' && c != 'N'
+		&& c != 'S' && c != 'E' && c != 'W')
+		return (false);
+	return (true);
 }
 
 void	init_player(t_game *game)
 {
-	get_player_location(game);
 	draw_player(game, 5);
 }
 
 void	init_game(t_game *game)
 {
-	*game = (t_game){0};
+	*game = (t_game){0};	
+}
+
+void	init_rest(t_game *game)
+{
 	game->minilibx.mlx = mlx_init();
 	if (!game->minilibx.mlx)
 		ft_error(game, "Mlx initialization failed");
@@ -119,35 +105,7 @@ void	init_game(t_game *game)
 			game->minilibx.screen_width, game->minilibx.screen_height, "Cub3D");
 	if (!game->minilibx.window)
 		ft_error(game, "Window creation failed");
-	// init_player(game);
+	init_player(game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
 	mlx_loop_hook(game->minilibx.mlx, draw_player, game);
 }
-
-// int wall_check(t_game *game, int x, int y, char **map)
-// {
-// 	if ((x == 0 || y == 0 || x == game->map_width - 1 || y == game->map_height - 1) && map[x][y] != '1')
-// 		return (1);
-// 	return (0);
-// }
-
-// static void	control_map(t_game *game, char **map)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = 0;
-// 	while (map[x])
-// 	{
-// 		y = 0;
-// 		while (map[x][y])
-// 		{
-// 			if (ft_strchr("01NSEW ", map[x][y]) == NULL)
-// 				ft_error(game, "Invalid character in map.");
-// 			if (wall_check(game, x, y, map) == 1)
-// 				ft_error(game, "Map is not closed");
-// 			y++;
-// 		}
-// 		x++;
-// 	}
-// }

@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/01 12:38:08 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:49:13 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_player
 	double	px;		//POSITION
 	double	py;
 	double	rad;	//DIRECTION OF VIEW IN RADI	ANS [0 - 2PI]
-	bool	not_found;
 }	t_player;
 
 typedef struct s_minilibx
@@ -117,6 +116,11 @@ int	draw_player(t_game *game, double size);
 //raycasting
 t_ray	*vision(t_game *g);
 
-void	get_player_location(t_game *game);
+
+void	init_rest(t_game *game);
+
+int		check_player(char **map, t_game *game);
+
+
 
 #endif

@@ -6,13 +6,32 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/01 12:39:45 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/02 14:42:33 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-int check_player(char **map)
+void	playerinit(int x, int y, char c, t_game *g)
+{
+	int			i;
+	char		dirs[5] = {'E', 'N', 'W', 'S', 0};
+	t_player	p;
+	
+	i = 0;
+	p = g->player;
+	p.px = x;
+	p.py = y;
+	while (dirs[i])
+	{
+		if (c == dirs[i++])
+			break ;
+	}
+	p.rad = i * (PI / 2);
+}
+
+
+int check_player(char **map, t_game *game)
 {
     int x;
     int y;
@@ -26,7 +45,10 @@ int check_player(char **map)
 		while (map[y][x])
 		{
 			if (is_char(map[y][x], "NEWS"))
+			{
 				found++;
+				playerinit(x, y, map[y][x], game);
+			}
 			else if (!is_char(map[y][x], "01NEWS "))
 				return (1);
 			x++;
@@ -114,12 +136,23 @@ int	check_spaces(char **map, t_game *g)
 //0 = CORRECT
 int validate_map(char **map, t_game *g)
 {
-    if (check_player(map))
+	if (!map)
+		return (write(2, "no map\n", 7));
+    if (check_player(map, g))
+	{
+		printf("player\n");
 		return (1);
+	}
 	if (check_walls(map, g))
+	{
+		printf("walls\n");
 		return (1);
+	}
 	if (check_spaces(map, g))
+	{
+		printf("space\n");
 		return (1);
+	}
     // get_player_location(g);
 	return (0);
 }
