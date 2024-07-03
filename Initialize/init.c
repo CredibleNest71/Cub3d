@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/02 16:26:52 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/03 16:31:53 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 
 int		main_display_loop(t_game *g)
 {
-	t_ray	*rays;
 	t_info	*info;
 	void	*oldimg;
 
-	rays = vision(g);
-	info = display(g, rays);
 	oldimg = g->minilibx.img;
+	info = create_buffer(g);
+	vision(g, info);
 	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0, 0);
 	if (oldimg)
+	{
 		mlx_destroy_image(g->minilibx.mlx, oldimg);
+		free(oldimg);
+	}
 	char str[60];
-	sprintf(str, "ANGLE: %f\nX:%f\nY:%fDIST:%f", g->player.rad, g->player.px, g->player.py, rays[(int)g->map_width / 2].dist);
+	sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
 	mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
 	free(info);
-	free(rays);
 	return (0);
 }
 

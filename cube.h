@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 16:30:12 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/03 15:33:59 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct imginfo
 //display
 void 	colorize(char *buffer, int color, int endian);
 t_info	*display(t_game *g, t_ray *rays);
+void	draw_single_line(t_game *g, t_ray *ray, t_info *info);
 
 //cleaning
 void    free_and_null(void **ptr);
@@ -126,8 +127,13 @@ void	turn_right(t_player *p);
 int	draw_player(t_game *game, double size);
 
 //raycasting
-t_ray	*vision(t_game *g);
+int		vision(t_game *g, t_info *info);
 void	clean_angle(double *a);
+t_info	*create_buffer(t_game *g);
+double	cast_ray(t_game *g, t_ray *ray);
+
+//TEST
+int		main_display_loop_2d(t_game *g);
 
 
 void	init_rest(t_game *game);

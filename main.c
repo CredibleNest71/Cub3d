@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 15:53:24 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/03 14:19:34 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int ac, char **av)
     init_rest(&game);
     print_map(game.map);
     print_tex(&game.tex);
-    vision(&game);
-    display(&game, vision(&game));
     mlx_loop(game.minilibx.mlx);
     return (0);
 }
