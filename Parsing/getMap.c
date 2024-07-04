@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getMap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 14:19:51 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/04 13:59:37 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ char	*read_map(int fd)
 	}
 	if (next)
 		free(next);
+	printf("READMAP: %s", line);
 	return (line);
 }
 
@@ -91,7 +92,7 @@ char	**make_array(char *line, int height, int width)
 	map = ft_calloc(height + 1, sizeof(char *));
 	if (!map)
 		return (NULL);
-	while (i < height - 1)
+	while (i < height)
 	{
 		k = 0;
 		map[i] = (char *) ft_calloc(1, width + 1);
@@ -104,6 +105,8 @@ char	**make_array(char *line, int height, int width)
 		j++;
 		i++;
 	}
+	printf("\nMAKEMAPARRAY:");
+	print_map(map);
 	return (map);
 }
 

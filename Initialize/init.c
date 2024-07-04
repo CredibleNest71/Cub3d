@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/03 16:31:53 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/04 14:38:52 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,42 +38,47 @@ void	move_and_draw(t_game *game, int dir)
 {
 	if (dir == 1)
 	{
-		move_forward(&game->player);
+		move_forward(&game->player, game);
 		draw_player(game, 5);    
     }
 	if (dir == 2)
 	{	
-        move_left(&game->player);
+        move_left(&game->player, game);
         draw_player(game, 5);    
     }
 	if (dir  == 3)
     {
-		move_backwards(&game->player);
+		move_backwards(&game->player, game);
         draw_player(game, 5);
     }
 	if (dir == 4)
     {
-		move_right(&game->player);
+		move_right(&game->player, game);
         draw_player(game, 5);
     }
 }
 
 int	handle_keyboard(int button, t_game *game)
 {
+	printf("%d\n", button);
 	if (button == ESC)
 		clean_everything(game, 0);
-	if (button == W)
+	else if (button == W)
 		move_and_draw(game, 1);
-	if (button == A)
+	else if (button == A)
 		move_and_draw(game, 2);
-	if (button == S)
+	else if (button == S)
    		move_and_draw(game, 3);
-	if (button == D)
+	else if (button == D)
     	move_and_draw(game, 4);
-	if (button == LEFT)
+	else if (button == LEFT)
 		turn_left(&game->player);
-	if (button == RIGHT)
+	else if (button == RIGHT)
 		turn_right(&game->player);
+	else if (button == Q)
+		game->player.fov -= 2;
+	else if (button == E)
+		game->player.fov += 2;
 	return (0);
 }
 

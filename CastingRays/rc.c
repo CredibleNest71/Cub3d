@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/03 17:19:47 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/04 16:23:59 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,18 +81,21 @@ double	distance(double px, double py, double x, double y)
 // 	}
 // 	return (distance(g->player.px, g->player.py, x, y));
 // }
+
 double check_y(t_game *g, t_ray *ray) {
     double y, x, d, dir;
 
     dir = (sin(ray->angle) < 0) ? -1 : 1;
     y = (sin(ray->angle) < 0) ? floor(g->player.py) : ceil(g->player.py);
-
     while (1) {
         d = (y - g->player.py) / sin(ray->angle);
+		if (sin(ray->angle) == 0)
+			d = 1;
         x = g->player.px + cos(ray->angle) * d;
-        if (y < 1 || x < 1 || y > g->map_height - 2 || x > g->map_width - 2)
+		int tempy = dir < 0 ? y - 1 : y;
+        if (tempy < 0 || x < 0 || y > g->map_height - 1|| x > g->map_width - 1)
             break;
-        if (g->map[(int)y][(int)x] == '1')
+        if (g->map[(int)tempy][(int)x] == '1')
             break;
         y += dir;
     }
@@ -104,13 +107,15 @@ double check_x(t_game *g, t_ray *ray) {
 
     dir = (cos(ray->angle) < 0) ? -1 : 1;
     x = (cos(ray->angle) < 0) ? floor(g->player.px) : ceil(g->player.px);
-
     while (1) {
         d = (x - g->player.px) / cos(ray->angle);
+		if (cos(ray->angle) == 0)
+			d = 1;
         y = g->player.py + sin(ray->angle) * d;
-        if (y < 1 || x < 1 || y > g->map_height - 2 || x > g->map_width - 2)
+		int tempx = dir < 0 ? x - 1 : x;
+        if (y < 0 || tempx < 0 || y > g->map_height - 1 || x > g->map_width - 1)
             break;
-        if (g->map[(int)y][(int)x] == '1')
+        if (g->map[(int)y][(int)tempx] == '1')
             break;
         x += dir;
     }
@@ -130,7 +135,10 @@ double	cast_ray(t_game *g, t_ray *ray)
 		ray->axis = 1;
 	}
 	else
+	{
 		ray->dist = disty;
+		ray->axis = 0;
+	}
 	return (ray->dist);
 }
 
@@ -148,9 +156,12 @@ int	vision(t_game *g, t_info *info)
 	double	inc;
 	t_ray	ray;
 	int		count;
+	double	fov_rad;
 
-	ang_a = g->player.rad - (PI / 6);
-	inc = ((g->player.rad + (PI / 6)) - ang_a) / g->minilibx.screen_width;
+	fov_rad = map((t_m){g->player.fov, 0, 360, 0, 2 * PI});
+	ang_a = g->player.rad - (fov_rad / 2);
+	//ang_a = g->player.rad - (PI / 6);
+	inc = ((g->player.rad + (fov_rad / 2) - ang_a) / g->minilibx.screen_width);
 	clean_angle(&ang_a);
 	count = 0;
 	while (count < g->minilibx.screen_width)

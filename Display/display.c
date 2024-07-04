@@ -6,13 +6,14 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 16:43:17 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/04 16:50:44 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 #define COLOR1 7162376
 #define COLOR2 1234
+#define COLOR22 123400
 #define COLOR3 1234231
 
 t_info	*create_buffer(t_game *g)
@@ -25,6 +26,7 @@ t_info	*create_buffer(t_game *g)
 				&info->line_bytes, &info->endian);
 	return (info);
 }
+
 
 void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 {
@@ -45,7 +47,7 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	while (++y < draw_start && y < g->minilibx.screen_height - 1 )
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], COLOR1, info->endian);
+		colorize(&info->buf[pixel], COLOR1  + ((int) (sin(g->player.px) * 50)), info->endian);
 	}
 	while (++y < draw_end && y < g->minilibx.screen_height - 1 )
 	{
@@ -53,12 +55,12 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 		if (ray->axis)
 			colorize(&info->buf[pixel], COLOR2, info->endian);
 		else
-			colorize(&info->buf[pixel], COLOR2 + 3000, info->endian);
+			colorize(&info->buf[pixel], COLOR22 + 3000, info->endian);
 	}
 	while (++y < g->minilibx.screen_height - 1)
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], COLOR3, info->endian);
+		colorize(&info->buf[pixel], COLOR1 + ((int) (sin(g->player.py) * 50)), info->endian);
 	}
 }
 

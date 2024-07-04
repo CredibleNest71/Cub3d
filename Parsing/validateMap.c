@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 16:22:10 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/04 14:16:41 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	playerinit(int x, int y, char c, t_game *g)
 		i++;
 	}
 	g->player.rad = i * (PI / 2);
+	g->player.fov = 60;
 }
 
 int check_player(char **map, t_game *game)

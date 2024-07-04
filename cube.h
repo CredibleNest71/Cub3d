@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/03 15:33:59 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/04 14:32:29 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ enum	e_bindings
 	W	=	119,
 	LEFT =	65361,
 	RIGHT =	65363,
+	Q = 113,
+	E = 101,
 };
 
 
@@ -57,6 +59,7 @@ typedef struct s_player
 	double	px;		//POSITION
 	double	py;
 	double	rad;	//DIRECTION OF VIEW IN RADI	ANS [0 - 2PI]
+	int		fov;
 }	t_player;
 
 typedef struct s_minilibx
@@ -116,10 +119,10 @@ int		handle_keyboard(int button, t_game *game);
 void	init_player(t_game *game);
 
 //movement
-void	move_forward(t_player *p);
-void	move_backwards(t_player *p);
-void	move_left(t_player *p);
-void	move_right(t_player *p);
+void	move_forward(t_player *p, t_game *g);
+void	move_backwards(t_player *p, t_game *g);
+void	move_left(t_player *p, t_game *g);
+void	move_right(t_player *p, t_game *g);
 void	turn_left(t_player *p);
 void	turn_right(t_player *p);
 
