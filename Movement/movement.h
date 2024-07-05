@@ -6,13 +6,13 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:57 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/02 15:50:27 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/05 14:53:34 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOVEMENT_H
 # define MOVEMENT_H
 # define SPEED 0.1
-# define SPIN 0.03
+# define SPIN 0.07
 
 #endif

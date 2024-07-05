@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/04 14:32:29 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/05 14:50:18 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 
 # define PI	3.1415926536
 # define SPAWN "NSOW"
+
+enum	e_dir
+{
+	NO = 0,
+	EA,
+	SO,
+	WE,
+};
 
 enum e_MapSymbols
 {

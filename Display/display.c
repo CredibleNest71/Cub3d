@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/04 16:50:44 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/05 14:52:09 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,14 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	while (++y < draw_end && y < g->minilibx.screen_height - 1 )
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
-		if (ray->axis)
+		if (ray->axis == (enum e_dir) NO)
 			colorize(&info->buf[pixel], COLOR2, info->endian);
-		else
+		else if (ray->axis == (enum e_dir) EA)
 			colorize(&info->buf[pixel], COLOR22 + 3000, info->endian);
+		else if (ray->axis == (enum e_dir) SO)
+			colorize(&info->buf[pixel], COLOR22 + 6000, info->endian);
+		else if (ray->axis == (enum e_dir) WE)
+			colorize(&info->buf[pixel], COLOR22 + 9000, info->endian);
 	}
 	while (++y < g->minilibx.screen_height - 1)
 	{

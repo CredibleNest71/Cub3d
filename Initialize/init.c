@@ -6,13 +6,25 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/04 14:38:52 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/05 15:15:02 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 #include <mlx.h>
 
+int	handle_mouse(int button, int x, int y, void *game)
+{
+	// int	x;
+	// int	y;
+	t_game	*g = (t_game *) game;
+	y++;
+	button++;
+	// mlx_mouse_get_pos(g->minilibx.mlx, g->minilibx.window, &x, &y);
+	g->player.rad += (500 - x);
+	mlx_mouse_move(g->minilibx.mlx, g->minilibx.window, 500, 500);
+	return (0);
+}
 int		main_display_loop(t_game *g)
 {
 	t_info	*info;
@@ -57,10 +69,9 @@ void	move_and_draw(t_game *game, int dir)
         draw_player(game, 5);
     }
 }
-
 int	handle_keyboard(int button, t_game *game)
 {
-	printf("%d\n", button);
+	//printf("%d\n", button);
 	if (button == ESC)
 		clean_everything(game, 0);
 	else if (button == W)
@@ -133,6 +144,8 @@ void	init_rest(t_game *game)
 		ft_error(game, "Window creation failed");
 	init_player(game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
+	mlx_mouse_move(game->minilibx.mlx, game->minilibx.window, 500, 500);
+	mlx_mouse_hook(game->minilibx.window, handle_mouse, game);
 	// mlx_loop_hook(game->minilibx.mlx, draw_player, game);
 	mlx_loop_hook(game->minilibx.mlx, main_display_loop, game);
 }
