@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:55 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/04 15:46:06 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/05 17:35:39 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,28 @@ void	turn_right(t_player *p)
 {
 	p->rad += SPIN;
 	clean_angle(&p->rad);
+}
+
+int	move(t_game *game)
+{
+	t_keys	keys;
+
+	keys = game->keys;
+	if (keys.W)
+		move_forward(&game->player, game);
+	if (keys.S)
+		move_backwards(&game->player, game);
+	if (keys.A)
+		move_left(&game->player, game);
+	if (keys.D)
+		move_right(&game->player, game);
+	if (keys.LEFT)
+		turn_left(&game->player);
+	if (keys.RIGHT)
+		turn_right(&game->player);
+	if (keys.Q)
+		game->player.fov -= 2;
+	if (keys.E)
+		game->player.fov += 2;
+	return (0);
 }

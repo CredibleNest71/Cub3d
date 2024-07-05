@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/05 14:50:18 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/05 17:36:08 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,17 @@ enum	e_bindings
 	E = 101,
 };
 
+typedef	struct s_keys
+{
+	int	A;
+	int	S;
+	int	D;
+	int	W;
+	int	LEFT;
+	int	RIGHT;
+	int	Q;
+	int	E;
+}	t_keys;
 
 typedef struct s_player
 {
@@ -83,6 +94,7 @@ typedef struct s_game
 {
 	t_tex		tex;
 	t_player	player;
+	t_keys		keys;
 	t_minilibx	minilibx;
 	char		**map;
 	int			map_height;
@@ -95,6 +107,8 @@ typedef struct s_ray
 	int		axis; //1 = X, 0 = Y
 	double	angle;
 	double	dist;
+	double	perc_x;
+	double	perc_y;
 }	t_ray;
 
 typedef struct imginfo
@@ -133,6 +147,7 @@ void	move_left(t_player *p, t_game *g);
 void	move_right(t_player *p, t_game *g);
 void	turn_left(t_player *p);
 void	turn_right(t_player *p);
+int		move(t_game *game);
 
 // paint in black
 int	draw_player(t_game *game, double size);

@@ -6,23 +6,70 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/05 15:15:02 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/05 17:40:41 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 #include <mlx.h>
 
-int	handle_mouse(int button, int x, int y, void *game)
+int	key_up(int button, t_game *game)
 {
-	// int	x;
-	// int	y;
+	if (button == W)
+		game->keys.W = 0;
+	else if (button == A)
+		game->keys.A = 0;
+	else if (button == S)
+   		game->keys.S = 0;
+	else if (button == D)
+    	game->keys.D = 0;
+	else if (button == LEFT)
+		game->keys.LEFT = 0;
+	else if (button == RIGHT)
+		game->keys.RIGHT = 0;
+	else if (button == Q)
+		game->keys.Q = 0;
+	else if (button == E)
+		game->keys.E = 0;
+	return (0);
+}
+
+int	key_down(int button, t_game *game)
+{
+	if (button == ESC)
+		clean_everything(game, 0);
+	if (button == W)
+		game->keys.W = 1;
+	else if (button == A)
+		game->keys.A = 1;
+	else if (button == S)
+   		game->keys.S = 1;
+	else if (button == D)
+    	game->keys.D = 1;
+	else if (button == LEFT)
+		game->keys.LEFT = 1;
+	else if (button == RIGHT)
+		game->keys.RIGHT = 1;
+	else if (button == Q)
+		game->keys.Q = 1;
+	else if (button == E)
+		game->keys.E = 1;
+	return (0);
+}
+
+int	handle_mouse(int x, int y, void *game)
+{
 	t_game	*g = (t_game *) game;
-	y++;
-	button++;
-	// mlx_mouse_get_pos(g->minilibx.mlx, g->minilibx.window, &x, &y);
-	g->player.rad += (500 - x);
-	mlx_mouse_move(g->minilibx.mlx, g->minilibx.window, 500, 500);
+	(void) y;
+	double	diff;
+
+	if (x == g->minilibx.screen_width / 2 || y == g->minilibx.screen_height / 2)
+		return (1);
+	diff = g->minilibx.screen_width / 2 - x;
+	diff = diff * fabs(diff);
+	//g->player.rad += map((t_m){x, 0, g->minilibx.screen_width, -0.06, 0.06});
+	g->player.rad += map((t_m){diff, -pow(g->minilibx.screen_width / 2, 2), pow(g->minilibx.screen_width / 2, 2), 0.06, -0.06});
+	mlx_mouse_move(g->minilibx.mlx, g->minilibx.window, g->minilibx.screen_width / 2, g->minilibx.screen_height / 2);
 	return (0);
 }
 int		main_display_loop(t_game *g)
@@ -30,6 +77,7 @@ int		main_display_loop(t_game *g)
 	t_info	*info;
 	void	*oldimg;
 
+	move(g);
 	oldimg = g->minilibx.img;
 	info = create_buffer(g);
 	vision(g, info);
@@ -121,11 +169,6 @@ bool	valid_chars(char c)
 	return (true);
 }
 
-void	init_player(t_game *game)
-{
-	draw_player(game, 5);
-}
-
 void	init_game(t_game *game)
 {
 	*game = (t_game){0};
@@ -142,10 +185,12 @@ void	init_rest(t_game *game)
 			game->minilibx.screen_width, game->minilibx.screen_height, "Cub3D");
 	if (!game->minilibx.window)
 		ft_error(game, "Window creation failed");
-	init_player(game);
-	mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
-	mlx_mouse_move(game->minilibx.mlx, game->minilibx.window, 500, 500);
-	mlx_mouse_hook(game->minilibx.window, handle_mouse, game);
+	//mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
+	mlx_hook(game->minilibx.window, 6, 1L << 6, handle_mouse, game);
+	mlx_hook(game->minilibx.window, 2, 1L << 0, key_down, game);
+	mlx_hook(game->minilibx.window, 3, 1L << 1, key_up, game);
+	mlx_mouse_hide(game->minilibx.mlx, game->minilibx.window);
+	mlx_mouse_move(game->minilibx.mlx, game->minilibx.window, game->minilibx.screen_height / 2, 500);
 	// mlx_loop_hook(game->minilibx.mlx, draw_player, game);
 	mlx_loop_hook(game->minilibx.mlx, main_display_loop, game);
 }
