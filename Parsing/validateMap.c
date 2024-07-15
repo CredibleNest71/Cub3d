@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validateMap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/04 14:16:41 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/15 14:11:15 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,11 @@ int	check_walls(char **map, t_game *g)
 		if (!checkme)
 			return (1);
 		if (checkme[0] != '1' || checkme[ft_strlen(checkme) - 1] != '1')
-			return (free(checkme), 1);
+			return (free_and_null((void **)&checkme), 1);
 		if (!i || i == g->map_height)
 			if (check_vert(checkme))
-				return (free(checkme), 1);
-		free(checkme);
+				return (free_and_null((void **)&checkme), 1);
+		free_and_null((void **)&checkme);
 		i++;
 	}
 	

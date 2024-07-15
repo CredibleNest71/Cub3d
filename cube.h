@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/05 17:36:08 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/15 15:05:07 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ enum	e_bindings
 
 typedef	struct s_keys
 {
-	int	A;
-	int	S;
-	int	D;
-	int	W;
-	int	LEFT;
-	int	RIGHT;
-	int	Q;
-	int	E;
+	int	a;
+	int	s;
+	int	d;
+	int	w;
+	int	left;
+	int	right;
+	int	q;
+	int	e;
 }	t_keys;
 
 typedef struct s_player
@@ -90,12 +90,22 @@ typedef struct s_minilibx
 	int		screen_height;
 }	t_minilibx;
 
+typedef struct s_info
+{
+	int		bits_per_pixel;
+	int		line_bytes;
+	int		endian;
+	void	*image;
+	char	*buf;
+}	t_info;
+
 typedef struct s_game
 {
 	t_tex		tex;
 	t_player	player;
 	t_keys		keys;
 	t_minilibx	minilibx;
+	t_info		*info;
 	char		**map;
 	int			map_height;
 	int			map_width;
@@ -111,32 +121,23 @@ typedef struct s_ray
 	double	perc_y;
 }	t_ray;
 
-typedef struct imginfo
-{
-	int		bits_per_pixel;
-	int		line_bytes;
-	int		endian;
-	void	*image;
-	char	*buf;
-}	t_info;
-
 
 //display
-void 	colorize(char *buffer, int color, int endian);
+void	colorize(char *buffer, int color, int endian);
 t_info	*display(t_game *g, t_ray *rays);
 void	draw_single_line(t_game *g, t_ray *ray, t_info *info);
 
 //cleaning
-void    free_and_null(void **ptr);
-int 	ft_error(t_game *game, char *s);
+void	free_and_null(void **ptr);
+int		ft_error(t_game *game, char *s);
 
 //MAP
-int 	validate_map(char **map, t_game *g);
+int		validate_map(char **map, t_game *g);
 char	**getMap(int fd, t_game *g);
-void    clean_everything(t_game *game, int ret);
+void	clean_everything(t_game *game, int ret);
 
 //initialize
-void    init_game(t_game *game);
+void	init_game(t_game *game);
 int		handle_keyboard(int button, t_game *game);
 void	init_player(t_game *game);
 
@@ -150,7 +151,7 @@ void	turn_right(t_player *p);
 int		move(t_game *game);
 
 // paint in black
-int	draw_player(t_game *game, double size);
+int		draw_player(t_game *game, double size);
 
 //raycasting
 int		vision(t_game *g, t_info *info);
@@ -160,12 +161,8 @@ double	cast_ray(t_game *g, t_ray *ray);
 
 //TEST
 int		main_display_loop_2d(t_game *g);
-
-
 void	init_rest(t_game *game);
-
 int		check_player(char **map, t_game *game);
-
-
+void	destroy_buffer(t_game *g, t_info *info);
 
 #endif

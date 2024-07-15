@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:55 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/05 17:35:39 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/15 11:59:49 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,21 +81,21 @@ int	move(t_game *game)
 	t_keys	keys;
 
 	keys = game->keys;
-	if (keys.W)
+	if (keys.w)
 		move_forward(&game->player, game);
-	if (keys.S)
+	if (keys.s)
 		move_backwards(&game->player, game);
-	if (keys.A)
+	if (keys.a)
 		move_left(&game->player, game);
-	if (keys.D)
+	if (keys.d)
 		move_right(&game->player, game);
-	if (keys.LEFT)
+	if (keys.left)
 		turn_left(&game->player);
-	if (keys.RIGHT)
+	if (keys.right)
 		turn_right(&game->player);
-	if (keys.Q)
+	if (keys.q)
 		game->player.fov -= 2;
-	if (keys.E)
+	if (keys.e)
 		game->player.fov += 2;
 	return (0);
 }

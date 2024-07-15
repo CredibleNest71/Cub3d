@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/05 17:40:41 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/15 15:40:08 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 int	key_up(int button, t_game *game)
 {
 	if (button == W)
-		game->keys.W = 0;
+		game->keys.w = 0;
 	else if (button == A)
-		game->keys.A = 0;
+		game->keys.a = 0;
 	else if (button == S)
-   		game->keys.S = 0;
+   		game->keys.s = 0;
 	else if (button == D)
-    	game->keys.D = 0;
+    	game->keys.d = 0;
 	else if (button == LEFT)
-		game->keys.LEFT = 0;
+		game->keys.left = 0;
 	else if (button == RIGHT)
-		game->keys.RIGHT = 0;
+		game->keys.right = 0;
 	else if (button == Q)
-		game->keys.Q = 0;
+		game->keys.q = 0;
 	else if (button == E)
-		game->keys.E = 0;
+		game->keys.e = 0;
 	return (0);
 }
 
@@ -39,21 +39,21 @@ int	key_down(int button, t_game *game)
 	if (button == ESC)
 		clean_everything(game, 0);
 	if (button == W)
-		game->keys.W = 1;
+		game->keys.w = 1;
 	else if (button == A)
-		game->keys.A = 1;
+		game->keys.a = 1;
 	else if (button == S)
-   		game->keys.S = 1;
+   		game->keys.s = 1;
 	else if (button == D)
-    	game->keys.D = 1;
+    	game->keys.d = 1;
 	else if (button == LEFT)
-		game->keys.LEFT = 1;
+		game->keys.left = 1;
 	else if (button == RIGHT)
-		game->keys.RIGHT = 1;
+		game->keys.right = 1;
 	else if (button == Q)
-		game->keys.Q = 1;
+		game->keys.q = 1;
 	else if (button == E)
-		game->keys.E = 1;
+		game->keys.e = 1;
 	return (0);
 }
 
@@ -80,17 +80,19 @@ int		main_display_loop(t_game *g)
 	move(g);
 	oldimg = g->minilibx.img;
 	info = create_buffer(g);
+	if (!info)
+		ft_error(g, "Buffer creation failed");
 	vision(g, info);
 	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0, 0);
 	if (oldimg)
 	{
 		mlx_destroy_image(g->minilibx.mlx, oldimg);
-		free(oldimg);
+		free_and_null((void **)&oldimg);
 	}
-	char str[60];
-	sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
-	mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
-	free(info);
+	// char str[60];
+	// sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
+	// mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
+	destroy_buffer(g, info);
 	return (0);
 }
 
@@ -176,7 +178,7 @@ void	init_game(t_game *game)
 
 void	init_rest(t_game *game)
 {
-	game->minilibx.mlx = mlx_init();
+	game->minilibx.mlx = mlx_init(); // free
 	if (!game->minilibx.mlx)
 		ft_error(game, "Mlx initialization failed");
 	mlx_get_screen_size(game->minilibx.mlx, &game->minilibx.screen_width,
@@ -189,7 +191,7 @@ void	init_rest(t_game *game)
 	mlx_hook(game->minilibx.window, 6, 1L << 6, handle_mouse, game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, key_down, game);
 	mlx_hook(game->minilibx.window, 3, 1L << 1, key_up, game);
-	mlx_mouse_hide(game->minilibx.mlx, game->minilibx.window);
+	// mlx_mouse_hide(game->minilibx.mlx, game->minilibx.window); // auskommentiert waehrend leak check
 	mlx_mouse_move(game->minilibx.mlx, game->minilibx.window, game->minilibx.screen_height / 2, 500);
 	// mlx_loop_hook(game->minilibx.mlx, draw_player, game);
 	mlx_loop_hook(game->minilibx.mlx, main_display_loop, game);

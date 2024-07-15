@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2d.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:09:50 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/04 14:11:20 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/15 15:39:38 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,24 +61,24 @@ int		draw_rays(t_game *g, t_info *info)
 	return 0;
 }
 
-int		main_display_loop_2d(t_game *g)
-{
-	t_info	*info;
-	void	*oldimg;
+// int		main_display_loop_2d(t_game *g)
+// {
+// 	t_info	*info;
+// 	void	*oldimg;
 
-	oldimg = g->minilibx.img;
-	info = create_buffer(g);
-	draw_rays(g, info);
-	draw_player2d(g, info);
-	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0, 0);
-	if (oldimg)
-	{
-		mlx_destroy_image(g->minilibx.mlx, oldimg);
-		free(oldimg);
-	}
-	char str[60];
-	sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
-	mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
-	free(info);
-	return (0);
-}
+// 	oldimg = g->minilibx.img;
+// 	info = create_buffer(g);
+// 	draw_rays(g, info);
+// 	draw_player2d(g, info);
+// 	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0, 0);
+// 	if (oldimg)
+// 	{
+// 		mlx_destroy_image(g->minilibx.mlx, oldimg);
+// 		free_and_null((void **)&oldimg);
+// 	}
+// 	char str[60];
+// 	sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
+// 	mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
+// 	free_and_null((void **)&info);
+// 	return (0);
+// }

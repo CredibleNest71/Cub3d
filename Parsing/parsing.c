@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 13:54:29 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/15 15:51:24 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,15 @@ static	int	add_to_textures(t_tex *tex, char *line)
 		return (0);
 	curr = identify(tex, line, &color);
 	if (!curr)
-		return (free(line), 0);
+		return (free_and_null((void **)&line), 0);
 	if (!color)
 		found = ft_strchr(line, '.');
 	else
 		found = line;
 	if (!found)
-		return (free(line), 0);
+		return (free_and_null((void **)&line), 0);
 	path = ft_strdup(found);
-	free(line);
+	free_and_null((void **)&line);
 	*curr = path;
 	return (1);
 }
@@ -90,7 +90,7 @@ int    get_textures(int fd, t_tex *tex)
             return (1);
 		if (line[0] == '\n')
 		{
-			free(line);
+			free_and_null((void **)&line);
 			continue ;
 		}
         if (!add_to_textures(tex, line))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getMap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/04 13:59:37 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/15 14:10:24 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ char	*append_and_replace(char *first, char *second)
 	if (!first)
 		return (second);
 	ret = ft_strjoin(first, second);
-	free(first);
-	free(second);
-	first = NULL;
-	second = NULL;
+	free_and_null((void **)&first);
+	free_and_null((void **)&second);
 	return (ret);
 }
 
@@ -38,7 +36,7 @@ char	*read_map(int fd)
 	next = get_next_line(fd);
 	while (next && next[0] == '\n')
 	{
-		free(next);
+		free_and_null((void **)&next);
 		next = get_next_line(fd);
 	}
 	while (next)
@@ -48,13 +46,13 @@ char	*read_map(int fd)
 		if (next && ft_strlen(next) < 2)
 		{
 			if (next)
-				free(next);
+				free_and_null((void **)&next);
 			return NULL ;
 		}
 	}
 	if (next)
-		free(next);
-	printf("READMAP: %s", line);
+		free_and_null((void **)&next);
+	// printf("READMAP: %s", line);
 	return (line);
 }
 
@@ -105,8 +103,8 @@ char	**make_array(char *line, int height, int width)
 		j++;
 		i++;
 	}
-	printf("\nMAKEMAPARRAY:");
-	print_map(map);
+	// printf("\nMAKEMAPARRAY:");
+	// print_map(map);
 	return (map);
 }
 
@@ -137,20 +135,20 @@ char	**getMap(int fd, t_game *g)
 	if (oneline[ft_strlen(oneline) - 1] != '\n')
 	{
 		temp = ft_strjoin(oneline, "\n");
-		free(oneline);
+		free_and_null((void **)&oneline);
 		oneline = temp;
 	}
 	map = make_map(oneline, g);
-	free(oneline);
+	free_and_null((void **)&oneline);
 	return (map);
 }
 
-void	print_map(char **map)
-{
-	printf("\n==========================\n");
-    for (int i = 0; map[i]; i++)
-    {
-	    printf("|%s|\n", map[i]);
-	}
-	printf("==========================\n");
-}
+// void	print_map(char **map)
+// {
+// 	printf("\n==========================\n");
+//     for (int i = 0; map[i]; i++)
+//     {
+// 	    printf("|%s|\n", map[i]);
+// 	}
+// 	printf("==========================\n");
+// }
