@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 08:44:07 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:04:29 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,12 @@ void	init_game(t_game *game)
 	*game = (t_game){0};
 }
 
+int	ft_close(t_game *game)
+{
+	clean_everything(game, 0);
+	return (0);
+}
+
 void	init_rest(t_game *game)
 {
 	game->minilibx.mlx = mlx_init(); // free
@@ -187,7 +193,8 @@ void	init_rest(t_game *game)
 			game->minilibx.screen_width, game->minilibx.screen_height, "Cub3D");
 	if (!game->minilibx.window)
 		ft_error(game, "Window creation failed");
-	//mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
+	// mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
+	mlx_hook(game->minilibx.window, 17, 0L, ft_close, game);
 	mlx_hook(game->minilibx.window, 6, 1L << 6, handle_mouse, game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, key_down, game);
 	mlx_hook(game->minilibx.window, 3, 1L << 1, key_up, game);
