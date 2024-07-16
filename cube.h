@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 13:07:04 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:02:41 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,22 @@ typedef struct s_info
 	char	*buf;
 }	t_info;
 
+typedef struct s_textures
+{
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	char	*F;
+	char	*C;
+	void	*NO_img;
+	void	*SO_img;
+	void	*WE_img;
+	void	*EA_img;
+	int		F_rgb;
+	int		C_rgb;
+}	t_tex;
+
 typedef struct s_game
 {
 	t_tex		tex;
@@ -119,6 +135,12 @@ typedef struct s_ray
 	double	perc_y;
 }	t_ray;
 
+int    get_textures(int fd, t_tex *tex, t_game *g);
+void	print_map(char **map);
+void	print_tex(t_tex *tex);
+bool    name_check(char **av);
+void	delete_map(char **map);
+void	delete_tex(t_tex *tex);
 
 //display
 void	colorize(char *buffer, int color, int endian);

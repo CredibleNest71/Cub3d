@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 14:13:12 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:12:10 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,42 @@ static	int	add_to_textures(t_tex *tex, char *line)
 	*curr = path;
 	return (1);
 }
+int	create_trgb(int t, int r, int g, int b)
+{
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	string_to_rgb(char *str)
+{
+	int	i;
+	int	rgb[3];
+
+	i = 0;
+	while (ft_isalpha(str[i]) || str[i] == ' ')
+		i++;
+	rgb[0] = ft_atoi(&str[i]);
+	i = ft_strchr(&str[i], ',') - str + 1;
+	rgb[1] = ft_atoi(&str[i]);
+	i = ft_strchr(&str[i], ',') - str + 1;
+	rgb[2] = ft_atoi(&str[i]);
+	printf("r: %d | g: %d | b: %d \n", rgb[0], rgb[1], rgb[2]);
+	return (create_trgb(0, rgb[0], rgb[1], rgb[2]));
+}
+
+void	convert(t_game *g, t_tex *tex)
+{
+	int	h;
+	int	w;
+
+	tex->NO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->NO, &h, &w);
+	tex->SO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->SO, &h, &w);
+	tex->EA_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->EA, &h, &w);
+	tex->WE_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->WE, &h, &w);
+}
+
 // 0 = ALL GOOD
 // ANYTHING ELSE = ERROR
-int    get_textures(int fd, t_tex *tex)
+int    get_textures(int fd, t_tex *tex, t_game *g)
 {
     char    *line;
 
@@ -96,9 +129,11 @@ int    get_textures(int fd, t_tex *tex)
         if (!add_to_textures(tex, line))
 			return (write(2, "An Error occurred\n", 18));
     }
+	g->tex.C_rgb = string_to_rgb(tex->C);
+	g->tex.F_rgb = string_to_rgb(tex->F);
+	convert(g, tex);
 	return 0;
 }
-
 void	print_tex(t_tex *tex)
 {
 	printf("NO:	%s", tex->NO);

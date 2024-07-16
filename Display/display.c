@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 10:30:21 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 18:03:25 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,22 @@ void	destroy_buffer(t_game *g, t_info *info)
 	}
 }
 
+void	draw_ceil(t_game *g, t_info *info, t_ray *ray, int draw_start, int *og_y)
+{
+	int	y;
+	int pixel;
+
+	y = -1;
+	while (++y < draw_start && y < g->minilibx.screen_height - 1)
+	{
+		pixel = (ray->num * 4) + (y * info->line_bytes);
+		colorize(&info->buf[pixel], g->tex.C_rgb,
+			info->endian);
+	}
+	*og_y = y;
+}
+
+
 void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 {
 	int	pixel;
@@ -52,6 +68,7 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	int	draw_start;
 	int	draw_end;
 
+	y = 0;
 	if (!ray)
 		return ;
 	line_height = (int)((1 / ray->dist) * g->minilibx.screen_height);
@@ -59,13 +76,7 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	if (draw_start < 0)
 		draw_start = 0;
 	draw_end = (double)g->minilibx.screen_height / 2 + line_height / 2;
-	y = -1;
-	while (++y < draw_start && y < g->minilibx.screen_height - 1)
-	{
-		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], COLOR1,
-			info->endian);
-	}
+	draw_ceil(g, info, ray, draw_start, &y);
 	while (++y < draw_end && y < g->minilibx.screen_height - 1)
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
@@ -81,7 +92,7 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	while (++y < g->minilibx.screen_height - 1)
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], COLOR1,
+		colorize(&info->buf[pixel], g->tex.F_rgb,
 			info->endian);
 	}
 }
