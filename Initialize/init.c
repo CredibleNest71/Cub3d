@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 10:04:29 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:29:26 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ int	handle_mouse(int x, int y, void *game)
 
 	if (x == g->minilibx.screen_width / 2 || y == g->minilibx.screen_height / 2)
 		return (1);
-	diff = g->minilibx.screen_width / 2 - x;
+	diff = (double)g->minilibx.screen_width / 2 - x;
 	diff = diff * fabs(diff);
 	//g->player.rad += map((t_m){x, 0, g->minilibx.screen_width, -0.06, 0.06});
-	g->player.rad += map((t_m){diff, -pow(g->minilibx.screen_width / 2, 2), pow(g->minilibx.screen_width / 2, 2), 0.06, -0.06});
+	g->player.rad += map((t_m){diff, -pow((double)g->minilibx.screen_width / 2, 2), pow((double)g->minilibx.screen_width / 2, 2), 0.06, -0.06});
 	mlx_mouse_move(g->minilibx.mlx, g->minilibx.window, g->minilibx.screen_width / 2, g->minilibx.screen_height / 2);
 	return (0);
 }

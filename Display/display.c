@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/15 15:48:01 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:30:21 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,17 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 {
 	int	pixel;
 	int	y;
-	int	line_height;
+	double	line_height;
 	int	draw_start;
 	int	draw_end;
 
 	if (!ray)
 		return ;
 	line_height = (int)((1 / ray->dist) * g->minilibx.screen_height);
-	draw_start = g->minilibx.screen_height / 2 - line_height / 2;
+	draw_start = (double)g->minilibx.screen_height / 2 - line_height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
-	draw_end = g->minilibx.screen_height / 2 + line_height / 2;
+	draw_end = (double)g->minilibx.screen_height / 2 + line_height / 2;
 	y = -1;
 	while (++y < draw_start && y < g->minilibx.screen_height - 1)
 	{

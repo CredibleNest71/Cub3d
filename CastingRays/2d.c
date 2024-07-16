@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:09:50 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/15 15:39:38 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 10:29:16 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int     draw_player2d(t_game *g, t_info *info)
 
 void	draw_single_ray(t_game *g, t_info *info, t_ray ray)
 {
-	double	px = g->minilibx.screen_width / 2;
-	double	py = g->minilibx.screen_height / 2;
+	double	px = (double)g->minilibx.screen_width / 2;
+	double	py = (double)g->minilibx.screen_height / 2;
 	double	curr = 0;
 	int	pixel;
 	while (curr < ray.dist * 100)
