@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 11:35:24 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 16:00:19 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	playerinit(int x, int y, char c, t_game *g)
 	char		dirs[5] = {'E', 'N', 'W', 'S', 0};
 
 	i = 0;
-	g->player.px = x;
-	g->player.py = y;
+	g->player.px = x + 0.5;
+	g->player.py = y + 0.5;
 	while (dirs[i])
 	{
 		if (c == dirs[i])
 			break ;
 		i++;
 	}
-	g->player.rad = i * (PI / 2);
+	g->player.rad = i * (PI / 2) * -1; // turned 180 degrees
 	g->player.fov = 60;
 }
 
