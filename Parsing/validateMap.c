@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/15 14:11:15 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:35:24 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ int	check_surrounding(char **map, int x, int y, t_game *g)
 		( y < g->map_height - 2 && x && !is_char(map[y + 1][x - 1], " 1"))||
 		(y && x < g->map_width - 1&& !is_char(map[y - 1][x + 1], " 1"))||
 		(x < g->map_width - 1 && y < g->map_height - 2 && !is_char(map[y + 1][x + 1], " 1")))
-		return (printf("X:%d\nY:%d\n", x, y), 1);
+		return (1);
+		// return (printf("X:%d\nY:%d\n", x, y), 1);
 	return (0);
 }
 
@@ -123,7 +124,8 @@ int	check_spaces(char **map, t_game *g)
 		{
 			if (map[y][x] == ' ')
 				if (check_surrounding(map, x, y, g))
-					return (printf("x:%d; y:%d", x, y));
+					return (1);
+					// return (printf("x:%d; y:%d", x, y));
 			x++;
 		}
 		y++;
@@ -136,20 +138,20 @@ int	check_spaces(char **map, t_game *g)
 int validate_map(char **map, t_game *g)
 {
 	if (!map)
-		return (write(2, "no map\n", 7));
+		return (write(2, "No map\n", 7));
     if (check_player(map, g))
 	{
-		printf("player\n");
+		// printf("player\n");
 		return (1);
 	}
 	if (check_walls(map, g))
 	{
-		printf("walls\n");
+		// printf("walls\n");
 		return (1);
 	}
 	if (check_spaces(map, g))
 	{
-		printf("space\n");
+		// printf("space\n");
 		return (1);
 	}
     // get_player_location(g);

@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/15 14:10:24 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:52:59 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*read_map(int fd)
 	}
 	while (next)
 	{
-		line = append_and_replace(line, next);
+		line = append_and_replace(line, next); // free line
+		printf("mem: %p\n", line);
 		next = get_next_line(fd);
 		if (next && ft_strlen(next) < 2)
 		{
@@ -128,7 +129,7 @@ char	**getMap(int fd, t_game *g)
 	char	*temp;
 	char	*oneline;
 	char	**map;
-	
+	(void)fd;
 	oneline = read_map(fd);
 	if (!oneline)
 		return (NULL);

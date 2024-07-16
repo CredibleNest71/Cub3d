@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/15 14:43:33 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:52:50 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	main(int ac, char **av)
 	if (validate_map(game.map, &game))
 		return (ft_error(&game, "ERRONIOUS MAP\n"));
 	init_rest(&game);
-	// mlx_destroy_display(game.minilibx.mlx);
-    // free_and_null((void **)&game.minilibx.mlx);
 	// print_map(game.map);
 	// print_tex(&game.tex);
 	mlx_loop(game.minilibx.mlx);

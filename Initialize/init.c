@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 10:29:26 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 11:40:11 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int		main_display_loop(t_game *g)
 		mlx_destroy_image(g->minilibx.mlx, oldimg);
 		free_and_null((void **)&oldimg);
 	}
-	// char str[60];
-	// sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
-	// mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
+	char str[60];
+	sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
+	mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
 	destroy_buffer(g, info);
 	return (0);
 }
