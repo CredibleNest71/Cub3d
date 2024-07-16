@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 13:39:35 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/16 13:58:07 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,15 @@ void    clean_everything(t_game *game, int ret)
         free_and_null((void **)&game->minilibx.mlx);
     }
     exit(ret);
+}
+
+void    free_and_null(void **ptr)
+{
+    if (ptr && *ptr)
+    {
+        free(*ptr);
+        *ptr = NULL;
+    }
 }
 
 int ft_error(t_game *game, char *s)

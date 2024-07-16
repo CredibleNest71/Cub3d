@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/16 14:02:04 by mesenyur          #+#    #+#             */
+/*   Updated: 2024/07/16 14:20:16 by mesenyur         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 #include "../libft/libft.h"
 #include <stdio.h>
@@ -82,7 +94,10 @@ char	*get_next_line(int fd)
 		return (NULL);
 	rawstr = readme(&rawstr, fd);
 	if (rawstr == NULL)
+	{
+		// liberator(&rawstr);
 		return (NULL);
+	}
 	len = linlen(rawstr);
 	cookeds = ft_substr(rawstr, 0, len);
 	if (cookeds == NULL)
