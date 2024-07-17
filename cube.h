@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:14:36 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:38:20 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,8 @@ int				get_textures(int fd, t_tex *tex, t_game *g);
 void			print_map(char **map);
 void			print_tex(t_tex *tex);
 bool			name_check(char **av);
-void			delete_map(char **map);
-void			delete_tex(t_tex *tex);
+// void			delete_map(char **map);
+// void			delete_tex(t_tex *tex);
 
 // display
 void			colorize(char *buffer, int color, int endian);

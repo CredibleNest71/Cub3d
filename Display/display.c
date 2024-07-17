@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:20:13 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 18:20:33 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-#define COLOR1 7162376
-#define COLOR2 1234
-#define COLOR22 123400
-#define COLOR3 1234231
 
 typedef	struct s_display
 {
@@ -24,7 +20,7 @@ typedef	struct s_display
 	int	line_height;
 	t_ray	*ray;
 	t_info	*info;
-}	t_dis;
+}				t_dis;
 
 
 t_info	*create_buffer(t_game *g)

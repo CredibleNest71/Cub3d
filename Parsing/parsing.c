@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:21:15 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:47:19 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,19 +110,6 @@ void	convert(t_game *g, t_tex *tex)
 	tex->so_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so /*"./textures/pixelverlauf2.xpm"*/, &h, &w);
 	tex->ea_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea /*"./textures/pixelverlauf3.xpm"*/, &h, &w);
 	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we /*"./textures/pixelverlauf4.xpm"*/, &h, &w);
-	printf("W%d\n", w);
-	printf("H%d\n", h);
-	printf("TEX: |%s|\n", tex->so);
-	printf("TEX: %p\n", tex->so_img);
-}
-void	print_tex(t_tex *tex)
-{
-	printf("NO:	|%s|\n", tex->no);
-	printf("SO:	|%s|\n", tex->so);
-	printf("WE:	|%s|\n", tex->we);
-	printf("EA:	|%s|\n", tex->ea);
-	printf("F:	|%s|\n", tex->f);
-	printf("C:	|%s|\n", tex->c);
 }
 
 int	get_textures(int fd, t_tex *tex, t_game *g)
@@ -142,37 +129,37 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 		if (!add_to_textures(tex, line))
 			return (write(2, "An Error occurred\n", 18));
 	}
-	print_tex(tex);
+	// print_tex(tex);
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
 	convert(g, tex);
 	return (0);
 }
 
-void	delete_map(char **map)
-{
-	int	i;
+// void	delete_map(char **map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (map[i])
-	{
-		free(map[i++]);
-	}
-	free(map);
-}
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		free(map[i++]);
+// 	}
+// 	free(map);
+// }
 
-void	delete_tex(t_tex *tex)
-{
-	if (tex->c)
-		free(tex->c);
-	if (tex->f)
-		free(tex->f);
-	if (tex->no)
-		free(tex->no);
-	if (tex->so)
-		free(tex->so);
-	if (tex->ea)
-		free(tex->ea);
-	if (tex->we)
-		free(tex->we);
-}
+// void	delete_tex(t_tex *tex)
+// {
+// 	if (tex->c)
+// 		free(tex->c);
+// 	if (tex->f)
+// 		free(tex->f);
+// 	if (tex->no)
+// 		free(tex->no);
+// 	if (tex->so)
+// 		free(tex->so);
+// 	if (tex->ea)
+// 		free(tex->ea);
+// 	if (tex->we)
+// 		free(tex->we);
+// }
