@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:07:31 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:58:18 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,7 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
 		if (ray->axis == (enum e_dir)NO)
-		{
-			// draw_north_wall();
 			colorize(&info->buf[pixel], COLOR2, info->endian);
-		}
 		else if (ray->axis == (enum e_dir)EA)
 			colorize(&info->buf[pixel], COLOR22 + 3000, info->endian);
 		else if (ray->axis == (enum e_dir)SO)

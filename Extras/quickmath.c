@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   quickmath.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 14:53:39 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/28 18:26:33 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 15:52:45 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "extras.h"
 #include "../cube.h"
 
-//best call like this:
-//map( (t_m) {VAL, a, b, A, B} );
-double   map(t_m in)
+// best call like this:
+// map( (t_m) {VAL, a, b, A, B} );
+double	map(t_m in)
 {
 	double	ret;
 	double	steps;

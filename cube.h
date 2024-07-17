@@ -6,17 +6,15 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:06:41 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:55:56 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUBE_H
 # define CUBE_H
 
-# include "Extras/extras.h"
 # include "GNL/get_next_line.h"
 # include "Movement/movement.h"
-# include "Parsing/parsing.h"
 # include "libft/libft.h"
 # include "mlx.h"
 # include <fcntl.h>
@@ -57,6 +55,15 @@ enum			e_bindings
 	Q = 113,
 	E = 101,
 };
+
+typedef struct s_m
+{
+	double		val;
+	double		prev_min;
+	double		prev_max;
+	double		new_min;
+	double		new_max;
+}				t_m;
 
 typedef struct s_keys
 {
@@ -184,5 +191,10 @@ void			init_rest(t_game *game);
 int				check_player(char **map, t_game *game);
 void			free_game_tex(t_game *game);
 void			destroy_buffer(t_game *g, t_info *info);
+int				check_dist(t_game *g, double angle);
+
+double			map(t_m in);
+double			degr(double rad);
+int				is_char(char c, char *chars);
 
 #endif

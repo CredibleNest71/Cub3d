@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   extras.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:38:28 by mresch            #+#    #+#             */
-/*   Updated: 2024/06/26 15:38:38 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 15:52:02 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../cube.h"
 
 int	is_char(char c, char *chars)
 {
