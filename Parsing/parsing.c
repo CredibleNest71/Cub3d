@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:20:44 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 16:57:27 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ static	int	add_to_textures(t_tex *tex, char *line)
 	if (!found)
 		return (free_and_null((void **)&line), 0);
 	path = ft_strdup(found);
+	if (path)
+		path[ft_strlen(path) - 1] = 0;
 	free_and_null((void **)&line);
 	*curr = path;
 	return (1);
@@ -104,14 +106,23 @@ void	convert(t_game *g, t_tex *tex)
 	int	h;
 	int	w;
 
-	tex->NO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->NO, &h, &w);
-	tex->SO_img = mlx_xpm_file_to_image(g->minilibx.mlx,"./textures/pixelverlauf2.xpm", &h, &w);
-	tex->EA_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->EA, &h, &w);
-	tex->WE_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->WE, &h, &w);
-	int fd = open(tex->SO, O_RDONLY);
-	printf("%d\n", (fd));
+	tex->NO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->NO /*"./textures/pixelverlauf1.xpm"*/, &h, &w);
+	tex->SO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->SO /*"./textures/pixelverlauf2.xpm"*/, &h, &w);
+	tex->EA_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->EA /*"./textures/pixelverlauf3.xpm"*/, &h, &w);
+	tex->WE_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->WE /*"./textures/pixelverlauf4.xpm"*/, &h, &w);
+	printf("W%d\n", w);
+	printf("H%d\n", h);
 	printf("TEX: |%s|\n", tex->SO);
 	printf("TEX: %p\n", tex->SO_img);
+}
+void	print_tex(t_tex *tex)
+{
+	printf("NO:	|%s|\n", tex->NO);
+	printf("SO:	|%s|\n", tex->SO);
+	printf("WE:	|%s|\n", tex->WE);
+	printf("EA:	|%s|\n", tex->EA);
+	printf("F:	|%s|\n", tex->F);
+	printf("C:	|%s|\n", tex->C);
 }
 
 // 0 = ALL GOOD
@@ -133,19 +144,11 @@ int    get_textures(int fd, t_tex *tex, t_game *g)
         if (!add_to_textures(tex, line))
 			return (write(2, "An Error occurred\n", 18));
     }
+	print_tex(tex);
 	g->tex.C_rgb = string_to_rgb(tex->C);
 	g->tex.F_rgb = string_to_rgb(tex->F);
 	convert(g, tex);
 	return 0;
-}
-void	print_tex(t_tex *tex)
-{
-	printf("NO:	%s", tex->NO);
-	printf("SO:	%s", tex->SO);
-	printf("WE:	%s", tex->WE);
-	printf("EA:	%s", tex->EA);
-	printf("F:	%s", tex->F);
-	printf("C:	%s", tex->C);
 }
 
 void	delete_map(char **map)

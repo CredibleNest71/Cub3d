@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 13:47:36 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 16:02:45 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ typedef struct s_info
 	int		endian;
 	void	*image;
 	char	*buf;
+	int		h;
+	int		w;
 }	t_info;
 
 typedef struct s_textures
@@ -109,6 +111,10 @@ typedef struct s_textures
 	void	*SO_img;
 	void	*WE_img;
 	void	*EA_img;
+	int		Nwh[2];
+	int		Swh[2];
+	int		Ewh[2];
+	int		Wwh[2];
 	int		F_rgb;
 	int		C_rgb;
 }	t_tex;
