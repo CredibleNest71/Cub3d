@@ -1,7 +1,7 @@
-NO ../textures/pixelverlauf1.xpm
-SO ../textures/pixelverlauf2.xpm
-WE ../textures/pixelverlauf3.xpm
-EA ../textures/pixelverlauf4.xpm
+NO ./textures/pixelverlauf1.xpm
+SO ./textures/pixelverlauf2.xpm
+WE ./textures/pixelverlauf3.xpm
+EA ./textures/pixelverlauf4.xpm
 
 F 220,100,0
 C 225,30,0

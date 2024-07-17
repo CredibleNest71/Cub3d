@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 18:12:10 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 15:20:44 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,13 @@ void	convert(t_game *g, t_tex *tex)
 	int	w;
 
 	tex->NO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->NO, &h, &w);
-	tex->SO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->SO, &h, &w);
+	tex->SO_img = mlx_xpm_file_to_image(g->minilibx.mlx,"./textures/pixelverlauf2.xpm", &h, &w);
 	tex->EA_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->EA, &h, &w);
 	tex->WE_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->WE, &h, &w);
+	int fd = open(tex->SO, O_RDONLY);
+	printf("%d\n", (fd));
+	printf("TEX: |%s|\n", tex->SO);
+	printf("TEX: %p\n", tex->SO_img);
 }
 
 // 0 = ALL GOOD

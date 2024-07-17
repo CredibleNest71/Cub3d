@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 18:03:25 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 14:21:59 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,17 @@
 #define COLOR2 1234
 #define COLOR22 123400
 #define COLOR3 1234231
+
+typedef	struct s_display
+{
+	int	y;
+	int	draw_start;
+	int	draw_end;
+	int	line_height;
+	t_ray	*ray;
+	t_info	*info;
+}	t_dis;
+
 
 t_info	*create_buffer(t_game *g)
 {
@@ -44,57 +55,103 @@ void	destroy_buffer(t_game *g, t_info *info)
 	}
 }
 
-void	draw_ceil(t_game *g, t_info *info, t_ray *ray, int draw_start, int *og_y)
+void	draw_ceil(t_game *g, t_dis *dis, int CF)
 {
-	int	y;
 	int pixel;
+	int	color;
+	int	end;
 
-	y = -1;
-	while (++y < draw_start && y < g->minilibx.screen_height - 1)
+	if (CF)
 	{
-		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], g->tex.C_rgb,
-			info->endian);
+		color = g->tex.C_rgb;
+		end = dis->draw_start;
 	}
-	*og_y = y;
+	else
+	{
+		color = g->tex.F_rgb;
+		end = g->minilibx.screen_height - 1;
+	}
+	while (++dis->y < end && dis->y < g->minilibx.screen_height - 1)
+	{
+		pixel = (dis->ray->num * 4) + (dis->y * dis->info->line_bytes);
+		colorize(&dis->info->buf[pixel], color,
+			dis->info->endian);
+	}
 }
 
+void	*pick_tex(t_game *g, t_ray *ray)
+{
+	if (ray->axis == (enum e_dir)NO)
+		return (g->tex.NO_img);
+	else if (ray->axis == (enum e_dir)EA)
+		return (g->tex.EA_img);
+	else if (ray->axis == (enum e_dir)SO)
+		return (g->tex.SO_img);
+	else if (ray->axis == (enum e_dir)WE)
+		return (g->tex.WE_img);
+	return (NULL);
+}
+
+void	draw_tex(t_game *g, t_dis *dis)
+{
+	void	*img;
+	int		pixel;
+	int		pixel_tex;
+	t_info	info_tex;
+
+	img = pick_tex(g, dis->ray);
+	if (!img)
+	{
+		dis->y += dis->line_height;
+		return ;
+	}
+	info_tex.buf = mlx_get_data_addr(img, &info_tex.bits_per_pixel, &info_tex.line_bytes, &info_tex.endian);
+	while (++dis->y < dis->draw_end)
+	{
+		if (dis->draw_start + dis->y < 0)
+			continue ;
+		pixel = (dis->ray->num * 4) + (dis->y * dis->info->line_bytes);
+		pixel_tex = (dis->ray->perc * 480 * 4) \
+		 			 + map((t_m) {dis->y - dis->draw_start, 0, dis->line_height, 0, 480}) * info_tex.line_bytes;
+		colorize(&dis->info->buf[pixel], (int) info_tex.buf[pixel_tex], dis->info->endian);
+	}
+}
 
 void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 {
-	int	pixel;
-	int	y;
-	double	line_height;
-	int	draw_start;
-	int	draw_end;
+	t_dis	dis;
 
-	y = 0;
+	dis.y = 0;
+	dis.ray = ray;
+	dis.info = info;
 	if (!ray)
 		return ;
-	line_height = (int)((1 / ray->dist) * g->minilibx.screen_height);
-	draw_start = (double)g->minilibx.screen_height / 2 - line_height / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	draw_end = (double)g->minilibx.screen_height / 2 + line_height / 2;
-	draw_ceil(g, info, ray, draw_start, &y);
-	while (++y < draw_end && y < g->minilibx.screen_height - 1)
-	{
-		pixel = (ray->num * 4) + (y * info->line_bytes);
-		if (ray->axis == (enum e_dir)NO)
-			colorize(&info->buf[pixel], COLOR2, info->endian);
-		else if (ray->axis == (enum e_dir)EA)
-			colorize(&info->buf[pixel], COLOR22 + 3000, info->endian);
-		else if (ray->axis == (enum e_dir)SO)
-			colorize(&info->buf[pixel], COLOR22 + 6000, info->endian);
-		else if (ray->axis == (enum e_dir)WE)
-			colorize(&info->buf[pixel], COLOR22 + 9000, info->endian);
-	}
-	while (++y < g->minilibx.screen_height - 1)
-	{
-		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], g->tex.F_rgb,
-			info->endian);
-	}
+	dis.line_height = (int)((1 / ray->dist) * g->minilibx.screen_height);
+	dis.draw_start = (double)g->minilibx.screen_height / 2 - dis.line_height / 2;
+	if (dis.draw_start < 0)
+		dis.draw_start = 0;
+	dis.draw_end = (double)g->minilibx.screen_height / 2 + dis.line_height / 2;
+	draw_ceil(g, &dis, 1);
+	draw_tex(g, &dis);
+	draw_ceil(g, &dis, 0);
+	// while (++dis.y < dis.draw_end && dis.y < g->minilibx.screen_height - 1)
+	// {
+	// 	pixel = (ray->num * 4) + (y * info->line_bytes);
+	// 	if (ray->axis == (enum e_dir)NO)
+	// 		colorize(&info->buf[pixel], COLOR2, info->endian);
+	// 	else if (ray->axis == (enum e_dir)EA)
+	// 		colorize(&info->buf[pixel], COLOR22 + 3000, info->endian);
+	// 	else if (ray->axis == (enum e_dir)SO)
+	// 		colorize(&info->buf[pixel], COLOR22 + 6000, info->endian);
+	// 	else if (ray->axis == (enum e_dir)WE)
+	// 		colorize(&info->buf[pixel], COLOR22 + 9000, info->endian);
+	// }
+	// while (++y < g->minilibx.screen_height - 1)
+	// {
+	// 	pixel = (ray->num * 4) + (y * info->line_bytes);
+	// 	colorize(&info->buf[pixel], g->tex.F_rgb,
+	// 		info->endian);
+	// }
 }
 
 // t_info	*display(t_game *g, t_ray *rays)

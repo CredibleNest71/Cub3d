@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 14:19:26 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:10:49 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,9 +184,9 @@ int	ft_close(t_game *game)
 
 void	init_rest(t_game *game)
 {
-	game->minilibx.mlx = mlx_init(); // free
-	if (!game->minilibx.mlx)
-		ft_error(game, "Mlx initialization failed");
+	// game->minilibx.mlx = mlx_init(); // free
+	// if (!game->minilibx.mlx)
+	// 	ft_error(game, "Mlx initialization failed");
 	mlx_get_screen_size(game->minilibx.mlx, &game->minilibx.screen_width,
 		&game->minilibx.screen_height);
 	game->minilibx.window = mlx_new_window(game->minilibx.mlx,

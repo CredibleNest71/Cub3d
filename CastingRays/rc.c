@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/05 17:00:34 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 13:48:11 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,13 @@ double cast_ray(t_game *g, t_ray *ray)
 	{
 		ray->dist = distx;
 		ray->axis = cos(ray->angle) < 0 ? (enum e_dir)EA : (enum e_dir)WE;
+		ray->perc = ray->perc_y;
 	}
 	else
 	{
 		ray->dist = disty;
 		ray->axis = sin(ray->angle) < 0 ? (enum e_dir)NO : (enum e_dir)SO;
+		ray->perc = ray->perc_x;
 	}
 	return (ray->dist);
 }

@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 18:02:41 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 13:47:36 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_ray
 	double	dist;
 	double	perc_x;
 	double	perc_y;
+	double	perc;
 }	t_ray;
 
 int    get_textures(int fd, t_tex *tex, t_game *g);
