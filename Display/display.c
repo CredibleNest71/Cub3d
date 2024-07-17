@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:16:12 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:20:13 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	draw_ceil(t_game *g, t_dis *dis, int CF)
 
 	if (CF)
 	{
-		color = g->tex.C_rgb;
+		color = g->tex.c_rgb;
 		end = dis->draw_start;
 	}
 	else
 	{
-		color = g->tex.F_rgb;
+		color = g->tex.f_rgb;
 		end = g->minilibx.screen_height - 1;
 	}
 	while (dis->y < end && dis->y < g->minilibx.screen_height - 1)
@@ -80,13 +80,13 @@ void	draw_ceil(t_game *g, t_dis *dis, int CF)
 void	*pick_tex(t_game *g, t_ray *ray)
 {
 	if (ray->axis == (enum e_dir)NO)
-		return (g->tex.NO_img);
+		return (g->tex.no_img);
 	else if (ray->axis == (enum e_dir)EA)
-		return (g->tex.EA_img);
+		return (g->tex.ea_img);
 	else if (ray->axis == (enum e_dir)SO)
-		return (g->tex.SO_img);
+		return (g->tex.so_img);
 	else if (ray->axis == (enum e_dir)WE)
-		return (g->tex.WE_img);
+		return (g->tex.we_img);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:19:20 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:21:15 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,23 +106,23 @@ void	convert(t_game *g, t_tex *tex)
 	int	h;
 	int	w;
 
-	tex->NO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->NO /*"./textures/pixelverlauf1.xpm"*/, &h, &w);
-	tex->SO_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->SO /*"./textures/pixelverlauf2.xpm"*/, &h, &w);
-	tex->EA_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->EA /*"./textures/pixelverlauf3.xpm"*/, &h, &w);
-	tex->WE_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->WE /*"./textures/pixelverlauf4.xpm"*/, &h, &w);
+	tex->no_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no /*"./textures/pixelverlauf1.xpm"*/, &h, &w);
+	tex->so_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so /*"./textures/pixelverlauf2.xpm"*/, &h, &w);
+	tex->ea_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea /*"./textures/pixelverlauf3.xpm"*/, &h, &w);
+	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we /*"./textures/pixelverlauf4.xpm"*/, &h, &w);
 	printf("W%d\n", w);
 	printf("H%d\n", h);
-	printf("TEX: |%s|\n", tex->SO);
-	printf("TEX: %p\n", tex->SO_img);
+	printf("TEX: |%s|\n", tex->so);
+	printf("TEX: %p\n", tex->so_img);
 }
 void	print_tex(t_tex *tex)
 {
-	printf("NO:	|%s|\n", tex->NO);
-	printf("SO:	|%s|\n", tex->SO);
-	printf("WE:	|%s|\n", tex->WE);
-	printf("EA:	|%s|\n", tex->EA);
-	printf("F:	|%s|\n", tex->F);
-	printf("C:	|%s|\n", tex->C);
+	printf("NO:	|%s|\n", tex->no);
+	printf("SO:	|%s|\n", tex->so);
+	printf("WE:	|%s|\n", tex->we);
+	printf("EA:	|%s|\n", tex->ea);
+	printf("F:	|%s|\n", tex->f);
+	printf("C:	|%s|\n", tex->c);
 }
 
 int	get_textures(int fd, t_tex *tex, t_game *g)
