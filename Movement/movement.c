@@ -6,11 +6,12 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:55 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/15 11:59:49 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:18:54 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+#include <stdio.h>
 #define RANGE 0.2
 int	check_dist(t_game *g, double angle)
 {
@@ -23,7 +24,7 @@ int	check_dist(t_game *g, double angle)
 		return (1);
 	ray.angle = angle + 0.2;
 	if (cast_ray(g, &ray) < RANGE)
-		return (1);
+		return (1);	
 	return (0);
 }
 

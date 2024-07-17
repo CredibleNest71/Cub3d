@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 17:56:30 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 15:01:19 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Parsing/parsing.h"
 #include "cube.h"
 
 int	main(int ac, char **av)
@@ -29,8 +28,6 @@ int	main(int ac, char **av)
 	if (validate_map(game.map, &game))
 		return (ft_error(&game, "ERRONIOUS MAP\n"));
 	init_rest(&game);
-	// print_map(game.map);
-	// print_tex(&game.tex);
 	mlx_loop(game.minilibx.mlx);
 	clean_everything(&game, 0);
 	return (0);

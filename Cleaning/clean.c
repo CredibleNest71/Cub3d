@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/17 12:19:35 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:16:08 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ int ft_error(t_game *game, char *s)
 
 void	free_game_tex(t_game *game)
 {
-	if (game->tex.C)
-		free_and_null((void **)&game->tex.C);
-	if (game->tex.F)
-		free_and_null((void **)&game->tex.F);
-	if (game->tex.NO)
-		free_and_null((void **)&game->tex.NO);
-	if (game->tex.SO)
-		free_and_null((void **)&game->tex.SO);
-	if (game->tex.WE)
-		free_and_null((void **)&game->tex.WE);
-	if (game->tex.EA)
-		free_and_null((void **)&game->tex.EA);
+	if (game->tex.c)
+		free_and_null((void **)&game->tex.c);
+	if (game->tex.f)
+		free_and_null((void **)&game->tex.f);
+	if (game->tex.no)
+		free_and_null((void **)&game->tex.no);
+	if (game->tex.so)
+		free_and_null((void **)&game->tex.so);
+	if (game->tex.we)
+		free_and_null((void **)&game->tex.we);
+	if (game->tex.ea)
+		free_and_null((void **)&game->tex.ea);
 }

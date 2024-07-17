@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:09:50 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 10:29:16 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:35:41 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 #define COLOR2 1234
 #define COLOR3 1234231
 
-int     draw_player2d(t_game *g, t_info *info)
-{
-    int size = 50;
-	int	pixel;
+// int     draw_player2d(t_game *g, t_info *info)
+// {
+//     int size = 50;
+// 	int	pixel;
 
-	for (int x = g->minilibx.screen_width / 2 - size; x < g->minilibx.screen_width / 2 + size; x++){
-		for (int y = g->minilibx.screen_height / 2 - size; x < g->minilibx.screen_height / 2 + size; y++){
-			pixel = (x * 4) + (y * info->line_bytes);
-			colorize(&info->buf[pixel], 0, info->endian);
-		}
-	}
-	return 0;
-}
+// 	for (int x = g->minilibx.screen_width / 2 - size; x < g->minilibx.screen_width / 2 + size; x++){
+// 		for (int y = g->minilibx.screen_height / 2 - size; x < g->minilibx.screen_height / 2 + size; y++){
+// 			pixel = (x * 4) + (y * info->line_bytes);
+// 			colorize(&info->buf[pixel], 0, info->endian);
+// 		}
+// 	}
+// 	return 0;
+// }
 
 void	draw_single_ray(t_game *g, t_info *info, t_ray ray)
 {
@@ -47,38 +47,16 @@ void	draw_single_ray(t_game *g, t_info *info, t_ray ray)
 	}
 }
 
-int		draw_rays(t_game *g, t_info *info)
-{
-	t_ray	ray;
-	double	angle = 0;
-	while (angle < 2 * PI)
-	{
-		ray.angle = angle;
-		cast_ray(g, &ray);
-		draw_single_ray(g, info, ray);
-		angle += PI / 180;
-	}
-	return 0;
-}
-
-// int		main_display_loop_2d(t_game *g)
+// int		draw_rays(t_game *g, t_info *info)
 // {
-// 	t_info	*info;
-// 	void	*oldimg;
-
-// 	oldimg = g->minilibx.img;
-// 	info = create_buffer(g);
-// 	draw_rays(g, info);
-// 	draw_player2d(g, info);
-// 	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0, 0);
-// 	if (oldimg)
+// 	t_ray	ray;
+// 	double	angle = 0;
+// 	while (angle < 2 * PI)
 // 	{
-// 		mlx_destroy_image(g->minilibx.mlx, oldimg);
-// 		free_and_null((void **)&oldimg);
+// 		ray.angle = angle;
+// 		cast_ray(g, &ray);
+// 		draw_single_ray(g, info, ray);
+// 		angle += PI / 180;
 // 	}
-// 	char str[60];
-// 	sprintf(str, "ANGLE: %f\nX:%f\nY:%f", g->player.rad, g->player.px, g->player.py);
-// 	mlx_string_put(g->minilibx.mlx, g->minilibx.window, 40, 40, 0, str);
-// 	free_and_null((void **)&info);
-// 	return (0);
+// 	return 0;
 // }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   movement.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:57 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/05 14:53:34 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 13:52:57 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOVEMENT_H
 # define MOVEMENT_H
-# define SPEED 0.1
-# define SPIN 0.07
+# define SPEED 0.07
+# define SPIN 0.05
 
 #endif
