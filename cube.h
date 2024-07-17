@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 18:02:41 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 12:19:23 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info);
 
 //cleaning
 void	free_and_null(void **ptr);
-int		ft_error(t_game *game, char *s);
+int 	ft_error(t_game *game, char *s);
 
 //MAP
 int		validate_map(char **map, t_game *g);

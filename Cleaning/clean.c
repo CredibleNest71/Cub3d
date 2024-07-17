@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 13:58:07 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:19:35 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,8 @@ int ft_error(t_game *game, char *s)
     ft_putendl_fd("Error", STDERR_FILENO);
     if (s)
 		ft_putendl_fd(s, STDERR_FILENO);
-    free_game_tex(game);
     clean_everything(game, 1);
-	exit(1);
+    return (1);
 }
 
 void	free_game_tex(t_game *game)

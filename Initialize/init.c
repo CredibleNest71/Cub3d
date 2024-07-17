@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 14:19:26 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 12:06:20 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,29 +119,28 @@ void	move_and_draw(t_game *game, int dir)
         draw_player(game, 5);
     }
 }
-int	handle_keyboard(int button, t_game *game)
-{
-	//printf("%d\n", button);
-	if (button == ESC)
-		clean_everything(game, 0);
-	else if (button == W)
-		move_and_draw(game, 1);
-	else if (button == A)
-		move_and_draw(game, 2);
-	else if (button == S)
-   		move_and_draw(game, 3);
-	else if (button == D)
-    	move_and_draw(game, 4);
-	else if (button == LEFT)
-		turn_left(&game->player);
-	else if (button == RIGHT)
-		turn_right(&game->player);
-	else if (button == Q)
-		game->player.fov -= 2;
-	else if (button == E)
-		game->player.fov += 2;
-	return (0);
-}
+// int	handle_keyboard(int button, t_game *game)
+// {
+// 	if (button == ESC)
+// 		clean_everything(game, 0);
+// 	else if (button == W)
+// 		move_and_draw(game, 1);
+// 	else if (button == A)
+// 		move_and_draw(game, 2);
+// 	else if (button == S)
+//    		move_and_draw(game, 3);
+// 	else if (button == D)
+//     	move_and_draw(game, 4);
+// 	else if (button == LEFT)
+// 		turn_left(&game->player);
+// 	else if (button == RIGHT)
+// 		turn_right(&game->player);
+// 	else if (button == Q)
+// 		game->player.fov -= 2;
+// 	else if (button == E)
+// 		game->player.fov += 2;
+// 	return (0);
+// }
 
 int	draw_player(t_game *game, double size)
 {
@@ -193,13 +192,11 @@ void	init_rest(t_game *game)
 			game->minilibx.screen_width, game->minilibx.screen_height, "Cub3D");
 	if (!game->minilibx.window)
 		ft_error(game, "Window creation failed");
-	// mlx_hook(game->minilibx.window, 2, 1L << 0, handle_keyboard, game);
 	mlx_hook(game->minilibx.window, 17, 0L, ft_close, game);
 	mlx_hook(game->minilibx.window, 6, 1L << 6, handle_mouse, game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, key_down, game);
 	mlx_hook(game->minilibx.window, 3, 1L << 1, key_up, game);
 	mlx_mouse_hide(game->minilibx.mlx, game->minilibx.window); // auskommentiert waehrend leak check
 	mlx_mouse_move(game->minilibx.mlx, game->minilibx.window, game->minilibx.screen_height / 2, 500);
-	// mlx_loop_hook(game->minilibx.mlx, draw_player, game);
 	mlx_loop_hook(game->minilibx.mlx, main_display_loop, game);
 }
