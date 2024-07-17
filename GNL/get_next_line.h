@@ -5,8 +5,8 @@
 #  define BUFFER_SIZE 1
 # endif
 
-# include <unistd.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 char	*get_next_line(int fd);
 char	*ft_strchr_gnl(const char *s, int c);

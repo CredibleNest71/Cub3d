@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:55:56 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:30:54 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,8 @@ void			destroy_buffer(t_game *g, t_info *info);
 int				check_dist(t_game *g, double angle);
 
 double			map(t_m in);
-double			degr(double rad);
+// double			degr(double rad);
+int				ft_close(t_game *game);
 int				is_char(char c, char *chars);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:58:18 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:09:26 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,30 @@ void	destroy_buffer(t_game *g, t_info *info)
 void	draw_ceil(t_game *g, t_info *info, t_ray *ray, int start, int *og_y)
 {
 	int	y;
-	int pixel;
+	int	pixel;
 
 	y = -1;
 	while (++y < start && y < g->minilibx.screen_height - 1)
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], g->tex.c_rgb,
-			info->endian);
+		colorize(&info->buf[pixel], g->tex.c_rgb, info->endian);
 	}
 	*og_y = y;
 }
 
-
 void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 {
-	int	pixel;
-	int	y;
+	int		pixel;
+	int		y;
 	double	line_height;
-	int	draw_start;
-	int	draw_end;
+	int		draw_start;
+	int		draw_end;
 
 	y = 0;
 	if (!ray)
 		return ;
-	line_height = (int)((1 / (ray->dist* cos(ray->angle - g->player.rad)))
-	* g->minilibx.screen_height);
+	line_height = (int)((1 / (ray->dist * cos(ray->angle - g->player.rad)))
+			* g->minilibx.screen_height);
 	draw_start = (double)g->minilibx.screen_height / 2 - line_height / 2;
 	if (draw_start < 0)
 		draw_start = 0;
@@ -88,13 +86,12 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 			colorize(&info->buf[pixel], COLOR22 + 6000, info->endian);
 		else if (ray->axis == (enum e_dir)WE)
 			colorize(&info->buf[pixel], COLOR22 + 9000, info->endian);
-		 y++;
+		y++;
 	}
 	while (y < g->minilibx.screen_height - 1)
 	{
 		pixel = (ray->num * 4) + (y * info->line_bytes);
-		colorize(&info->buf[pixel], g->tex.f_rgb,
-			info->endian);
+		colorize(&info->buf[pixel], g->tex.f_rgb, info->endian);
 		y++;
 	}
 }

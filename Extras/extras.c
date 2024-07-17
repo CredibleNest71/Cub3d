@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:38:28 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:52:02 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:30:28 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_char(char c, char *chars)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	while (chars[++i])

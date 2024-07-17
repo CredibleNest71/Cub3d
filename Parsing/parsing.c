@@ -6,11 +6,11 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:18:22 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:11:20 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cube.h"
+#include "../cube.h"
 
 int	fin_read(t_tex *tex)
 {
@@ -29,7 +29,7 @@ int	fin_read(t_tex *tex)
 	return (1);
 }
 
-static	char **identify(t_tex *tex, char *line, int *color)
+static char	**identify(t_tex *tex, char *line, int *color)
 {
 	*color = 0;
 	if (!ft_strncmp(line, "NO", 2) && !tex->no)
@@ -54,13 +54,13 @@ static	char **identify(t_tex *tex, char *line, int *color)
 	return (NULL);
 }
 
-static	int	add_to_textures(t_tex *tex, char *line)
+static int	add_to_textures(t_tex *tex, char *line)
 {
 	char	**curr;
 	char	*found;
 	char	*path;
 	int		color;
-	
+
 	if (!line)
 		return (0);
 	curr = identify(tex, line, &color);
@@ -77,6 +77,7 @@ static	int	add_to_textures(t_tex *tex, char *line)
 	*curr = path;
 	return (1);
 }
+
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
@@ -95,7 +96,6 @@ int	string_to_rgb(char *str)
 	rgb[1] = ft_atoi(&str[i]);
 	i = ft_strchr(&str[i], ',') - str + 1;
 	rgb[2] = ft_atoi(&str[i]);
-	// printf("r: %d | g: %d | b: %d \n", rgb[0], rgb[1], rgb[2]);
 	return (create_trgb(0, rgb[0], rgb[1], rgb[2]));
 }
 
@@ -110,39 +110,28 @@ void	convert(t_game *g, t_tex *tex)
 	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we, &h, &w);
 }
 
-// 0 = ALL GOOD
-// ANYTHING ELSE = ERROR
-int    get_textures(int fd, t_tex *tex, t_game *g)
+int	get_textures(int fd, t_tex *tex, t_game *g)
 {
-    char    *line;
+	char	*line;
 
-    while (!fin_read(tex))
-    {
-        line = get_next_line(fd);
-        if (!line)
-            return (1);
+	while (!fin_read(tex))
+	{
+		line = get_next_line(fd);
+		if (!line)
+			return (1);
 		if (line[0] == '\n')
 		{
 			free_and_null((void **)&line);
 			continue ;
 		}
-        if (!add_to_textures(tex, line))
+		if (!add_to_textures(tex, line))
 			return (write(2, "An Error occurred\n", 18));
-    }
+	}
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
 	convert(g, tex);
-	return 0;
+	return (0);
 }
-// void	print_tex(t_tex *tex)
-// {
-// 	printf("NO:	%s", tex->no);
-// 	printf("SO:	%s", tex->so);
-// 	printf("WE:	%s", tex->we);
-// 	printf("EA:	%s", tex->ea);
-// 	printf("F:	%s", tex->f);
-// 	printf("C:	%s", tex->c);
-// }
 
 void	delete_map(char **map)
 {

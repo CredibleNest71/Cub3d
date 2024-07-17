@@ -6,11 +6,16 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:01:19 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:27:20 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube.h"
+
+void	init_game(t_game *game)
+{
+	*game = (t_game){0};
+}
 
 int	main(int ac, char **av)
 {

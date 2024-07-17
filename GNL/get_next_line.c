@@ -6,12 +6,12 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:02:04 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/16 14:20:16 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 16:09:39 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "../libft/libft.h"
+#include "get_next_line.h"
 #include <stdio.h>
 
 void	liberator(char **imprisoned_ptr)
@@ -29,7 +29,7 @@ void	*ft_memset(void *s, int c, size_t size)
 	unsigned char	*str;
 
 	i = 0;
-	str = (unsigned char *) s;
+	str = (unsigned char *)s;
 	while (i < size)
 	{
 		str[i] = c;
@@ -114,8 +114,8 @@ char	*get_next_line(int fd)
 		liberator(&rawstr);
 	return (cookeds);
 }
-//static variables remember their value, therefore u need to set them to NULL
-//after liberatoring them
+// static variables remember their value, therefore u need to set them to NULL
+// after liberatoring them
 
 // ft_substr(rawstr, len, ((ft_strlen_gnl(rawstr) + 1) - len))
 
