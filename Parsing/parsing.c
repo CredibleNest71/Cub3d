@@ -6,61 +6,61 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 16:57:27 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:19:20 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cube.h"
+#include "../cube.h"
 
 int	fin_read(t_tex *tex)
 {
-	if (!tex->C)
+	if (!tex->c)
 		return (0);
-	if (!tex->F)
+	if (!tex->f)
 		return (0);
-	if (!tex->NO)
+	if (!tex->no)
 		return (0);
-	if (!tex->WE)
+	if (!tex->we)
 		return (0);
-	if (!tex->EA)
+	if (!tex->ea)
 		return (0);
-	if (!tex->SO)
+	if (!tex->so)
 		return (0);
 	return (1);
 }
 
-static	char **identify(t_tex *tex, char *line, int *color)
+static char	**identify(t_tex *tex, char *line, int *color)
 {
 	*color = 0;
-	if (!ft_strncmp(line, "NO", 2) && !tex->NO)
-		return (&tex->NO);
-	if (!ft_strncmp(line, "SO", 2) && !tex->SO)
-		return (&tex->SO);
-	if (!ft_strncmp(line, "EA", 2) && !tex->EA)
-		return (&tex->EA);
-	if (!ft_strncmp(line, "WE", 2) && !tex->WE)
-		return (&tex->WE);
-	if (!ft_strncmp(line, "F", 1) && !tex->F)
+	if (!ft_strncmp(line, "NO", 2) && !tex->no)
+		return (&tex->no);
+	if (!ft_strncmp(line, "SO", 2) && !tex->so)
+		return (&tex->so);
+	if (!ft_strncmp(line, "EA", 2) && !tex->ea)
+		return (&tex->ea);
+	if (!ft_strncmp(line, "WE", 2) && !tex->we)
+		return (&tex->we);
+	if (!ft_strncmp(line, "F", 1) && !tex->f)
 	{
 		*color = 1;
-		return (&tex->F);
+		return (&tex->f);
 	}
-	if (!ft_strncmp(line, "C", 1) && !tex->C)
+	if (!ft_strncmp(line, "C", 1) && !tex->c)
 	{
 		*color = 1;
-		return (&tex->C);
+		return (&tex->c);
 	}
 	write(2, "Error: couldnt identify!", 24);
 	return (NULL);
 }
 
-static	int	add_to_textures(t_tex *tex, char *line)
+static int	add_to_textures(t_tex *tex, char *line)
 {
 	char	**curr;
 	char	*found;
 	char	*path;
 	int		color;
-	
+
 	if (!line)
 		return (0);
 	curr = identify(tex, line, &color);
@@ -79,6 +79,7 @@ static	int	add_to_textures(t_tex *tex, char *line)
 	*curr = path;
 	return (1);
 }
+
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
@@ -97,7 +98,6 @@ int	string_to_rgb(char *str)
 	rgb[1] = ft_atoi(&str[i]);
 	i = ft_strchr(&str[i], ',') - str + 1;
 	rgb[2] = ft_atoi(&str[i]);
-	printf("r: %d | g: %d | b: %d \n", rgb[0], rgb[1], rgb[2]);
 	return (create_trgb(0, rgb[0], rgb[1], rgb[2]));
 }
 
@@ -125,30 +125,28 @@ void	print_tex(t_tex *tex)
 	printf("C:	|%s|\n", tex->C);
 }
 
-// 0 = ALL GOOD
-// ANYTHING ELSE = ERROR
-int    get_textures(int fd, t_tex *tex, t_game *g)
+int	get_textures(int fd, t_tex *tex, t_game *g)
 {
-    char    *line;
+	char	*line;
 
-    while (!fin_read(tex))
-    {
-        line = get_next_line(fd);
-        if (!line)
-            return (1);
+	while (!fin_read(tex))
+	{
+		line = get_next_line(fd);
+		if (!line)
+			return (1);
 		if (line[0] == '\n')
 		{
 			free_and_null((void **)&line);
 			continue ;
 		}
-        if (!add_to_textures(tex, line))
+		if (!add_to_textures(tex, line))
 			return (write(2, "An Error occurred\n", 18));
-    }
+	}
 	print_tex(tex);
-	g->tex.C_rgb = string_to_rgb(tex->C);
-	g->tex.F_rgb = string_to_rgb(tex->F);
+	g->tex.c_rgb = string_to_rgb(tex->c);
+	g->tex.f_rgb = string_to_rgb(tex->f);
 	convert(g, tex);
-	return 0;
+	return (0);
 }
 
 void	delete_map(char **map)
@@ -165,16 +163,16 @@ void	delete_map(char **map)
 
 void	delete_tex(t_tex *tex)
 {
-	if (tex->C)
-		free(tex->C);
-	if (tex->F)
-		free(tex->F);
-	if (tex->NO)
-		free(tex->NO);
-	if (tex->SO)
-		free(tex->SO);
-	if (tex->EA)
-		free(tex->EA);
-	if (tex->WE)
-		free(tex->WE);
+	if (tex->c)
+		free(tex->c);
+	if (tex->f)
+		free(tex->f);
+	if (tex->no)
+		free(tex->no);
+	if (tex->so)
+		free(tex->so);
+	if (tex->ea)
+		free(tex->ea);
+	if (tex->we)
+		free(tex->we);
 }

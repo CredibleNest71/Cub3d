@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
+#    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/07/03 15:36:04 by mresch           ###   ########.fr        #
+#    Updated: 2024/07/17 16:11:55 by mesenyur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,18 +15,20 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 NAME		=	cub3d
 SRC			=	main.c\
 				CastingRays/rc.c\
-				CastingRays/2d.c\
 				Display/colorify.c\
 				Display/display.c\
 				Extras/quickmath.c\
 				Extras/extras.c\
 				Parsing/parsing.c\
+				Parsing/parsing2.c\
 				Parsing/validateMap.c\
 				Parsing/getMap.c \
 				Initialize/init.c \
 				Cleaning/clean.c \
 				Parsing/input_check.c \
-				Movement/movement.c
+				Movement/movement.c\
+				Movement/movement2.c\
+				Parsing/init_player.c
 
 OBJ			=	$(SRC:.c=.o)
 BONUS		=	

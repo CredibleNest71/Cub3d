@@ -41,8 +41,8 @@ char	*ft_strchr_gnl(const char *s, int c)
 
 	i = 0;
 	result = NULL;
-	s_ = (char *) s;
-	c_ = (char) c;
+	s_ = (char *)s;
+	c_ = (char)c;
 	while (s_[i] != '\0' || c_ == '\0')
 	{
 		if (s_[i] != c_)
@@ -87,10 +87,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
-	size_t		papamericano;
-	char		*str;
-	size_t		i;
-	size_t		e;
+	size_t	papamericano;
+	char	*str;
+	size_t	i;
+	size_t	e;
 
 	i = 0;
 	e = 0;
@@ -118,7 +118,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	char		*str;
 	size_t		i;
 	size_t		e;
-	
+
 	i = 0;
 	if (s1 == NULL)
 	{
@@ -128,7 +128,8 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		s1[0] = '\0';
 	}
 	// printf("S1: %s\n", s2);
-	str = ft_calloc_gnl(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1, sizeof(char));
+	str = ft_calloc_gnl(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1,
+			sizeof(char));
 	if (str == NULL)
 		return (liberator(s1), liberator(s2), NULL);
 	while (s1[i] != '\0' && ft_strlen_gnl(s1) > i)
@@ -153,7 +154,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	char		*str;
 	size_t		i;
 	size_t		e;
-	
+
 	i = 0;
 	e = 0;
 	papamericano = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
@@ -182,7 +183,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	char		*str;
 	size_t		i;
 	size_t		e;
-	
+
 	i = 0;
 	if (s1 == NULL)
 		return (*s2);
@@ -211,5 +212,5 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	you = "zulu";
 	conjoinedtwins = ft_strjoin_gnl(fuck, you);
 	printf("%s", conjoinedtwins);
-	
+
 } */

@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 16:56:07 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:16:12 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ t_info	*create_buffer(t_game *g)
 	info = malloc(sizeof(t_info));
 	if (!info)
 		return (NULL);
-	info->image = NULL;
-	free_and_null((void **)&info->image);
 	info->image = mlx_new_image(g->minilibx.mlx, g->minilibx.screen_width,
 			g->minilibx.screen_height);
 	info->buf = mlx_get_data_addr(info->image, &info->bits_per_pixel,

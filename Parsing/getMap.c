@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/16 14:18:58 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/17 15:56:54 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ char	*read_map(int fd)
 	while (next)
 	{
 		line = append_and_replace(line, next); // free line
-		printf("mem: %p\n", line);
 		next = get_next_line(fd);
 		if (next && ft_strlen(next) < 2)
 		{
@@ -53,7 +52,6 @@ char	*read_map(int fd)
 	}
 	if (next)
 		free_and_null((void **)&next);
-	// printf("READMAP: %s", line);
 	return (line);
 }
 
@@ -104,8 +102,6 @@ char	**make_array(char *line, int height, int width)
 		j++;
 		i++;
 	}
-	// printf("\nMAKEMAPARRAY:");
-	// print_map(map);
 	return (map);
 }
 
@@ -117,8 +113,6 @@ char	**make_map(char *line, t_game *g)
 	width = 0;
 	height = 0;
 	set_proportions(line, &height, &width);
-	// if (!width || !height)
-	// 	return (perror("Error::make_array\n"), NULL);
 	g->map_height = height;
 	g->map_width = width;
 	map = make_array(line, height, width);
@@ -129,7 +123,7 @@ char	**getMap(int fd, t_game *g)
 	char	*temp;
 	char	*oneline;
 	char	**map;
-	// (void)fd;
+
 	oneline = read_map(fd); // if null gnl leaks 1 byte
 	if (!oneline)
 		return (NULL);
@@ -143,13 +137,3 @@ char	**getMap(int fd, t_game *g)
 	free_and_null((void **)&oneline);
 	return (map);
 }
-
-// void	print_map(char **map)
-// {
-// 	printf("\n==========================\n");
-//     for (int i = 0; map[i]; i++)
-//     {
-// 	    printf("|%s|\n", map[i]);
-// 	}
-// 	printf("==========================\n");
-// }
