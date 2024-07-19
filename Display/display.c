@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 15:28:55 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/19 16:44:53 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,12 @@ void	*pick_tex(t_game *g, t_ray *ray)
 		return (g->tex.ea_img);
 	else if (ray->axis == (enum e_dir)SO)
 	{
-		ray->perc = 1 - ray->perc;
+		ray->perc = fabs(1 - ray->perc);
 		return (g->tex.so_img);
 	}
 	else if (ray->axis == (enum e_dir)WE)
 	{
-		ray->perc = 1 - ray->perc;
+		ray->perc = fabs(1 - ray->perc);
 		return (g->tex.we_img);
 	}
 	return (NULL);
@@ -90,7 +90,7 @@ void	draw_tex(t_game *g, t_dis *dis)
 	int		i;
 
 	img = pick_tex(g, dis->ray);
-	if (!img)
+	if (!img || (dis->ray->perc < 0 || dis->ray->perc > 1))
 	{
 		dis->y += dis->line_height;
 		return ;
@@ -100,7 +100,7 @@ void	draw_tex(t_game *g, t_dis *dis)
 	while (dis->y < dis->draw_end && dis->y < g->minilibx.screen_height)
 	{
 		pixel = (dis->ray->num * 4) + (dis->y * dis->info->line_bytes);
-		pixel_tex = (int)(dis->ray->perc * 480) * 4 + (int)map((t_m){dis->y,
+		pixel_tex = (int)(dis->ray->perc * 479) * 4 + (int)map((t_m){dis->y,
 				dis->draw_start, dis->draw_end, 10, 470}) * info_tex.line_bytes;
 		i = 0;
 		while (i < 4)
@@ -121,10 +121,9 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	dis.info = info;
 	if (!ray)
 		return ;
-	dis.line_height = (int)((1 / ray->dist) * g->minilibx.screen_height);
-	dis.draw_start = (double)g->minilibx.screen_height / 2 - (double)dis.line_height
-		/ 2;
-	dis.draw_end = (double)g->minilibx.screen_height / 2 + (double)dis.line_height / 2;
+	dis.line_height = (int)((1 / (cos(ray->angle - g->player.rad) * ray->dist)) * g->minilibx.screen_height);
+	dis.draw_start = g->minilibx.screen_height / 2 - dis.line_height / 2;
+	dis.draw_end = g->minilibx.screen_height / 2 + dis.line_height / 2;
 	draw_ceil(g, &dis, 1);
 	draw_tex(g, &dis);
 	draw_ceil(g, &dis, 0);

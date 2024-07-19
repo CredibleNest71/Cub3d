@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 15:27:43 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/19 16:38:26 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ double	check_y(t_game *g, t_ray *ray)
 			break ;
 		y += dir;
 	}
-	ray->perc_x = x - floor(y);
+	ray->perc_x = x - floor(x);
 	return (distance(g->player.px, g->player.py, x, y));
 }
 
@@ -103,9 +103,9 @@ double	cast_ray(t_game *g, t_ray *ray)
 	{
 		ray->dist = distx;
 		if (cos(ray->angle) < 0)
-			ray->axis = (enum e_dir)EA;
-		else
 			ray->axis = (enum e_dir)WE;
+		else
+			ray->axis = (enum e_dir)EA;
 		ray->perc = ray->perc_y;
 	}
 	else
