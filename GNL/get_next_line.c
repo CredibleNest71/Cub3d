@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 14:02:04 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/17 16:09:39 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:03:57 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	rawstr = readme(&rawstr, fd);
 	if (rawstr == NULL)
-	{
-		// liberator(&rawstr);
 		return (NULL);
-	}
 	len = linlen(rawstr);
 	cookeds = ft_substr(rawstr, 0, len);
 	if (cookeds == NULL)

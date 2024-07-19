@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:56:54 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/19 13:10:23 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ char	**make_map(char *line, t_game *g)
 	height = 0;
 	set_proportions(line, &height, &width);
 	g->map_height = height;
+	
 	g->map_width = width;
 	map = make_array(line, height, width);
 	return (map);

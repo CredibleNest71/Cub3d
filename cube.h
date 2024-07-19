@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:38:20 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:48:09 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ enum			e_bindings
 	Q = 113,
 	E = 101,
 };
-
 typedef struct s_m
 {
 	double		val;
@@ -144,12 +143,20 @@ typedef struct s_ray
 	double		perc;
 }				t_ray;
 
+typedef	struct s_display
+{
+	int	y;
+	int	draw_start;
+	int	draw_end;
+	int	line_height;
+	t_ray	*ray;
+	t_info	*info;
+}				t_dis;
+
 int				get_textures(int fd, t_tex *tex, t_game *g);
 void			print_map(char **map);
 void			print_tex(t_tex *tex);
 bool			name_check(char **av);
-// void			delete_map(char **map);
-// void			delete_tex(t_tex *tex);
 
 // display
 void			colorize(char *buffer, int color, int endian);
@@ -197,7 +204,6 @@ void			destroy_buffer(t_game *g, t_info *info);
 int				check_dist(t_game *g, double angle);
 
 double			map(t_m in);
-// double			degr(double rad);
 int				ft_close(t_game *game);
 int				is_char(char c, char *chars);
 
