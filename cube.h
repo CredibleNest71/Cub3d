@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 12:48:09 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:30:01 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,14 +95,14 @@ typedef struct s_minilibx
 
 typedef struct s_info
 {
-	int		bits_per_pixel;
-	int		line_bytes;
-	int		endian;
-	void	*image;
-	char	*buf;
-	int		h;
-	int		w;
-}	t_info;
+	int			bits_per_pixel;
+	int			line_bytes;
+	int			endian;
+	void		*image;
+	char		*buf;
+	int			h;
+	int			w;
+}				t_info;
 
 typedef struct s_textures
 {
@@ -143,14 +143,14 @@ typedef struct s_ray
 	double		perc;
 }				t_ray;
 
-typedef	struct s_display
+typedef struct s_display
 {
-	int	y;
-	int	draw_start;
-	int	draw_end;
-	int	line_height;
-	t_ray	*ray;
-	t_info	*info;
+	int			y;
+	int			draw_start;
+	int			draw_end;
+	int			line_height;
+	t_ray		*ray;
+	t_info		*info;
 }				t_dis;
 
 int				get_textures(int fd, t_tex *tex, t_game *g);
