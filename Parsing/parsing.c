@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/17 17:39:17 by mresch           ###   ########.fr       */
+=======
+/*   Updated: 2024/07/19 13:11:10 by mesenyur         ###   ########.fr       */
+>>>>>>> e4bc8f8f1ebf6247a5ba8fcdd5c7fb3e26d4fdbd
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +110,7 @@ void	convert(t_game *g, t_tex *tex)
 	int	h;
 	int	w;
 
+<<<<<<< HEAD
 	tex->no_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no /*"./textures/pixelverlauf1.xpm"*/, &h, &w);
 	write(1, "1", 1);
 
@@ -132,6 +137,16 @@ void	print_tex(t_tex *tex)
 	printf("EA:	|%s|\n", tex->ea);
 	printf("F:	|%s|\n", tex->f);
 	printf("C:	|%s|\n", tex->c);
+=======
+	tex->no_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no
+			/*"./textures/pixelverlauf1.xpm"*/, &h, &w);
+	tex->so_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so
+			/*"./textures/pixelverlauf2.xpm"*/, &h, &w);
+	tex->ea_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea
+			/*"./textures/pixelverlauf3.xpm"*/, &h, &w);
+	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we
+			/*"./textures/pixelverlauf4.xpm"*/, &h, &w);
+>>>>>>> e4bc8f8f1ebf6247a5ba8fcdd5c7fb3e26d4fdbd
 }
 
 int	get_textures(int fd, t_tex *tex, t_game *g)
@@ -151,37 +166,8 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 		if (!add_to_textures(tex, line))
 			return (write(2, "An Error occurred\n", 18));
 	}
-	print_tex(tex);
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
 	convert(g, tex);
 	return (0);
-}
-
-void	delete_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i++]);
-	}
-	free(map);
-}
-
-void	delete_tex(t_tex *tex)
-{
-	if (tex->c)
-		free(tex->c);
-	if (tex->f)
-		free(tex->f);
-	if (tex->no)
-		free(tex->no);
-	if (tex->so)
-		free(tex->so);
-	if (tex->ea)
-		free(tex->ea);
-	if (tex->we)
-		free(tex->we);
 }

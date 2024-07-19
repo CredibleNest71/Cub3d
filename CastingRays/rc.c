@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rc.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/07/19 15:17:23 by mresch           ###   ########.fr       */
+=======
+/*   Updated: 2024/07/19 13:03:23 by mesenyur         ###   ########.fr       */
+>>>>>>> e4bc8f8f1ebf6247a5ba8fcdd5c7fb3e26d4fdbd
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +26,30 @@ double	distance(double px, double py, double x, double y)
 
 double	check_y(t_game *g, t_ray *ray)
 {
-	int	tempy;
+	int		tempy;
+	double	y;
+	double	x;
+	double	d;
+	double	dir;
 
-	double y, x, d, dir;
-	dir = (sin(ray->angle) < 0) ? -1 : 1;
-	y = (sin(ray->angle) < 0) ? floor(g->player.py) : ceil(g->player.py);
+	if (sin(ray->angle) < 0)
+		dir = -1;
+	else
+		dir = 1;
+	if (sin(ray->angle) < 0)
+		y = floor(g->player.py);
+	else
+		y = ceil(g->player.py);
 	while (1)
 	{
 		d = (y - g->player.py) / sin(ray->angle);
 		if (sin(ray->angle) == 0)
 			d = 1;
 		x = g->player.px + cos(ray->angle) * d;
-		tempy = dir < 0 ? y - 1 : y;
+		if (dir < 0)
+			tempy = y - 1;
+		else
+			tempy = y;
 		if (tempy < 0 || x < 0 || y > g->map_height - 1 || x > g->map_width - 1)
 			break ;
 		if (g->map[(int)tempy][(int)x] == '1')
@@ -46,18 +62,30 @@ double	check_y(t_game *g, t_ray *ray)
 
 double	check_x(t_game *g, t_ray *ray)
 {
-	int	tempx;
+	int		tempx;
+	double	y;
+	double	x;
+	double	d;
+	double	dir;
 
-	double y, x, d, dir;
-	dir = (cos(ray->angle) < 0) ? -1 : 1;
-	x = (cos(ray->angle) < 0) ? floor(g->player.px) : ceil(g->player.px);
+	if (cos(ray->angle) < 0)
+		dir = -1;
+	else
+		dir = 1;
+	if (cos(ray->angle) < 0)
+		x = floor(g->player.px);
+	else
+		x = ceil(g->player.px);
 	while (1)
 	{
 		d = (x - g->player.px) / cos(ray->angle);
 		if (cos(ray->angle) == 0)
 			d = 1;
 		y = g->player.py + sin(ray->angle) * d;
-		tempx = dir < 0 ? x - 1 : x;
+		if (dir < 0)
+			tempx = x - 1;
+		else
+			tempx = x;
 		if (y < 0 || tempx < 0 || y > g->map_height - 1 || x > g->map_width - 1)
 			break ;
 		if (g->map[(int)y][(int)tempx] == '1')
@@ -78,13 +106,19 @@ double	cast_ray(t_game *g, t_ray *ray)
 	if (distx < disty)
 	{
 		ray->dist = distx;
-		ray->axis = cos(ray->angle) < 0 ? (enum e_dir)EA : (enum e_dir)WE;
+		if (cos(ray->angle) < 0)
+			ray->axis = (enum e_dir)EA;
+		else
+			ray->axis = (enum e_dir)WE;
 		ray->perc = ray->perc_y;
 	}
 	else
 	{
 		ray->dist = disty;
-		ray->axis = sin(ray->angle) < 0 ? (enum e_dir)NO : (enum e_dir)SO;
+		if (sin(ray->angle) < 0)
+			ray->axis = (enum e_dir)NO;
+		else
+			ray->axis = (enum e_dir)SO;
 		ray->perc = ray->perc_x;
 	}
 	if (ray->axis == (enum e_dir) SO || ray->axis == (enum e_dir) WE)
