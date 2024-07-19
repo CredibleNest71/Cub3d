@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:21:15 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/17 17:39:17 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,22 @@ void	convert(t_game *g, t_tex *tex)
 	int	w;
 
 	tex->no_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no /*"./textures/pixelverlauf1.xpm"*/, &h, &w);
+	write(1, "1", 1);
+
 	tex->so_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so /*"./textures/pixelverlauf2.xpm"*/, &h, &w);
+	write(1, "1", 1);
+
 	tex->ea_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea /*"./textures/pixelverlauf3.xpm"*/, &h, &w);
+	write(1, "1", 1);
+
 	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we /*"./textures/pixelverlauf4.xpm"*/, &h, &w);
-	printf("W%d\n", w);
-	printf("H%d\n", h);
-	printf("TEX: |%s|\n", tex->so);
-	printf("TEX: %p\n", tex->so_img);
+	write(1, "1", 1);
+
+	
+	// printf("W%d\n", w);
+	// printf("H%d\n", h);
+	// printf("TEX: |%s|\n", tex->so);
+	// printf("TEX: %p\n", tex->so_img);
 }
 void	print_tex(t_tex *tex)
 {
