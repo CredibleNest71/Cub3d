@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 15:06:15 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/19 15:28:55 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,15 @@ void	*pick_tex(t_game *g, t_ray *ray)
 	else if (ray->axis == (enum e_dir)EA)
 		return (g->tex.ea_img);
 	else if (ray->axis == (enum e_dir)SO)
+	{
+		ray->perc = 1 - ray->perc;
 		return (g->tex.so_img);
+	}
 	else if (ray->axis == (enum e_dir)WE)
+	{
+		ray->perc = 1 - ray->perc;
 		return (g->tex.we_img);
+	}
 	return (NULL);
 }
 

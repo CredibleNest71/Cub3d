@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/17 17:39:17 by mresch           ###   ########.fr       */
-=======
-/*   Updated: 2024/07/19 13:11:10 by mesenyur         ###   ########.fr       */
->>>>>>> e4bc8f8f1ebf6247a5ba8fcdd5c7fb3e26d4fdbd
+/*   Updated: 2024/07/19 15:26:52 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,34 +106,6 @@ void	convert(t_game *g, t_tex *tex)
 	int	h;
 	int	w;
 
-<<<<<<< HEAD
-	tex->no_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no /*"./textures/pixelverlauf1.xpm"*/, &h, &w);
-	write(1, "1", 1);
-
-	tex->so_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so /*"./textures/pixelverlauf2.xpm"*/, &h, &w);
-	write(1, "1", 1);
-
-	tex->ea_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea /*"./textures/pixelverlauf3.xpm"*/, &h, &w);
-	write(1, "1", 1);
-
-	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we /*"./textures/pixelverlauf4.xpm"*/, &h, &w);
-	write(1, "1", 1);
-
-	
-	// printf("W%d\n", w);
-	// printf("H%d\n", h);
-	// printf("TEX: |%s|\n", tex->so);
-	// printf("TEX: %p\n", tex->so_img);
-}
-void	print_tex(t_tex *tex)
-{
-	printf("NO:	|%s|\n", tex->no);
-	printf("SO:	|%s|\n", tex->so);
-	printf("WE:	|%s|\n", tex->we);
-	printf("EA:	|%s|\n", tex->ea);
-	printf("F:	|%s|\n", tex->f);
-	printf("C:	|%s|\n", tex->c);
-=======
 	tex->no_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no
 			/*"./textures/pixelverlauf1.xpm"*/, &h, &w);
 	tex->so_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so
@@ -146,7 +114,6 @@ void	print_tex(t_tex *tex)
 			/*"./textures/pixelverlauf3.xpm"*/, &h, &w);
 	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we
 			/*"./textures/pixelverlauf4.xpm"*/, &h, &w);
->>>>>>> e4bc8f8f1ebf6247a5ba8fcdd5c7fb3e26d4fdbd
 }
 
 int	get_textures(int fd, t_tex *tex, t_game *g)

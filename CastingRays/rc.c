@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rc.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/07/19 15:17:23 by mresch           ###   ########.fr       */
-=======
-/*   Updated: 2024/07/19 13:03:23 by mesenyur         ###   ########.fr       */
->>>>>>> e4bc8f8f1ebf6247a5ba8fcdd5c7fb3e26d4fdbd
+/*   Updated: 2024/07/19 15:27:43 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +117,6 @@ double	cast_ray(t_game *g, t_ray *ray)
 			ray->axis = (enum e_dir)SO;
 		ray->perc = ray->perc_x;
 	}
-	if (ray->axis == (enum e_dir) SO || ray->axis == (enum e_dir) WE)
-		ray->perc = 1 - ray->perc;
 	return (ray->dist);
 }
 
