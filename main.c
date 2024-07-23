@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:39:43 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 17:37:19 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:09:30 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 	name_check(av);
 	init_game(&game);
 	fd = open(av[1], O_RDONLY);
-	if (get_textures(fd, &game.tex, &game) == 1)
+	if (get_textures(fd, &game.tex, &game))
 		return (ft_error(&game, "ERROR IN TEXTURES\n"));
 	game.map = getMap(fd, &game);
 	if (validate_map(game.map, &game))

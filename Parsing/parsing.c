@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/23 15:27:06 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/23 16:18:28 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,26 +87,40 @@ int	create_trgb(int t, int r, int g, int b)
 
 int	string_to_rgb(char *str)
 {
-	int	i;
-	int	rgb[3];
+	int		j;
+	int		i;
+	int		rgb[3];
+	char	*curr;
 
 	i = 0;
+	j = 0;
 	while (ft_isalpha(str[i]) || str[i] == ' ')
 		i++;
-	rgb[0] = ft_atoi(&str[i]);
-	i = ft_strchr(&str[i], ',') - str + 1;
-	rgb[1] = ft_atoi(&str[i]);
-	i = ft_strchr(&str[i], ',') - str + 1;
+	while (j < 2)
+	{
+		rgb[j] = ft_atoi(&str[i]);
+		if (rgb[j] < 0 || rgb[j] > 255)
+			return (-1);
+		curr = ft_strchr(&str[i], ',');
+		if (!curr || !ft_isdigit(curr[1]))
+			return (-1);
+		i = curr - str + 1;
+		j++;
+	}
 	rgb[2] = ft_atoi(&str[i]);
+	if (rgb[2] < 0 || rgb[2] > 255)
+		return (-1);
 	return (create_trgb(0, rgb[0], rgb[1], rgb[2]));
 }
 
-void	convert(t_game *g, t_tex *tex)
+int	convert(t_game *g, t_tex *tex)
 {
 	tex->no_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no, &tex->no_info.w, &tex->no_info.h);
 	tex->so_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so, &tex->so_info.w, &tex->so_info.h);
 	tex->ea_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea, &tex->ea_info.w, &tex->ea_info.h);
 	tex->we_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we, &tex->we_info.w, &tex->we_info.h);
+	if (!tex->no_info.image || !tex->so_info.image || !tex->ea_info.image || !tex->we_info.image)
+		return (1);
 	tex->no_info.buf = mlx_get_data_addr(tex->no_info.image, &tex->no_info.bits_per_pixel,
 			&tex->no_info.line_bytes, &tex->no_info.endian);
 	tex->so_info.buf = mlx_get_data_addr(tex->so_info.image, &tex->so_info.bits_per_pixel,
@@ -115,6 +129,7 @@ void	convert(t_game *g, t_tex *tex)
 			&tex->we_info.line_bytes, &tex->we_info.endian);
 	tex->ea_info.buf = mlx_get_data_addr(tex->ea_info.image, &tex->ea_info.bits_per_pixel,
 			&tex->ea_info.line_bytes, &tex->ea_info.endian);
+	return (0);
 }
 
 int	get_textures(int fd, t_tex *tex, t_game *g)
@@ -136,6 +151,9 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 	}
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
-	convert(g, tex);
+	if (convert(g, tex))
+		return (write(2, "An Error occurred\n", 18));
+	if (g->tex.c_rgb == -1 || g->tex.f_rgb == -1)
+		return (write(2, "An Error occurred\n", 18));
 	return (0);
 }
