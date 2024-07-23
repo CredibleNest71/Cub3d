@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 14:30:01 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:09:55 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,10 @@ typedef struct s_textures
 	void		*so_img;
 	void		*we_img;
 	void		*ea_img;
+	t_info		no_info;
+	t_info		so_info;
+	t_info		ea_info;
+	t_info		we_info;
 	int			f_rgb;
 	int			c_rgb;
 }				t_tex;

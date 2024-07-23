@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 15:26:52 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/23 15:27:06 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,17 +103,18 @@ int	string_to_rgb(char *str)
 
 void	convert(t_game *g, t_tex *tex)
 {
-	int	h;
-	int	w;
-
-	tex->no_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no
-			/*"./textures/pixelverlauf1.xpm"*/, &h, &w);
-	tex->so_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so
-			/*"./textures/pixelverlauf2.xpm"*/, &h, &w);
-	tex->ea_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea
-			/*"./textures/pixelverlauf3.xpm"*/, &h, &w);
-	tex->we_img = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we
-			/*"./textures/pixelverlauf4.xpm"*/, &h, &w);
+	tex->no_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no, &tex->no_info.w, &tex->no_info.h);
+	tex->so_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so, &tex->so_info.w, &tex->so_info.h);
+	tex->ea_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea, &tex->ea_info.w, &tex->ea_info.h);
+	tex->we_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we, &tex->we_info.w, &tex->we_info.h);
+	tex->no_info.buf = mlx_get_data_addr(tex->no_info.image, &tex->no_info.bits_per_pixel,
+			&tex->no_info.line_bytes, &tex->no_info.endian);
+	tex->so_info.buf = mlx_get_data_addr(tex->so_info.image, &tex->so_info.bits_per_pixel,
+			&tex->so_info.line_bytes, &tex->so_info.endian);
+	tex->we_info.buf = mlx_get_data_addr(tex->we_info.image, &tex->we_info.bits_per_pixel,
+			&tex->we_info.line_bytes, &tex->we_info.endian);
+	tex->ea_info.buf = mlx_get_data_addr(tex->ea_info.image, &tex->ea_info.bits_per_pixel,
+			&tex->ea_info.line_bytes, &tex->ea_info.endian);
 }
 
 int	get_textures(int fd, t_tex *tex, t_game *g)

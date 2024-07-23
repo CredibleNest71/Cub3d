@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 19:23:58 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/23 15:31:00 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,46 +62,43 @@ void	draw_ceil(t_game *g, t_dis *dis, int CF)
 	}
 }
 
-void	*pick_tex(t_game *g, t_ray *ray)
+t_info	pick_tex(t_game *g, t_ray *ray)
 {
 	if (ray->axis == (enum e_dir)NO)
-		return (g->tex.no_img);
+		return (g->tex.no_info);
 	else if (ray->axis == (enum e_dir)EA)
-		return (g->tex.ea_img);
+		return (g->tex.ea_info);
 	else if (ray->axis == (enum e_dir)SO)
 	{
 		ray->perc = fabs(1 - ray->perc);
-		return (g->tex.so_img);
+		return (g->tex.so_info);
 	}
-	else if (ray->axis == (enum e_dir)WE)
+	else if(ray->axis == (enum e_dir)WE)
 	{
 		ray->perc = fabs(1 - ray->perc);
-		return (g->tex.we_img);
+		return (g->tex.we_info);
 	}
-	return (NULL);
+	return (g->tex.we_info);
 }
 
 void	draw_tex(t_game *g, t_dis *dis)
 {
-	void	*img;
 	int		pixel;
 	int		pixel_tex;
 	t_info	info_tex;
 	int		i;
 
-	img = pick_tex(g, dis->ray);
-	if (!img || (dis->ray->perc < 0 || dis->ray->perc > 1))
+	info_tex = pick_tex(g, dis->ray);
+	if (!info_tex.image || (dis->ray->perc < 0 || dis->ray->perc > 1))
 	{
 		dis->y += dis->line_height;
 		return ;
 	}
-	info_tex.buf = mlx_get_data_addr(img, &info_tex.bits_per_pixel,
-			&info_tex.line_bytes, &info_tex.endian);
 	while (dis->y < dis->draw_end && dis->y < g->minilibx.screen_height)
 	{
 		pixel = (dis->ray->num * 4) + (dis->y * dis->info->line_bytes);
-		pixel_tex = (int)(dis->ray->perc * 479) * 4 + (int)map((t_m){dis->y,
-				dis->draw_start, dis->draw_end, 10, 470}) * info_tex.line_bytes;
+		pixel_tex = (int)(dis->ray->perc * (info_tex.w - 1)) * 4 + (int)map((t_m){dis->y,
+				dis->draw_start, dis->draw_end, 0, (info_tex.h - 1)}) * info_tex.line_bytes;
 		i = 0;
 		while (i < 4)
 		{
