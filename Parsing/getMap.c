@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 14:41:37 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:34:44 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*read_map(int fd)
 		{
 			if (next)
 				free_and_null((void **)&next);
-			return NULL ;
+			return (NULL);
 		}
 	}
 	if (next)

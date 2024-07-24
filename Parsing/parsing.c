@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/23 16:18:28 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/24 11:23:51 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int	convert(t_game *g, t_tex *tex)
 	tex->ea_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea, &tex->ea_info.w, &tex->ea_info.h);
 	tex->we_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we, &tex->we_info.w, &tex->we_info.h);
 	if (!tex->no_info.image || !tex->so_info.image || !tex->ea_info.image || !tex->we_info.image)
-		return (1);
+		return (ft_error(g, "Texture conversion failed"));
 	tex->no_info.buf = mlx_get_data_addr(tex->no_info.image, &tex->no_info.bits_per_pixel,
 			&tex->no_info.line_bytes, &tex->no_info.endian);
 	tex->so_info.buf = mlx_get_data_addr(tex->so_info.image, &tex->so_info.bits_per_pixel,
@@ -151,9 +151,10 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 	}
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
+	// leaks
 	if (convert(g, tex))
-		return (write(2, "An Error occurred\n", 18));
+		return (ft_error(g, "Texture conversion failed"));
 	if (g->tex.c_rgb == -1 || g->tex.f_rgb == -1)
-		return (write(2, "An Error occurred\n", 18));
+		return (ft_error(g, "Texture conversion failed"));
 	return (0);
 }

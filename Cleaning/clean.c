@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/19 13:05:16 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:30:12 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,14 @@ void	free_game_tex(t_game *game)
 		mlx_destroy_image(game->minilibx.mlx, game->tex.we_img);
 	if (game->tex.ea_img)
 		mlx_destroy_image(game->minilibx.mlx, game->tex.ea_img);
+	if (game->tex.no_info.image)
+		mlx_destroy_image(game->minilibx.mlx, game->tex.no_info.image);
+	if (game->tex.ea_info.image)
+		mlx_destroy_image(game->minilibx.mlx, game->tex.ea_info.image);
+	if (game->tex.so_info.image)
+		mlx_destroy_image(game->minilibx.mlx, game->tex.so_info.image);
+	if (game->tex.we_info.image)
+		mlx_destroy_image(game->minilibx.mlx, game->tex.we_info.image);
 }
 
 int	ft_close(t_game *game)
