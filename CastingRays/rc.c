@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rc.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/19 16:38:26 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:15:02 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-double	distance(double px, double py, double x, double y)
-{
-	double	dist;
-
-	dist = pow(px - x, 2) + pow(py - y, 2);
-	return (sqrt(dist));
-}
 
 double	check_y(t_game *g, t_ray *ray)
 {

@@ -6,37 +6,11 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/23 16:23:34 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:27:40 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-t_info	*create_buffer(t_game *g)
-{
-	t_info	*info;
-
-	info = malloc(sizeof(t_info));
-	if (!info)
-		return (NULL);
-	info->image = mlx_new_image(g->minilibx.mlx, g->minilibx.screen_width,
-			g->minilibx.screen_height);
-	info->buf = mlx_get_data_addr(info->image, &info->bits_per_pixel,
-			&info->line_bytes, &info->endian);
-	return (info);
-}
-
-void	destroy_buffer(t_game *g, t_info *info)
-{
-	if (info)
-	{
-		if (info->image)
-		{
-			mlx_destroy_image(g->minilibx.mlx, info->image);
-		}
-		free_and_null((void **)&info);
-	}
-}
 
 void	draw_ceil(t_game *g, t_dis *dis, int CF)
 {
@@ -73,7 +47,7 @@ t_info	pick_tex(t_game *g, t_ray *ray)
 		ray->perc = fabs(1 - ray->perc);
 		return (g->tex.so_info);
 	}
-	else if(ray->axis == (enum e_dir)WE)
+	else if (ray->axis == (enum e_dir)WE)
 	{
 		ray->perc = fabs(1 - ray->perc);
 		return (g->tex.we_info);
@@ -97,8 +71,9 @@ void	draw_tex(t_game *g, t_dis *dis)
 	while (dis->y < dis->draw_end && dis->y < g->minilibx.screen_height)
 	{
 		pixel = (dis->ray->num * 4) + (dis->y * dis->info->line_bytes);
-		pixel_tex = (int)(dis->ray->perc * (info_tex.w - 1)) * 4 + (int)map((t_m){dis->y,
-				dis->draw_start, dis->draw_end, 0, (info_tex.h - 1)}) * info_tex.line_bytes;
+		pixel_tex = (int)(dis->ray->perc * (info_tex.w - 1)) * 4
+			+ (int)map((t_m){dis->y, dis->draw_start, dis->draw_end, 0,
+				(info_tex.h - 1)}) * info_tex.line_bytes;
 		i = 0;
 		while (i < 4)
 		{

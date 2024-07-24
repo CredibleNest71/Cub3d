@@ -6,13 +6,13 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:57 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 13:52:57 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:37:48 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MOVEMENT_H
 # define MOVEMENT_H
-# define SPEED 0.07
-# define SPIN 0.05
+# define SPEED 0.06
+# define SPIN 0.035
 
 #endif
