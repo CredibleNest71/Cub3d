@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 16:20:41 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/24 17:17:17 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,6 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 	}
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
-	// leaks
 	if (convert(g, tex))
 		return (ft_error(g, "Texture conversion failed"));
 	if (g->tex.c_rgb == -1 || g->tex.f_rgb == -1)

@@ -6,83 +6,11 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 14:15:02 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:33:17 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-double	check_y(t_game *g, t_ray *ray)
-{
-	int		tempy;
-	double	y;
-	double	x;
-	double	d;
-	double	dir;
-
-	if (sin(ray->angle) < 0)
-		dir = -1;
-	else
-		dir = 1;
-	if (sin(ray->angle) < 0)
-		y = floor(g->player.py);
-	else
-		y = ceil(g->player.py);
-	while (1)
-	{
-		d = (y - g->player.py) / sin(ray->angle);
-		if (sin(ray->angle) == 0)
-			d = 1;
-		x = g->player.px + cos(ray->angle) * d;
-		if (dir < 0)
-			tempy = y - 1;
-		else
-			tempy = y;
-		if (tempy < 0 || x < 0 || y > g->map_height - 1 || x > g->map_width - 1)
-			break ;
-		if (g->map[(int)tempy][(int)x] == '1')
-			break ;
-		y += dir;
-	}
-	ray->perc_x = x - floor(x);
-	return (distance(g->player.px, g->player.py, x, y));
-}
-
-double	check_x(t_game *g, t_ray *ray)
-{
-	int		tempx;
-	double	y;
-	double	x;
-	double	d;
-	double	dir;
-
-	if (cos(ray->angle) < 0)
-		dir = -1;
-	else
-		dir = 1;
-	if (cos(ray->angle) < 0)
-		x = floor(g->player.px);
-	else
-		x = ceil(g->player.px);
-	while (1)
-	{
-		d = (x - g->player.px) / cos(ray->angle);
-		if (cos(ray->angle) == 0)
-			d = 1;
-		y = g->player.py + sin(ray->angle) * d;
-		if (dir < 0)
-			tempx = x - 1;
-		else
-			tempx = x;
-		if (y < 0 || tempx < 0 || y > g->map_height - 1 || x > g->map_width - 1)
-			break ;
-		if (g->map[(int)y][(int)tempx] == '1')
-			break ;
-		x += dir;
-	}
-	ray->perc_y = y - floor(y);
-	return (distance(g->player.px, g->player.py, x, y));
-}
 
 double	cast_ray(t_game *g, t_ray *ray)
 {

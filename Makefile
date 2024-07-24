@@ -6,7 +6,7 @@
 #    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/07/24 14:38:16 by mresch           ###   ########.fr        #
+#    Updated: 2024/07/24 17:17:10 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ CFLAGS		=	-Wall -Wextra -Werror -g
 NAME		=	Cub3D
 SRC			=	main.c\
 				CastingRays/rc.c\
+				CastingRays/calc_x.c\
+				CastingRays/calc_y.c\
 				Display/colorify.c\
 				Display/display.c\
 				Display/display2.c\
