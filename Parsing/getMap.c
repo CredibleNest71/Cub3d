@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 11:34:44 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:21:05 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ char	*read_map(int fd)
 	}
 	while (next)
 	{
-		line = append_and_replace(line, next); // free line
+		line = append_and_replace(line, next);
 		if (!line)
 			return (NULL);
 		next = get_next_line(fd);
 		if (next && ft_strlen(next) < 2)
 		{
-			if (next)
-				free_and_null((void **)&next);
+			free_and_null((void **)&next);
 			return (NULL);
 		}
 	}
@@ -57,7 +56,7 @@ char	*read_map(int fd)
 	return (line);
 }
 
-void		set_proportions(char *line, int	*height, int *width)
+void	set_proportions(char *line, int	*height, int *width)
 {
 	int	i;
 	int	w;
@@ -69,7 +68,7 @@ void		set_proportions(char *line, int	*height, int *width)
 		w++;
 		if (line[i] == '\n')
 		{
-			if (w - 1> *width)
+			if (w - 1 > *width)
 				*width = w - 1;
 			*height += 1;
 			w = 0;
@@ -85,7 +84,7 @@ char	**make_array(char *line, int height, int width)
 	int		i;
 	int		j;
 	int		k;
-	
+
 	j = 0;
 	i = 0;
 	map = ft_calloc(height + 1, sizeof(char *));
@@ -112,31 +111,12 @@ char	**make_map(char *line, t_game *g)
 	int		width;
 	int		height;
 	char	**map;
+
 	width = 0;
 	height = 0;
 	set_proportions(line, &height, &width);
 	g->map_height = height;
-	
 	g->map_width = width;
 	map = make_array(line, height, width);
-	return (map);
-}
-char	**getMap(int fd, t_game *g)
-{
-	char	*temp;
-	char	*oneline;
-	char	**map;
-
-	oneline = read_map(fd);
-	if (!oneline)
-		return (NULL);
-	if (oneline[ft_strlen(oneline) - 1] != '\n')
-	{
-		temp = ft_strjoin(oneline, "\n");
-		free_and_null((void **)&oneline);
-		oneline = temp;
-	}
-	map = make_map(oneline, g);
-	free_and_null((void **)&oneline);
 	return (map);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 14:27:43 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/24 17:27:44 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main_display_loop(t_game *g)
 	info = create_buffer(g);
 	if (!info)
 		ft_error(g, "Buffer creation failed");
-	vision(g, info);
+	vision(g, info, 1); // 1 for fisheye 0 for without
 	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0,
 		0);
 	if (oldimg)

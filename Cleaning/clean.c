@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 15:58:51 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:03:38 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,6 @@ void	free_game_tex(t_game *game)
 		free_and_null((void **)&game->tex.we);
 	if (game->tex.ea)
 		free_and_null((void **)&game->tex.ea);
-	if (game->tex.no_img)
-		mlx_destroy_image(game->minilibx.mlx, game->tex.no_img);
-	if (game->tex.so_img)
-		mlx_destroy_image(game->minilibx.mlx, game->tex.so_img);
-	if (game->tex.we_img)
-		mlx_destroy_image(game->minilibx.mlx, game->tex.we_img);
-	if (game->tex.ea_img)
-		mlx_destroy_image(game->minilibx.mlx, game->tex.ea_img);
 	if (game->tex.no_info.image)
 		mlx_destroy_image(game->minilibx.mlx, game->tex.no_info.image);
 	if (game->tex.ea_info.image)

@@ -6,87 +6,11 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 15:24:34 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:06:42 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-int	fin_read(t_tex *tex)
-{
-	if (!tex->c)
-		return (0);
-	if (!tex->f)
-		return (0);
-	if (!tex->no)
-		return (0);
-	if (!tex->we)
-		return (0);
-	if (!tex->ea)
-		return (0);
-	if (!tex->so)
-		return (0);
-	return (1);
-}
-
-static char	**identify(t_tex *tex, char *line, int *color)
-{
-	*color = 0;
-	if (!ft_strncmp(line, "NO ", 3) && !tex->no)
-		return (&tex->no);
-	if (!ft_strncmp(line, "SO ", 3) && !tex->so)
-		return (&tex->so);
-	if (!ft_strncmp(line, "EA ", 3) && !tex->ea)
-		return (&tex->ea);
-	if (!ft_strncmp(line, "WE ", 3) && !tex->we)
-		return (&tex->we);
-	// if (ft_strcmp(line, "NO") == 0 && !tex->no)
-	// 	return (&tex->no);
-	// if (ft_strcmp(line, "SO") == 0 && !tex->so)
-	// 	return (&tex->so);
-	// if (ft_strcmp(line, "EA") == 0 && !tex->ea)
-	// 	return (&tex->ea);
-	// if (ft_strcmp(line, "WE") == 0 && !tex->we)
-	// 	return (&tex->we);
-	if (!ft_strncmp(line, "F", 1) && !tex->f)
-	{
-		*color = 1;
-		return (&tex->f);
-	}
-	if (!ft_strncmp(line, "C", 1) && !tex->c)
-	{
-		*color = 1;
-		return (&tex->c);
-	}
-	write(2, "Error: couldnt identify!", 24);
-	return (NULL);
-}
-
-static int	add_to_textures(t_tex *tex, char *line)
-{
-	char	**curr;
-	char	*found;
-	char	*path;
-	int		color;
-
-	if (!line)
-		return (0);
-	curr = identify(tex, line, &color);
-	if (!curr)
-		return (free_and_null((void **)&line), 0);
-	if (!color)
-		found = ft_strchr(line, '.');
-	else
-		found = line;
-	if (!found)
-		return (free_and_null((void **)&line), 0);
-	path = ft_strdup(found);
-	if (path)
-		path[ft_strlen(path) - 1] = 0;
-	free_and_null((void **)&line);
-	*curr = path;
-	return (1);
-}
 
 int	create_trgb(int t, int r, int g, int b)
 {
@@ -123,20 +47,29 @@ int	string_to_rgb(char *str)
 
 int	convert(t_game *g, t_tex *tex)
 {
-	tex->no_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no, &tex->no_info.w, &tex->no_info.h);
-	tex->so_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so, &tex->so_info.w, &tex->so_info.h);
-	tex->ea_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea, &tex->ea_info.w, &tex->ea_info.h);
-	tex->we_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we, &tex->we_info.w, &tex->we_info.h);
-	if (!tex->no_info.image || !tex->so_info.image || !tex->ea_info.image || !tex->we_info.image)
+	tex->no_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->no,
+			&tex->no_info.w, &tex->no_info.h);
+	tex->so_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->so,
+			&tex->so_info.w, &tex->so_info.h);
+	tex->ea_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->ea,
+			&tex->ea_info.w, &tex->ea_info.h);
+	tex->we_info.image = mlx_xpm_file_to_image(g->minilibx.mlx, tex->we,
+			&tex->we_info.w, &tex->we_info.h);
+	if (!tex->no_info.image || !tex->so_info.image || !tex->ea_info.image
+		|| !tex->we_info.image)
 		return (ft_error(g, "Texture conversion failed"));
-	tex->no_info.buf = mlx_get_data_addr(tex->no_info.image, &tex->no_info.bits_per_pixel,
-			&tex->no_info.line_bytes, &tex->no_info.endian);
-	tex->so_info.buf = mlx_get_data_addr(tex->so_info.image, &tex->so_info.bits_per_pixel,
-			&tex->so_info.line_bytes, &tex->so_info.endian);
-	tex->we_info.buf = mlx_get_data_addr(tex->we_info.image, &tex->we_info.bits_per_pixel,
-			&tex->we_info.line_bytes, &tex->we_info.endian);
-	tex->ea_info.buf = mlx_get_data_addr(tex->ea_info.image, &tex->ea_info.bits_per_pixel,
-			&tex->ea_info.line_bytes, &tex->ea_info.endian);
+	tex->no_info.buf = mlx_get_data_addr(tex->no_info.image,
+			&tex->no_info.bits_per_pixel, &tex->no_info.line_bytes,
+			&tex->no_info.endian);
+	tex->so_info.buf = mlx_get_data_addr(tex->so_info.image,
+			&tex->so_info.bits_per_pixel, &tex->so_info.line_bytes,
+			&tex->so_info.endian);
+	tex->we_info.buf = mlx_get_data_addr(tex->we_info.image,
+			&tex->we_info.bits_per_pixel, &tex->we_info.line_bytes,
+			&tex->we_info.endian);
+	tex->ea_info.buf = mlx_get_data_addr(tex->ea_info.image,
+			&tex->ea_info.bits_per_pixel, &tex->ea_info.line_bytes,
+			&tex->ea_info.endian);
 	return (0);
 }
 

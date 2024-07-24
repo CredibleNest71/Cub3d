@@ -6,7 +6,7 @@
 #    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/07/24 15:36:46 by mesenyur         ###   ########.fr        #
+#    Updated: 2024/07/24 17:21:55 by mesenyur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRC			=	main.c\
 				Parsing/parsing2.c\
 				Parsing/validateMap.c\
 				Parsing/getMap.c \
+				Parsing/getMap2.c \
 				Initialize/init.c \
 				Cleaning/clean.c \
 				Parsing/input_check.c \

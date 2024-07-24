@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 15:34:48 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:34:42 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,6 @@ typedef struct s_textures
 	char		*ea;
 	char		*f;
 	char		*c;
-	void		*no_img;
-	void		*so_img;
-	void		*we_img;
-	void		*ea_img;
 	t_info		no_info;
 	t_info		so_info;
 	t_info		ea_info;
@@ -165,7 +161,7 @@ bool			name_check(char **av);
 // display
 void			colorize(char *buffer, int color, int endian);
 t_info			*display(t_game *g, t_ray *rays);
-void			draw_single_line(t_game *g, t_ray *ray, t_info *info);
+void			draw_single_line(t_game *g, t_ray *ray, t_info *info, bool f);
 
 // cleaning
 void			free_and_null(void **ptr);
@@ -173,7 +169,7 @@ int				ft_error(t_game *game, char *s);
 
 // MAP
 int				validate_map(char **map, t_game *g);
-char			**getMap(int fd, t_game *g);
+char			**get_map(int fd, t_game *g);
 void			clean_everything(t_game *game, int ret);
 
 // initialize
@@ -194,7 +190,7 @@ int				move(t_game *game);
 int				draw_player(t_game *game, double size);
 
 // raycasting
-int				vision(t_game *g, t_info *info);
+int				vision(t_game *g, t_info *info, bool fisheye);
 void			clean_angle(double *a);
 t_info			*create_buffer(t_game *g);
 double			cast_ray(t_game *g, t_ray *ray);
@@ -213,5 +209,9 @@ int				is_char(char c, char *chars);
 double			distance(double px, double py, double x, double y);
 double			check_y(t_game *g, t_ray *ray);
 double			check_x(t_game *g, t_ray *ray);
+int				fin_read(t_tex *tex);
+int				add_to_textures(t_tex *tex, char *line);
+char			*read_map(int fd);
+char			**make_map(char *line, t_game *g);
 
 #endif

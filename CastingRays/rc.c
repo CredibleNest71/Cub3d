@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 14:14:54 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 15:33:17 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:32:27 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	clean_angle(double *a)
 		*a -= 2 * PI;
 }
 
-int	vision(t_game *g, t_info *info)
+int	vision(t_game *g, t_info *info, bool fisheye)
 {
 	double	ang_a;
 	double	inc;
@@ -66,7 +66,7 @@ int	vision(t_game *g, t_info *info)
 		ray.angle = ang_a;
 		ray.num = count++;
 		cast_ray(g, &ray);
-		draw_single_line(g, &ray, info);
+		draw_single_line(g, &ray, info, fisheye); // 1 for fisheye 0 for without
 		ang_a += inc;
 		clean_angle(&ang_a);
 	}
