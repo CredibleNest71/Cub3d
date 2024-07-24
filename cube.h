@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/23 15:09:55 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/24 14:07:24 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,5 +210,6 @@ int				check_dist(t_game *g, double angle);
 double			map(t_m in);
 int				ft_close(t_game *game);
 int				is_char(char c, char *chars);
+double	distance(double px, double py, double x, double y);
 
 #endif
