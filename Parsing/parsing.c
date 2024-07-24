@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 11:23:51 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:45:11 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,22 @@ int	fin_read(t_tex *tex)
 static char	**identify(t_tex *tex, char *line, int *color)
 {
 	*color = 0;
-	if (!ft_strncmp(line, "NO", 2) && !tex->no)
+	if (!ft_strncmp(line, "NO ", 3) && !tex->no)
 		return (&tex->no);
-	if (!ft_strncmp(line, "SO", 2) && !tex->so)
+	if (!ft_strncmp(line, "SO ", 3) && !tex->so)
 		return (&tex->so);
-	if (!ft_strncmp(line, "EA", 2) && !tex->ea)
+	if (!ft_strncmp(line, "EA ", 3) && !tex->ea)
 		return (&tex->ea);
-	if (!ft_strncmp(line, "WE", 2) && !tex->we)
+	if (!ft_strncmp(line, "WE ", 3) && !tex->we)
 		return (&tex->we);
+	// if (ft_strcmp(line, "NO") == 0 && !tex->no)
+	// 	return (&tex->no);
+	// if (ft_strcmp(line, "SO") == 0 && !tex->so)
+	// 	return (&tex->so);
+	// if (ft_strcmp(line, "EA") == 0 && !tex->ea)
+	// 	return (&tex->ea);
+	// if (ft_strcmp(line, "WE") == 0 && !tex->we)
+	// 	return (&tex->we);
 	if (!ft_strncmp(line, "F", 1) && !tex->f)
 	{
 		*color = 1;
