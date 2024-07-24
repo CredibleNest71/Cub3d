@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 16:01:29 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 17:52:00 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,15 @@ int	check_walls(char **map, t_game *g)
 
 int	check_surrounding(char **map, int x, int y, t_game *g)
 {
-	if ((x && !is_char(map[y][x - 1], " 1")) || (x < g->map_width - 1
-			&& !is_char(map[y][x + 1], " 1")) || (y && !is_char(map[y - 1][x],
-				" 1")) || (y < g->map_height - 2 && !is_char(map[y + 1][x],
-				" 1")) || (y && x && !is_char(map[y - 1][x - 1], " 1"))
-		|| (y < g->map_height - 2 && x && !is_char(map[y + 1][x - 1], " 1"))
-		|| (y && x < g->map_width - 1 && !is_char(map[y - 1][x + 1], " 1"))
-		|| (x < g->map_width - 1 && y < g->map_height - 2 && !is_char(map[y
-				+ 1][x + 1], " 1")))
+	if ((x && !is_char(map[y][x - 1], " 1")) ||
+		(x < g->map_width - 1 && !is_char(map[y][x + 1], " 1")) ||
+		(y && !is_char(map[y - 1][x], " 1")) ||
+		(y < g->map_height - 2 && !is_char(map[y + 1][x], " 1")) /*|| 
+		(y && x && !is_char(map[y - 1][x - 1], " 1")) || 
+		(y < g->map_height - 2 && x && !is_char(map[y + 1][x - 1], " 1")) ||
+		(y && x < g->map_width - 1 && !is_char(map[y - 1][x + 1], " 1")) || 
+		(x < g->map_width - 1 && y < g->map_height - 2 && !is_char(map[y + 1][x
+				+ 1], " 1"))*/)
 		return (1);
 	return (0);
 }

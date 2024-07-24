@@ -6,33 +6,33 @@
 #    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/07/24 17:21:55 by mesenyur         ###   ########.fr        #
+#    Updated: 2024/07/24 18:08:46 by mesenyur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
-NAME		=	cub3d
+NAME		=	Cub3D
 SRC			=	main.c\
-				CastingRays/rc.c\
 				CastingRays/calc_x.c\
 				CastingRays/calc_y.c\
+				CastingRays/rc.c\
+				Cleaning/clean.c \
 				Display/colorify.c\
 				Display/display.c\
 				Display/display2.c\
-				Extras/quickmath.c\
 				Extras/extras.c\
+				Extras/quickmath.c\
+				Initialize/init.c \
+				Movement/movement.c\
+				Movement/movement2.c\
+				Parsing/getMap.c \
+				Parsing/getMap2.c \
+				Parsing/init_player.c \
+				Parsing/input_check.c \
 				Parsing/parsing.c\
 				Parsing/parsing2.c\
 				Parsing/validateMap.c\
-				Parsing/getMap.c \
-				Parsing/getMap2.c \
-				Initialize/init.c \
-				Cleaning/clean.c \
-				Parsing/input_check.c \
-				Movement/movement.c\
-				Movement/movement2.c\
-				Parsing/init_player.c
 
 OBJ			=	$(SRC:.c=.o)
 BONUS		=	

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:19:55 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/17 15:53:07 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:35:00 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ int	move(t_game *game)
 	t_keys	keys;
 
 	keys = game->keys;
+	if (keys.shift)
+		game->player.speed = 0.12;
+	else
+		game->player.speed = 0.06;
 	if (keys.w)
 		move_forward(&game->player, game);
 	if (keys.s)

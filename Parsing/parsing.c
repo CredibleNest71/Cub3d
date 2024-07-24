@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 17:06:42 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:19:47 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,34 @@
 int	create_trgb(int t, int r, int g, int b)
 {
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	check_rgb_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && ft_isalpha(str[i]))
+		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (!ft_isdigit(str[i]))
+		return (1);
+	while (str[i] && (ft_isdigit(str[i])))
+		i++;
+	if (str[i++] != ',')
+		return (1);
+	while (str[i] && (ft_isdigit(str[i])))
+		i++;
+	if (str[i++] != ',')
+		return (1);
+	while (str[i] && (ft_isdigit(str[i])))
+		i++;
+	while (str[i] && (str[i] == ' ' || str[i] == '\n'))
+		i++;
+	if (str[i])
+		return (1);
+	return (0);
 }
 
 int	string_to_rgb(char *str)
@@ -26,6 +54,8 @@ int	string_to_rgb(char *str)
 
 	i = 0;
 	j = 0;
+	if (check_rgb_str(str))
+		return (-1);
 	while (ft_isalpha(str[i]) || str[i] == ' ')
 		i++;
 	while (j < 2)
@@ -77,6 +107,8 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 {
 	char	*line;
 
+	if (fd == -1)
+		return (-1);
 	while (!fin_read(tex))
 	{
 		line = get_next_line(fd);
@@ -88,7 +120,7 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 			continue ;
 		}
 		if (!add_to_textures(tex, line))
-			return (write(2, "An Error occurred\n", 18));
+			return (1);
 	}
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
