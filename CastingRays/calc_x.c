@@ -6,50 +6,50 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 15:32:48 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 15:34:33 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:58:34 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-double get_dir(t_ray *ray)
+double	get_dir(t_ray *ray)
 {
-    double	dir;
-    
-    if (cos(ray->angle) < 0)
-    {
-        dir = -1;
-    }
-    else
-    {
-        dir = 1;
-    }
-    return (dir);
+	double	dir;
+
+	if (cos(ray->angle) < 0)
+	{
+		dir = -1;
+	}
+	else
+	{
+		dir = 1;
+	}
+	return (dir);
 }
 
-double get_x(t_game *g, t_ray *ray)
+double	get_x(t_game *g, t_ray *ray)
 {
-    double	x;
-    
-    if (cos(ray->angle) < 0)
-    {
-        x = floor(g->player.px);
-    }
-    else
-    {
-        x = ceil(g->player.px);
-    }
-    return (x);
+	double	x;
+
+	if (cos(ray->angle) < 0)
+	{
+		x = floor(g->player.px);
+	}
+	else
+	{
+		x = ceil(g->player.px);
+	}
+	return (x);
 }
 
-double get_d(t_game *g, t_ray *ray, double x)
+double	get_d(t_game *g, t_ray *ray, double x)
 {
-    double d;
-    
-    d = (x - g->player.px) / cos(ray->angle);
-    if (cos(ray->angle) == 0)
-        d = 1;
-    return (d);
+	double	d;
+
+	d = (x - g->player.px) / cos(ray->angle);
+	if (cos(ray->angle) == 0)
+		d = 1;
+	return (d);
 }
 
 double	check_x(t_game *g, t_ray *ray)

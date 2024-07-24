@@ -6,16 +6,16 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:06:00 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 15:37:29 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:58:20 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-double 	y_get_dir(t_ray *ray)
+double	y_get_dir(t_ray *ray)
 {
 	double	dir;
-	
+
 	if (sin(ray->angle) < 0)
 	{
 		dir = -1;
@@ -27,10 +27,10 @@ double 	y_get_dir(t_ray *ray)
 	return (dir);
 }
 
-double y_get_y(t_game *g, t_ray *ray)
+double	y_get_y(t_game *g, t_ray *ray)
 {
 	double	y;
-	
+
 	if (sin(ray->angle) < 0)
 	{
 		y = floor(g->player.py);
@@ -42,16 +42,16 @@ double y_get_y(t_game *g, t_ray *ray)
 	return (y);
 }
 
-double y_get_d(t_game *g, t_ray *ray, double y)
+double	y_get_d(t_game *g, t_ray *ray, double y)
 {
-	double d;
-	
+	double	d;
+
 	d = (y - g->player.py) / sin(ray->angle);
 	if (sin(ray->angle) == 0)
 		d = 1;
 	return (d);
 }
-	
+
 double	check_y(t_game *g, t_ray *ray)
 {
 	int		tempy;
