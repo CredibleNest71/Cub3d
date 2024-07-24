@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 14:27:43 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/24 16:37:35 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	key_up(int button, t_game *game)
 		game->keys.left = 0;
 	else if (button == RIGHT)
 		game->keys.right = 0;
+	else if (button == SHIFT)
+		game->keys.shift = 0;
 	else if (button == Q)
 		game->keys.q = 0;
 	else if (button == E)
@@ -52,6 +54,8 @@ int	key_down(int button, t_game *game)
 		game->keys.right = 1;
 	else if (button == Q)
 		game->keys.q = 1;
+	else if (button == SHIFT)
+		game->keys.shift = 1;
 	else if (button == E)
 		game->keys.e = 1;
 	return (0);
@@ -69,7 +73,7 @@ int	handle_mouse(int x, int y, void *game)
 	diff = (double)g->minilibx.screen_width / 2 - x;
 	diff = diff * fabs(diff);
 	g->player.rad += map((t_m){diff, -pow((double)g->minilibx.screen_width / 2,
-				2), pow((double)g->minilibx.screen_width / 2, 2), 0.06, -0.06});
+				2), pow((double)g->minilibx.screen_width / 2, 2), 1, -1});
 	mlx_mouse_move(g->minilibx.mlx, g->minilibx.window, g->minilibx.screen_width
 		/ 2, g->minilibx.screen_height / 2);
 	return (0);

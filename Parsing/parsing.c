@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 12:45:11 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:20:41 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,17 @@ static char	**identify(t_tex *tex, char *line, int *color)
 		return (&tex->ea);
 	if (!ft_strncmp(line, "WE ", 3) && !tex->we)
 		return (&tex->we);
-	// if (ft_strcmp(line, "NO") == 0 && !tex->no)
-	// 	return (&tex->no);
-	// if (ft_strcmp(line, "SO") == 0 && !tex->so)
-	// 	return (&tex->so);
-	// if (ft_strcmp(line, "EA") == 0 && !tex->ea)
-	// 	return (&tex->ea);
-	// if (ft_strcmp(line, "WE") == 0 && !tex->we)
-	// 	return (&tex->we);
-	if (!ft_strncmp(line, "F", 1) && !tex->f)
+	if (!ft_strncmp(line, "F ", 2) && !tex->f)
 	{
 		*color = 1;
 		return (&tex->f);
 	}
-	if (!ft_strncmp(line, "C", 1) && !tex->c)
+	if (!ft_strncmp(line, "C ", 2) && !tex->c)
 	{
 		*color = 1;
 		return (&tex->c);
 	}
-	write(2, "Error: couldnt identify!", 24);
+	//write(2, "Error: couldnt identify!", 24);
 	return (NULL);
 }
 
@@ -93,6 +85,35 @@ int	create_trgb(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+int	check_rgb_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && ft_isalpha(str[i]))
+		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (!ft_isdigit(str[i]))
+		return (1);
+	while (str[i] && (ft_isdigit(str[i])))
+		i++;
+	if (str[i++] != ',')
+		return (1);
+	while (str[i] && (ft_isdigit(str[i])))
+		i++;
+	if (str[i++] != ',')
+		return (1);
+	while (str[i] && (ft_isdigit(str[i])))
+		i++;
+	while (str[i] && (str[i] == ' ' || str[i] == '\n'))
+		i++;
+	if (str[i])
+		return (1);
+	return (0);
+}
+
+
 int	string_to_rgb(char *str)
 {
 	int		j;
@@ -102,6 +123,8 @@ int	string_to_rgb(char *str)
 
 	i = 0;
 	j = 0;
+	if (check_rgb_str(str))
+		return (-1);
 	while (ft_isalpha(str[i]) || str[i] == ' ')
 		i++;
 	while (j < 2)
@@ -144,6 +167,8 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 {
 	char	*line;
 
+	if (fd == -1)
+		return (-1);
 	while (!fin_read(tex))
 	{
 		line = get_next_line(fd);
@@ -155,7 +180,7 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 			continue ;
 		}
 		if (!add_to_textures(tex, line))
-			return (write(2, "An Error occurred\n", 18));
+			return (1);
 	}
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);

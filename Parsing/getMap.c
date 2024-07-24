@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getMap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 11:34:44 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:22:14 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ char	**make_map(char *line, t_game *g)
 	map = make_array(line, height, width);
 	return (map);
 }
-char	**getMap(int fd, t_game *g)
+char	**get_map(int fd, t_game *g)
 {
 	char	*temp;
 	char	*oneline;

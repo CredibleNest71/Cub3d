@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:39:19 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/17 15:52:53 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:38:27 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	move_forward(t_player *p, t_game *g)
 {
 	if (check_dist(g, p->rad))
 		return ;
-	p->px += cos(p->rad) * SPEED;
-	p->py += sin(p->rad) * SPEED;
+	p->px += cos(p->rad) * p->speed;
+	p->py += sin(p->rad) * p->speed;
 }
 
 void	move_backwards(t_player *p, t_game *g)
 {
 	if (check_dist(g, p->rad + PI))
 		return ;
-	p->px -= cos(p->rad) * SPEED;
-	p->py -= sin(p->rad) * SPEED;
+	p->px -= cos(p->rad) * p->speed;
+	p->py -= sin(p->rad) * p->speed;
 }
 
 void	move_right(t_player *p, t_game *g)
@@ -35,8 +35,8 @@ void	move_right(t_player *p, t_game *g)
 	dir = p->rad + PI / 2;
 	if (check_dist(g, dir))
 		return ;
-	p->px += cos(dir) * SPEED;
-	p->py += sin(dir) * SPEED;
+	p->px += cos(dir) * p->speed;
+	p->py += sin(dir) * p->speed;
 }
 
 void	move_left(t_player *p, t_game *g)
@@ -46,6 +46,6 @@ void	move_left(t_player *p, t_game *g)
 	dir = p->rad - PI / 2;
 	if (check_dist(g, dir))
 		return ;
-	p->px += cos(dir) * SPEED;
-	p->py += sin(dir) * SPEED;
+	p->px += cos(dir) * p->speed;
+	p->py += sin(dir) * p->speed;
 }

@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
+#    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/07/24 14:05:00 by mesenyur         ###   ########.fr        #
+#    Updated: 2024/07/24 14:38:16 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
-NAME		=	cub3d
+NAME		=	Cub3D
 SRC			=	main.c\
 				CastingRays/rc.c\
 				Display/colorify.c\

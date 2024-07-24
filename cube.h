@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 14:07:24 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:36:13 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ enum			e_bindings
 	W = 119,
 	LEFT = 65361,
 	RIGHT = 65363,
+	SHIFT = 65505,
 	Q = 113,
 	E = 101,
 };
@@ -72,6 +73,7 @@ typedef struct s_keys
 	int			w;
 	int			left;
 	int			right;
+	int			shift;
 	int			q;
 	int			e;
 }				t_keys;
@@ -81,6 +83,7 @@ typedef struct s_player
 	double		px;
 	double		py;
 	double		rad;
+	double		speed;
 	int			fov;
 }				t_player;
 
@@ -173,7 +176,7 @@ int				ft_error(t_game *game, char *s);
 
 // MAP
 int				validate_map(char **map, t_game *g);
-char			**getMap(int fd, t_game *g);
+char			**get_map(int fd, t_game *g);
 void			clean_everything(t_game *game, int ret);
 
 // initialize

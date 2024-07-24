@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:01:06 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/19 15:00:48 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:31:34 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	playerinit(int x, int y, char c, t_game *g)
 	}
 	g->player.rad = i * (PI / 2);
 	g->player.fov = 60;
+	g->player.speed = 0.06;
 }
 
 int	check_player(char **map, t_game *game)
