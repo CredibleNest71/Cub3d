@@ -6,7 +6,7 @@
 /*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 11:15:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/23 15:31:00 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/23 16:23:34 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_single_line(t_game *g, t_ray *ray, t_info *info)
 	dis.info = info;
 	if (!ray)
 		return ;
-	dis.line_height = (int)((1 / (cos(ray->angle - g->player.rad) * ray->dist)) * g->minilibx.screen_height);
+	dis.line_height = (int)((1 / (/*cos(ray->angle - g->player.rad) **/ ray->dist)) * g->minilibx.screen_height);
 	dis.draw_start = g->minilibx.screen_height / 2 - dis.line_height / 2;
 	dis.draw_end = g->minilibx.screen_height / 2 + dis.line_height / 2;
 	draw_ceil(g, &dis, 1);
