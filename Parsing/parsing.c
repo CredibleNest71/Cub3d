@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/26 15:29:55 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:48:58 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,17 @@ int	string_to_rgb(char *str)
 		return (-1);
 	while (ft_isalpha(str[i]) || str[i] == ' ')
 		i++;
-	while (j < 2)
+	while (j < 3)
 	{
 		rgb[j] = ft_atoi(&str[i]);
 		if (rgb[j] < 0 || rgb[j] > 255)
 			return (-1);
 		curr = ft_strchr(&str[i], ',');
-		if (!curr || !ft_isdigit(curr[1]))
-			return (-1);
+		if (!curr)
+			break ;
 		i = curr - str + 1;
 		j++;
 	}
-	rgb[2] = ft_atoi(&str[i]);
-	if (rgb[2] < 0 || rgb[2] > 255)
-		return (-1);
 	return (create_trgb(0, rgb[0], rgb[1], rgb[2]));
 }
 
@@ -116,25 +113,16 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 		if (!line)
 			return (1);
 		if (line[0] == '\n')
-		{
-			free_and_null((void **)&line);
 			continue ;
-		}
 		if (!add_to_textures(tex, line))
 			return (1);
 	}
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
 	if (convert(g, tex))
-	{
-		free_and_null((void **)&line);
-		return (1);
-	}
+		return ((free_and_null((void **)&line)), 1);
 	if (g->tex.c_rgb == -1 || g->tex.f_rgb == -1)
-	{
-		free_and_null((void **)&line);
-		return (1);
-	}
+		return ((free_and_null((void **)&line)), 1);
 	free_and_null((void **)&line);
 	return (0);
 }

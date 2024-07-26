@@ -1,5 +1,5 @@
 CC 			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror
 NAME		=	libgnl.a
 SRC			=	get_next_line.c get_next_line_utils.c
 OBJ			=	$(SRC:.c=.o)

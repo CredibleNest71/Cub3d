@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:11:42 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/26 14:16:32 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:50:02 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,10 @@ char	*split_path(char *line)
 	if (!words)
 		return (NULL);
 	if (words[2])
-	{
-		free_words(words);
-		return (NULL);
-	}
+		return (free_words(words), NULL);
 	found = ft_strdup(words[1]);
 	if (!found)
-		return (NULL);
+		return (free_words(words), NULL);
 	free_words(words);
 	return (found);
 }

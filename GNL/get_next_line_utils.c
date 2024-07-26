@@ -3,226 +3,127 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 17:00:44 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/26 12:00:25 by mesenyur         ###   ########.fr       */
+/*   Created: 2023/09/26 11:51:58 by codespace         #+#    #+#             */
+/*   Updated: 2024/07/26 16:15:11 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-size_t	ft_strlen_gnl(const char *s)
+int	get_buf(int fd, char *rest)
 {
-	size_t	i;
+	int	bytesread;
 
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i] != 0)
-	{
-		i++;
-	}
-	return (i);
+	bytesread = read(fd, rest, BUFFER_SIZE);
+	return (bytesread);
 }
 
-size_t	linlen(char *s)
+int	redo_rest(char *rest, int fd)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (s[0] == '\n')
-		return (1);
-	while (s[i] != '\n' && s[i])
-	{
-		i++;
-		if (s[i] == '\n')
-			return (i + 1);
-	}
-	return (i);
-}
-
-char	*ft_strchr_gnl(const char *s, int c)
-{
+	int		check;
 	int		i;
-	char	c_;
-	char	*result;
-	char	*s_;
+	int		end;
 
 	i = 0;
-	result = NULL;
-	s_ = (char *)s;
-	c_ = (char)c;
-	while (s_[i] != '\0' || c_ == '\0')
+	while (rest[i] && rest[i] != '\n')
+		i++;
+	if (rest[i] == '\n')
+		i++;
+	if (rest[0] == 0 || i == BUFFER_SIZE)
 	{
-		if (s_[i] != c_)
-			i++;
-		else
-		{
-			result = s_ + i;
-			break ;
-		}
+		check = get_buf(fd, rest);
+		end = check;
+		while (end < BUFFER_SIZE)
+			rest[end++] = 0;
+		return (check);
 	}
-	return (result);
+	end = i;
+	i = 0;
+	while (rest[end] && end < BUFFER_SIZE)
+		rest[i++] = rest[end++];
+	while (i < BUFFER_SIZE)
+		rest[i++] = 0;
+	return (i);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*get_from_rest(char *src, int *found)
 {
-	char	*subs;
-	size_t	i;
+	char	*dst;
+	int		i;
+	int		end;
 
+	end = 0;
 	i = 0;
-	if (!s || !s[0])
+	dst = NULL;
+	while (src[end] && src[end] != '\n')
+		end++;
+	if (src[end] == '\n')
+		end++;
+	if (end)
+		dst = zalloc(end + 1);
+	if (!dst)
 		return (NULL);
-	if (start >= ft_strlen_gnl(s) || len == 0)
+	while (i < end)
 	{
-		subs = ft_calloc_gnl(1, sizeof(char));
-		if (subs == NULL)
-			return (NULL);
-		return (subs);
-	}
-	if (len > ft_strlen_gnl(s + start))
-		len = ft_strlen_gnl(s + start);
-	subs = ft_calloc_gnl(len + 1, sizeof(char));
-	if (subs == NULL)
-		return (NULL);
-	while (i < len && s[start] != '\0')
-	{
-		subs[i] = s[i + start];
+		dst[i] = src[i];
+		if (src[i] == '\n')
+			*found = 1;
 		i++;
 	}
-	subs[i] = '\0';
-	return (subs);
+	dst[i] = 0;
+	return (dst);
+}
+
+int	gelen(char *s1, char *s2)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = 0;
+	if (s1)
+	{
+		while (s1[i])
+			i++;
+		len += i;
+	}
+	i = 0;
+	if (s2)
+	{
+		while (s2[i])
+			i++;
+		len += i;
+	}
+	return (len);
 }
 
 char	*ft_strjoin_gnl(char *s1, char *s2)
 {
-	size_t	papamericano;
-	char	*str;
-	size_t	i;
-	size_t	e;
+	int		len;
+	int		i;
+	int		j;
+	char	*ans;
 
-	i = 0;
-	e = 0;
-	papamericano = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
-	str = ft_calloc_gnl(papamericano + 1, sizeof(char));
-	if (str == NULL)
-		return (free_them(&s1), free_them(&s2), NULL);
-	while (s1 != NULL && s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2 != NULL && s2[e] != '\0')
-	{
-		str[i] = s2[e];
-		e++;
-		i++;
-	}
-	str[i] = '\0';
-	return (free_them(&s1), str);
+	j = 0;
+	i = -1;
+	if (!s1)
+		return (s2);
+	if (!s2)
+		return (s1);
+	len = gelen(s1, s2);
+	ans = zalloc(len + 1);
+	if (!ans)
+		return (0);
+	while (s1[++i])
+		ans[i] = s1[i];
+	while (s2[j])
+		ans[i++] = s2[j++];
+	if (s1)
+		free(s1);
+	if (s2)
+		free(s2);
+	return (ans);
 }
-
-/* char	*ft_strjoin_gnl(char *s1, char *s2)
-{
-	char		*str;
-	size_t		i;
-	size_t		e;
-
-	i = 0;
-	if (s1 == NULL)
-	{
-		s1 = (char *)ft_calloc_gnl(1, sizeof(char));
-		if (s1 == NULL)
-			return (free_them(s1), free_them(s2), NULL);
-		s1[0] = '\0';
-	}
-	// printf("S1: %s\n", s2);
-	str = ft_calloc_gnl(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1,
-			sizeof(char));
-	if (str == NULL)
-		return (free_them(s1), free_them(s2), NULL);
-	while (s1[i] != '\0' && ft_strlen_gnl(s1) > i)
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	e = 0;
-	while (s2[e] != '\0' && ft_strlen_gnl(s2) > e)
-	{
-		str[i] = s2[e];
-		i++;
-		e++;
-	}
-	str[i] = '\0';
-	return (free_them(s1), str);
-} */
-
-/* char	*ft_strjoin_gnl(char *s1, char *s2, int bytes_read, int *progress)
-{
-	size_t		papamericano;
-	char		*str;
-	size_t		i;
-	size_t		e;
-
-	i = 0;
-	e = 0;
-	papamericano = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
-	if (s1 == NULL)
-		return (*s2);
-	// printf("S1: %s\n", s2);
-	str = ft_calloc_gnl(papamericano + 1, sizeof(char));
-	if (str == NULL)
-		return (free_them(s1), free_them(s2), NULL);
-	while (s1 != NULL && s1[i] != '\0')
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	while (s2 != NULL && s2[e] != '\0')
-	{
-		str[i] = s2[e];
-		e++;
-		i++;
-	}
-	str[i] = '\0';
-	return (free_them(s1), str);
-} */
-/* char	*ft_strjoin_gnl(char *s1, char *s2, int bytes_read, int *progress)
-{
-	char		*str;
-	size_t		i;
-	size_t		e;
-
-	i = 0;
-	if (s1 == NULL)
-		return (*s2);
-	// printf("S1: %s\n", s2);
-	str = ft_calloc_gnl( + bytes_read + 1, sizeof(char));
-	if (str == NULL)
-		return (free_them(s1), free_them(s2), NULL);
-	while (s2[i] != '\0' && ft_strlen_gnl(s1) > i)
-	{
-		str[*progress] = s1[i];
-		i++;
-		*progress += 1;
-	}
-	str[i] = '\0';
-	return (free_them(s1), str);
-} */
-
-//#include <stdio.h>
-/*int	main(void)
-{
-	char	*fuck;
-	char	*you;
-	char	*conjoinedtwins;
-
-	fuck = "goodbye";
-	you = "zulu";
-	conjoinedtwins = ft_strjoin_gnl(fuck, you);
-	printf("%s", conjoinedtwins);
-
-} */
