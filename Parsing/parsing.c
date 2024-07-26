@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 18:19:47 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:29:55 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,10 +107,11 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 {
 	char	*line;
 
-	if (fd == -1)
-		return (-1);
+	line = NULL;
 	while (!fin_read(tex))
 	{
+		if (line)
+			free_and_null((void **)&line);
 		line = get_next_line(fd);
 		if (!line)
 			return (1);
@@ -125,8 +126,15 @@ int	get_textures(int fd, t_tex *tex, t_game *g)
 	g->tex.c_rgb = string_to_rgb(tex->c);
 	g->tex.f_rgb = string_to_rgb(tex->f);
 	if (convert(g, tex))
-		return (ft_error(g, "Texture conversion failed"));
+	{
+		free_and_null((void **)&line);
+		return (1);
+	}
 	if (g->tex.c_rgb == -1 || g->tex.f_rgb == -1)
-		return (ft_error(g, "Texture conversion failed"));
+	{
+		free_and_null((void **)&line);
+		return (1);
+	}
+	free_and_null((void **)&line);
 	return (0);
 }

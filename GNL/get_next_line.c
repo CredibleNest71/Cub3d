@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/16 14:02:04 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/19 13:03:57 by mesenyur         ###   ########.fr       */
+/*   Created: 2024/07/16 14:02:04 by mresch            #+#    #+#             */
+/*   Updated: 2024/07/26 14:01:35 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "get_next_line.h"
 #include <stdio.h>
 
-void	liberator(char **imprisoned_ptr)
+void	free_them(char **imprisoned_ptr)
 {
-	if (imprisoned_ptr)
+	if (imprisoned_ptr && *imprisoned_ptr)
 	{
 		free(*imprisoned_ptr);
 		*imprisoned_ptr = NULL;
@@ -63,7 +63,7 @@ static char	*readme(char **rawstr, int fd)
 	tinybuffer = (char *)ft_calloc_gnl((BUFFER_SIZE + 1), sizeof(char));
 	if (tinybuffer == NULL)
 	{
-		liberator(rawstr);
+		free_them(rawstr);
 		return (NULL);
 	}
 	bytes_read = 1;
@@ -71,7 +71,7 @@ static char	*readme(char **rawstr, int fd)
 	{
 		bytes_read = read(fd, tinybuffer, BUFFER_SIZE);
 		if (bytes_read == -1)
-			return (liberator(&tinybuffer), liberator(rawstr), NULL);
+			return (free_them(&tinybuffer), free_them(rawstr), NULL);
 		if (bytes_read == 0)
 			break ;
 		tinybuffer[bytes_read] = '\0';
@@ -79,7 +79,7 @@ static char	*readme(char **rawstr, int fd)
 		if (*rawstr == NULL)
 			return (NULL);
 	}
-	liberator(&tinybuffer);
+	free_them(&tinybuffer);
 	return (*rawstr);
 }
 
@@ -98,21 +98,21 @@ char	*get_next_line(int fd)
 	len = linlen(rawstr);
 	cookeds = ft_substr(rawstr, 0, len);
 	if (cookeds == NULL)
-		return (liberator(&rawstr), NULL);
+		return (free_them(&rawstr), NULL);
 	if (((ft_strlen_gnl(rawstr) + 1) - len) > 0)
 	{
 		tmp = ft_substr(rawstr, len, ((ft_strlen_gnl(rawstr) + 1) - len));
 		if (tmp == NULL)
-			return (liberator(&rawstr), liberator(&cookeds), NULL);
-		liberator(&rawstr);
+			return (free_them(&rawstr), free_them(&cookeds), NULL);
+		free_them(&rawstr);
 		rawstr = tmp;
 	}
 	else
-		liberator(&rawstr);
+		free_them(&rawstr);
 	return (cookeds);
 }
 // static variables remember their value, therefore u need to set them to NULL
-// after liberatoring them
+// after free_theming them
 
 // ft_substr(rawstr, len, ((ft_strlen_gnl(rawstr) + 1) - len))
 

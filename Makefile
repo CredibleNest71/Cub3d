@@ -6,7 +6,7 @@
 #    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/07/24 18:08:46 by mesenyur         ###   ########.fr        #
+#    Updated: 2024/07/26 13:30:05 by mesenyur         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC			=	main.c\
 				CastingRays/calc_y.c\
 				CastingRays/rc.c\
 				Cleaning/clean.c \
+				Cleaning/clean2.c \
 				Display/colorify.c\
 				Display/display.c\
 				Display/display2.c\

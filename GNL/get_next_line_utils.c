@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 17:00:44 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 17:00:45 by mesenyur         ###   ########.fr       */
+/*   Created: 2024/07/24 17:00:44 by mresch            #+#    #+#             */
+/*   Updated: 2024/07/26 12:00:25 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	papamericano = ft_strlen_gnl(s1) + ft_strlen_gnl(s2);
 	str = ft_calloc_gnl(papamericano + 1, sizeof(char));
 	if (str == NULL)
-		return (liberator(&s1), liberator(&s2), NULL);
+		return (free_them(&s1), free_them(&s2), NULL);
 	while (s1 != NULL && s1[i] != '\0')
 	{
 		str[i] = s1[i];
@@ -122,7 +122,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		i++;
 	}
 	str[i] = '\0';
-	return (liberator(&s1), str);
+	return (free_them(&s1), str);
 }
 
 /* char	*ft_strjoin_gnl(char *s1, char *s2)
@@ -136,14 +136,14 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	{
 		s1 = (char *)ft_calloc_gnl(1, sizeof(char));
 		if (s1 == NULL)
-			return (liberator(s1), liberator(s2), NULL);
+			return (free_them(s1), free_them(s2), NULL);
 		s1[0] = '\0';
 	}
 	// printf("S1: %s\n", s2);
 	str = ft_calloc_gnl(ft_strlen_gnl(s1) + ft_strlen_gnl(s2) + 1,
 			sizeof(char));
 	if (str == NULL)
-		return (liberator(s1), liberator(s2), NULL);
+		return (free_them(s1), free_them(s2), NULL);
 	while (s1[i] != '\0' && ft_strlen_gnl(s1) > i)
 	{
 		str[i] = s1[i];
@@ -157,7 +157,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		e++;
 	}
 	str[i] = '\0';
-	return (liberator(s1), str);
+	return (free_them(s1), str);
 } */
 
 /* char	*ft_strjoin_gnl(char *s1, char *s2, int bytes_read, int *progress)
@@ -175,7 +175,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	// printf("S1: %s\n", s2);
 	str = ft_calloc_gnl(papamericano + 1, sizeof(char));
 	if (str == NULL)
-		return (liberator(s1), liberator(s2), NULL);
+		return (free_them(s1), free_them(s2), NULL);
 	while (s1 != NULL && s1[i] != '\0')
 	{
 		str[i] = s1[i];
@@ -188,7 +188,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		i++;
 	}
 	str[i] = '\0';
-	return (liberator(s1), str);
+	return (free_them(s1), str);
 } */
 /* char	*ft_strjoin_gnl(char *s1, char *s2, int bytes_read, int *progress)
 {
@@ -202,7 +202,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 	// printf("S1: %s\n", s2);
 	str = ft_calloc_gnl( + bytes_read + 1, sizeof(char));
 	if (str == NULL)
-		return (liberator(s1), liberator(s2), NULL);
+		return (free_them(s1), free_them(s2), NULL);
 	while (s2[i] != '\0' && ft_strlen_gnl(s1) > i)
 	{
 		str[*progress] = s1[i];
@@ -210,7 +210,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2)
 		*progress += 1;
 	}
 	str[i] = '\0';
-	return (liberator(s1), str);
+	return (free_them(s1), str);
 } */
 
 //#include <stdio.h>

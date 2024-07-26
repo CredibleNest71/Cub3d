@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/24 17:00:36 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 17:00:37 by mesenyur         ###   ########.fr       */
+/*   Created: 2024/07/24 17:00:36 by mresch            #+#    #+#             */
+/*   Updated: 2024/07/26 12:00:34 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ char	*ft_strjoin_gnl(char *s1, char *s2);
 size_t	ft_strlen_gnl(const char *s);
 size_t	linlen(char *s);
 void	*ft_calloc_gnl(size_t nmemb, size_t size);
-void	liberator(char **imprisoned_ptr);
+void	free_them(char **imprisoned_ptr);
 #endif

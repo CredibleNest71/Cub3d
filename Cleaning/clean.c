@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/24 17:03:38 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:28:20 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	clean_everything(t_game *game, int ret)
 		mlx_destroy_display(game->minilibx.mlx);
 		free_and_null((void **)&game->minilibx.mlx);
 	}
+	if (game->fd != -1)
+		close(game->fd);
 	exit(ret);
 }
 

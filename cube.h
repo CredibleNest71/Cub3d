@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 17:37:11 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/26 15:24:11 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_textures
 
 typedef struct s_game
 {
+	int			fd;
 	t_tex		tex;
 	t_player	player;
 	t_keys		keys;
@@ -216,5 +217,6 @@ int				fin_read(t_tex *tex);
 int				add_to_textures(t_tex *tex, char *line);
 char			*read_map(int fd);
 char			**make_map(char *line, t_game *g);
+void			free_words(char **words);
 
 #endif
