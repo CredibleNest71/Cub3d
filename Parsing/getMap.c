@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getMap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/26 16:16:37 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/26 18:18:13 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	**make_array(char *line, int height, int width)
 		k = 0;
 		map[i] = (char *) ft_calloc(1, width + 1);
 		if (!map[i])
-			return (NULL);
+			return (free_words(map), NULL);
 		while (line[j] && line[j] != '\n' && k < width)
 			map[i][k++] = line[j++];
 		while (k < width)
