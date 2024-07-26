@@ -9,8 +9,8 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "./cub3d",
-            "args": ["maps/map.cub"],
+            "program": "./cub3D",
+            "args": ["maps/test_MAP18.cub"],
             "cwd": "${workspaceFolder}"
         }
     ]
