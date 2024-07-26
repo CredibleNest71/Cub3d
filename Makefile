@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+         #
+#    By: mresch <mresch@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/24 12:36:34 by mresch            #+#    #+#              #
-#    Updated: 2024/07/26 13:30:05 by mesenyur         ###   ########.fr        #
+#    Updated: 2024/07/26 17:54:55 by mresch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC 			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -g
-NAME		=	Cub3D
+NAME		=	cub3D
 SRC			=	main.c\
 				CastingRays/calc_x.c\
 				CastingRays/calc_y.c\

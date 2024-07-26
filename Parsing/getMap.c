@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getMap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/26 18:18:13 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/26 19:11:00 by mresch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ char	*read_map(int fd)
 		if (!line)
 			return (free_and_null((void **)&next), NULL);
 		next = get_next_line(fd);
-		if (next && ft_strlen(next) < 2)
+		if (next && ft_strlen(next) < 2 && next[0] == '\n')
 		{
 			free_and_null((void **)&next);
-			return (NULL);
+			return ((free_and_null((void **)&line)), NULL);
 		}
 	}
 	if (next)
