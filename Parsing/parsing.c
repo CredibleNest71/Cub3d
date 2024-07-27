@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 15:40:56 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/26 19:11:25 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/27 15:10:23 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	convert(t_game *g, t_tex *tex)
 			&tex->we_info.w, &tex->we_info.h);
 	if (!tex->no_info.image || !tex->so_info.image || !tex->ea_info.image
 		|| !tex->we_info.image)
-		return (ft_error(g, "Texture conversion failed"));
+		return (ft_error(g, "Texture conversion failed", true));
 	tex->no_info.buf = mlx_get_data_addr(tex->no_info.image,
 			&tex->no_info.bits_per_pixel, &tex->no_info.line_bytes,
 			&tex->no_info.endian);

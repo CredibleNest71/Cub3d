@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/27 10:47:04 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:08:08 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void			draw_single_line(t_game *g, t_ray *ray, t_info *info, bool f);
 
 // cleaning
 void			free_and_null(void **ptr);
-int				ft_error(t_game *game, char *s);
+int				ft_error(t_game *game, char *s, bool leave);
 
 // MAP
 int				validate_map(char **map, t_game *g);

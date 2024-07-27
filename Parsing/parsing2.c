@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:11:42 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/27 13:57:53 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:13:11 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**identify(t_tex *tex, char *line, int *color)
 		*color = 1;
 		return (&tex->c);
 	}
-	ft_putendl_fd("Couldn't identify texture type!\n", STDERR_FILENO);
+	ft_error(NULL, "Couldn't identify texture type!", false);
 	return (NULL);
 }
 

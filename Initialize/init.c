@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/27 11:10:31 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:10:07 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	main_display_loop(t_game *g)
 	oldimg = g->minilibx.img;
 	info = create_buffer(g);
 	if (!info)
-		ft_error(g, "Buffer creation failed");
+		ft_error(g, "Buffer creation failed", true);
 	vision(g, info, false);
 	mlx_put_image_to_window(g->minilibx.mlx, g->minilibx.window, info->image, 0,
 		0);
@@ -109,7 +109,7 @@ void	init_rest(t_game *game, bool leak_check)
 	game->minilibx.window = mlx_new_window(game->minilibx.mlx,
 			game->minilibx.screen_width, game->minilibx.screen_height, "Cub3D");
 	if (!game->minilibx.window)
-		ft_error(game, "Window creation failed");
+		ft_error(game, "Window creation failed", true);
 	mlx_hook(game->minilibx.window, 17, 0L, ft_close, game);
 	mlx_hook(game->minilibx.window, 6, 1L << 6, handle_mouse, game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, key_down, game);

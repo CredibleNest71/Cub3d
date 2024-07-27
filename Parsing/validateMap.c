@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/27 14:00:17 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/27 15:01:55 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	check_spaces(char **map, t_game *g)
 int	validate_map(char **map, t_game *g)
 {
 	if (!map)
-		return (ft_putendl_fd("No map\n", STDERR_FILENO), 1);
+		return (ft_putendl_fd("No map", STDERR_FILENO), 1);
 	if (check_player(map, g))
 		return (1);
 	if (check_walls(map, g))
