@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:28:23 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/27 11:09:09 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/27 11:10:31 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	init_rest(t_game *game, bool leak_check)
 	mlx_hook(game->minilibx.window, 6, 1L << 6, handle_mouse, game);
 	mlx_hook(game->minilibx.window, 2, 1L << 0, key_down, game);
 	mlx_hook(game->minilibx.window, 3, 1L << 1, key_up, game);
-	if (leak_check == true)
+	if (leak_check == false)
 		mlx_mouse_hide(game->minilibx.mlx, game->minilibx.window);
 	mlx_mouse_move(game->minilibx.mlx, game->minilibx.window,
 		game->minilibx.screen_height / 2, 500);
