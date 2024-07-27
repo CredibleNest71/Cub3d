@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:48:05 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/27 09:46:00 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/27 10:47:04 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ double			cast_ray(t_game *g, t_ray *ray);
 
 // TEST
 int				main_display_loop_2d(t_game *g);
-void			init_rest(t_game *game, int leak_check);
+void			init_rest(t_game *game, bool leak_check);
 int				check_player(char **map, t_game *game);
 void			free_game_tex(t_game *game);
 void			destroy_buffer(t_game *g, t_info *info);
