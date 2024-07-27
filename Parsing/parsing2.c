@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 16:11:42 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/26 18:45:44 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/27 13:57:53 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**identify(t_tex *tex, char *line, int *color)
 		*color = 1;
 		return (&tex->c);
 	}
-	write(2, "Error: couldnt identify!", 24);
+	ft_putendl_fd("Couldn't identify texture type!\n", STDERR_FILENO);
 	return (NULL);
 }
 

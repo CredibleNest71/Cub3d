@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 15:34:07 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/24 17:52:00 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/27 14:00:17 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_walls(char **map, t_game *g)
 			return (1);
 		if (checkme[0] != '1' || checkme[ft_strlen(checkme) - 1] != '1')
 			return (free_and_null((void **)&checkme), 1);
-		if (!i || i == g->map_height)
+		if (!i || i == g->map_height - 1)
 			if (check_vert(checkme))
 				return (free_and_null((void **)&checkme), 1);
 		free_and_null((void **)&checkme);
@@ -87,7 +87,7 @@ int	check_spaces(char **map, t_game *g)
 int	validate_map(char **map, t_game *g)
 {
 	if (!map)
-		return (write(2, "No map\n", 7));
+		return (ft_putendl_fd("No map\n", STDERR_FILENO), 1);
 	if (check_player(map, g))
 		return (1);
 	if (check_walls(map, g))
