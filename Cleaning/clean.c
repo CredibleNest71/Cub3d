@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:56:58 by mesenyur          #+#    #+#             */
-/*   Updated: 2024/07/27 15:08:53 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:11:27 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	clean_everything(t_game *game, int ret)
 	i = 0;
 	if (!game)
 		return ;
-	while (i < game->map_height)
+	while (game->map && i < game->map_height)
 		free_and_null((void **)&game->map[i++]);
 	if (game->map)
 		free_and_null((void **)&game->map);

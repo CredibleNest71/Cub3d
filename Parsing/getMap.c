@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getMap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mresch <mresch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/26 19:11:00 by mresch           ###   ########.fr       */
+/*   Updated: 2024/07/31 11:20:34 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,10 @@ char	**make_map(char *line, t_game *g)
 	g->map_height = height;
 	g->map_width = width;
 	map = make_array(line, height, width);
+	if (!map)
+	{
+		free_and_null((void **)&line);
+		return (ft_error(g, "Couldn't allocate memory for map", true), NULL);
+	}
 	return (map);
 }
