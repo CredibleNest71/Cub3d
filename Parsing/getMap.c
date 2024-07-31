@@ -6,7 +6,7 @@
 /*   By: mesenyur <mesenyur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:47:26 by mresch            #+#    #+#             */
-/*   Updated: 2024/07/31 11:20:34 by mesenyur         ###   ########.fr       */
+/*   Updated: 2024/07/31 11:35:34 by mesenyur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ char	*append_and_replace(char *first, char *second)
 	if (!first)
 		return (second);
 	ret = ft_strjoin(first, second);
-	free_and_null((void **)&first);
-	free_and_null((void **)&second);
+	if (first)
+		free_and_null((void **)&first);
+	if (second)
+		free_and_null((void **)&second);
 	return (ret);
 }
 
@@ -43,7 +45,7 @@ char	*read_map(int fd)
 	{
 		line = append_and_replace(line, next);
 		if (!line)
-			return (free_and_null((void **)&next), NULL);
+			return (NULL);
 		next = get_next_line(fd);
 		if (next && ft_strlen(next) < 2 && next[0] == '\n')
 		{
